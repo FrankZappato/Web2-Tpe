@@ -1,0 +1,26 @@
+/*--Products grid---*/
+
+.add-to-cart-btn {
+    margin-top: 5px;
+}
+
+.products {
+    border: 1px solid #333;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    max-height: 500px;
+}
+
+.product-img {
+    width: 90%;
+}
+
+.name-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

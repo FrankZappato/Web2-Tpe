@@ -5,6 +5,6 @@
 
 
     RewriteRule \.(?:css|js|jpe?g|gif|png)$ - [L]
-    RewriteRule ^(.*)$ router.php?action=$1 [QSA,L]
+    RewriteRule ^(.*)$ utils/router.php?action=$1 [QSA,L]
 
 </IfModule>
