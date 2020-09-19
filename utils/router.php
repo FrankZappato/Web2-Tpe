@@ -2,13 +2,16 @@
    
    
    require_once 'RouterClass.php';
-   require_once 'C:\xampp\htdocs\shoppingcart-1\controller\ProductsController.php';
+   require_once '../controller/ProductsController.php';
+   require_once '../controller/LoginController.php';
+
     
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
     $r = new Router();
     $r->addRoute("home", "GET", "ProductsController", "Home");
+    $r->addRoute("login", "GET", "LoginController", "Login");
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 /*
     // rutas

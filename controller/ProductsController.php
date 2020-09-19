@@ -14,18 +14,11 @@ class ProductsController{
 
     }
 
-
     function Home(){
         $products = $this->model->GetAllProducts();
         $this->view->ShowHome($products);
     }
 
-
-
-
 }
-
-
-
 
 ?>

@@ -20,6 +20,7 @@ class Route {
         }
         $partsURL = explode("/", trim($url,'/'));
         $partsRoute = explode("/", trim($this->url,'/'));
+
         if(count($partsRoute) != count($partsURL)){
             return false;
         }
@@ -33,11 +34,11 @@ class Route {
         }
         return true;
     }
-    public function run(){
+    public function run($params){
         $controller = $this->controller;  
         $method = $this->method;
-        $params = $this->params;
-       
+        $this->params = $params;
+        var_dump($params);
         (new $controller())->$method($params);
     }
 }
@@ -51,16 +52,14 @@ class Router {
     }
 
     public function route($url, $verb) {
-        //$ruta->url //no compila!
+        $params = explode('/', $url);
         foreach ($this->routeTable as $route) {
-            if($route->match($url, $verb)){
-                //TODO: ejecutar el controller//ejecutar el controller
+            if($route->match($params[0], $verb)){
                 // pasarle los parametros
-                $route->run();
+                $route->run($params);
                 return;
             }
         }
-        //Si ninguna ruta coincide con el pedido y se configuró ruta por defecto.
         if ($this->defaultRoute != null)
             $this->defaultRoute->run();
     }
