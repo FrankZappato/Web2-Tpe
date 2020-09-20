@@ -1,5 +1,5 @@
 <?php
-class Login{
+class LoginModel{
 
     private $db;
 
@@ -9,6 +9,7 @@ class Login{
 
     function login(){    
         echo $_POST["email"];
-        echo "<br>----------Aca llegue a la base---------------<br>";   
+        echo "<br>----------Aca llegue a la base---------------<br>";  
     }
 }
+?>

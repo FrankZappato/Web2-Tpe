@@ -11,7 +11,7 @@ require_once "../view/LoginView.php";
     private $view;
 
     function __construct(){
-        $this->login = new Login();
+        $this->login = new LoginModel();
         $this->productsController = new ProductsController();
         $this->view = new LoginView();
 
@@ -23,6 +23,10 @@ require_once "../view/LoginView.php";
 
     function showLoginForm(){
         $this->view->showLoginForm();
+    }
+
+    function logout(){
+        
     }
 }
 ?>
