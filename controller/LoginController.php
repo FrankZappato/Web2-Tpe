@@ -2,30 +2,27 @@
 
 require_once "../model/Login.php";
 require_once "ProductsController.php";
+require_once "../view/LoginView.php";
 
-class LoginController{
+    class LoginController{
 
-private $login;
-private $productsController;
+    private $login;
+    private $productsController;
+    private $view;
 
-function __construct(){
-    $this->login = new Login();
-    $this->productsController = new ProductsController();
+    function __construct(){
+        $this->login = new Login();
+        $this->productsController = new ProductsController();
+        $this->view = new LoginView();
 
-}
-
-function Login($keys){
-    var_dump($keys);
-    $this->login->login($keys);
-    /*
-    if($this->login->Login($keys)){
-        //iniciar session
     }
-    $this->productsController->Home();
-    */
+
+    function login(){
+        $this->login->login();
+    }
+
+    function showLoginForm(){
+        $this->view->showLoginForm();
+    }
 }
-}
-
-
-
 ?>

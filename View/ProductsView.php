@@ -4,7 +4,7 @@ class ProductsView{
 
     function __construct(){}
 
-    function ShowHome($products){
+    function showHome($products){
         $html = '
         <!DOCTYPE html>
         <html lang="en">

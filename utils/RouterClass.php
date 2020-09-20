@@ -38,7 +38,12 @@ class Route {
         $controller = $this->controller;  
         $method = $this->method;
         $this->params = $params;
+        /*
+        echo "---------Estos son los parametros del get-------------<br>";
         var_dump($params);
+        echo "<br>---------Estos son los parametros del post-------------<br>";
+        echo $_POST['email'];
+        */
         (new $controller())->$method($params);
     }
 }
@@ -55,8 +60,7 @@ class Router {
         $params = explode('/', $url);
         foreach ($this->routeTable as $route) {
             if($route->match($params[0], $verb)){
-                // pasarle los parametros
-                $route->run($params);
+                $route->run($params);              
                 return;
             }
         }
