@@ -36,8 +36,8 @@ class ProductsView{
              <input type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn" value="Add To Cart" />
             </div>
             </form>
+
             </div>'; };
-        
         $html .='
         </div>
         </div>
