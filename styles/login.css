@@ -15,3 +15,7 @@ body {
     height: 100vh;
     background-position: center;
 }
+.errorEmptyFields{
+    color : red;
+    background-color:yellow;
+}

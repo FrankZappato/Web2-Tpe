@@ -15,14 +15,32 @@ require_once "../view/LoginView.php";
         $this->productsController = new ProductsController();
         $this->view = new LoginView();
 
-    }
+    }      
 
     function login(){
-        $this->login->login();
+        $responses = $this->login->login();
+        echo $responses;
+        switch($responses){
+            case 'errorEmptyFields':
+                $this->view->showLoginForm($responses);
+            break;
+            case 'errorSQLConnection':
+                $this->view->showLoginForm($responses);
+            break;
+            case 'errorWrongPassword':
+                $this->view->showLoginForm($responses);
+            break;
+            case 'connectionSucces':
+                $this->view->showLoginForm($responses);
+            break;
+            case 'errorNoUser':
+                $this->view->showLoginForm($responses);
+            break;                    
+        }
     }
 
     function showLoginForm(){
-        $this->view->showLoginForm();
+        $this->view->showLoginForm(null);
     }
 
     function logout(){
