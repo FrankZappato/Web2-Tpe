@@ -18,29 +18,12 @@ require_once "../view/LoginView.php";
     }      
 
     function login(){
-        $responses = $this->login->login();
-        echo $responses;
-        switch($responses){
-            case 'errorEmptyFields':
-                $this->view->showLoginForm($responses);
-            break;
-            case 'errorSQLConnection':
-                $this->view->showLoginForm($responses);
-            break;
-            case 'errorWrongPassword':
-                $this->view->showLoginForm($responses);
-            break;
-            case 'connectionSucces':
-                $this->view->showLoginForm($responses);
-            break;
-            case 'errorNoUser':
-                $this->view->showLoginForm($responses);
-            break;                    
-        }
+        $code = $this->login->login();
+        $this->view->showLoginForm($code, $extra_param);
     }
 
     function showLoginForm(){
-        $this->view->showLoginForm(null);
+        $this->view->showLoginForm(null, null);
     }
 
     function logout(){

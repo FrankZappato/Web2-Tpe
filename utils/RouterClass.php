@@ -46,8 +46,8 @@ class Router {
     private $routeTable = [];
     private $defaultRoute;
 
-    public function __construct() {
-        $this->defaultRoute = null;
+    public function __construct($defaultRoute) {
+        $this->defaultRoute = $defaultRoute;
     }
 
     public function route($url, $verb) {

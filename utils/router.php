@@ -6,8 +6,7 @@
 
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
-    $r = new Router();
-    $r->addRoute("", "GET", "ProductsController", "home");
+    $r = new Router(new Route("home", "GET", "ProductsController", "home"));
     $r->addRoute("home", "GET", "ProductsController", "home");
     $r->addRoute("login", "POST", "LoginController", "login");
     $r->addRoute("login", "GET", "LoginController", "showLoginForm");
