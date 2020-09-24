@@ -27,7 +27,7 @@ class Route {
             if($part[0] != ":"){
                 if($part != $partsURL[$key])
                 return false;
-            } //es un parametro
+            } 
             else
             $this->params[$part] = $partsURL[$key];
         }
@@ -50,16 +50,12 @@ class Router {
     }
 
     public function route($url, $verb) {
-        //$ruta->url //no compila!
         foreach ($this->routeTable as $route) {
             if($route->match($url, $verb)){
-                //TODO: ejecutar el controller//ejecutar el controller
-                // pasarle los parametros
                 $route->run();
                 return;
             }
         }
-        //Si ninguna ruta coincide con el pedido y se configuró ruta por defecto.
         if ($this->defaultRoute != null)
             $this->defaultRoute->run();
     }

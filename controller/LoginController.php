@@ -19,7 +19,11 @@ require_once "../view/LoginView.php";
 
     function login(){
         $code = $this->login->login();
-        $this->view->showLoginForm($code, $extra_param);
+        if($code == "connectionSucces"){
+            $this->productsController->Home();
+        }else{
+        $this->view->showLoginForm($code, "");
+        }
     }
 
     function showLoginForm(){
