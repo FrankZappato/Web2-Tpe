@@ -24,7 +24,12 @@
                          <label for="exampleInputPassword1">Password</label>
                          <input type="password" class="form-control" name="password">
                      </div>                     
-                     <button type="submit" class="btn btn-primary btn-block">Submit</button>                    
+                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    {if $error_code != null}
+                     <div class="alert alert-danger" role="alert">
+                        {$error_code}
+                    </div> 
+                    {/if}          
                  </form>
              </section>
          </section>
