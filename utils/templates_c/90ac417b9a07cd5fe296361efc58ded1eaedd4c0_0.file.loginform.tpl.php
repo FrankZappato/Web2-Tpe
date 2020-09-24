@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-09-25 00:00:44
+/* Smarty version 3.1.34-dev-7, created on 2020-09-25 00:25:28
   from 'C:\xampp\htdocs\web2-tp\templates\loginform.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f6d170c5cd9d9_68965820',
+  'unifunc' => 'content_5f6d1cd8d39178_46679876',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '90ac417b9a07cd5fe296361efc58ded1eaedd4c0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2-tp\\templates\\loginform.tpl',
-      1 => 1600984840,
+      1 => 1600985964,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f6d170c5cd9d9_68965820 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f6d1cd8d39178_46679876 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
  <html lang="en">
  
@@ -49,10 +49,6 @@ function content_5f6d170c5cd9d9_68965820 (Smarty_Internal_Template $_smarty_tpl)
                      </div>                     
                      <button type="submit" class="btn btn-primary btn-block">Submit</button>                    
                  </form>
-                 <div>
-                    <?php echo $_smarty_tpl->tpl_vars['error_code']->value;?>
-
-                 </div>
              </section>
          </section>
      </section>
