@@ -8,26 +8,25 @@ require_once "../view/LoginView.php";
 
     private $login;
     private $productsController;
-    private $view;
+    private $loginView;
 
     function __construct(){
         $this->login = new LoginModel();
         $this->productsController = new ProductsController();
-        $this->view = new LoginView();
-
+        $this->loginView = new LoginView();
     }      
 
     function login(){
         $code = $this->login->login();
         if($code == "connectionSucces"){
-            $this->productsController->Home();
+            $this->productsController->Home(); //acá le pasaremos algun parametro para que se lo inyecte a la plantilla de smarty. por ejemplo algo par que desencadene un cartel que diga "succes" y que desaparesca al ratito
         }else{
-        $this->view->showLoginForm($code, "");
+        $this->loginView->showLoginForm($code, "");
         }
     }
 
     function showLoginForm(){
-        $this->view->showLoginForm(null, null);
+        $this->loginView->showLoginForm(null, null);
     }
 
     function logout(){
