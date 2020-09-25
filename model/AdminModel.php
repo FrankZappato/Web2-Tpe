@@ -11,7 +11,7 @@ class AdminModel{
     function signup(){
         echo $_POST['uid'];
     if(isset($_POST['signup-submit'])){
-        //echo
+        
         $username = $_POST['uid'];    
         $email = $_POST['mail'];    
         $password = $_POST['pwd'];    
@@ -22,7 +22,7 @@ class AdminModel{
             return "emptyFields";
         }
         else if((!filter_var($email , FILTER_VALIDATE_EMAIL))&&(!preg_match("/^[a-zA-Z0-9]*$/",$username))){
-            return "invalidEmailOrUser";
+            return "invalidEmailAndUser";
         }
         else if(!filter_var($email , FILTER_VALIDATE_EMAIL)){
             return "invalidEmail";

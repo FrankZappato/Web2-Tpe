@@ -43,10 +43,7 @@ class LoginView{
  </body>
  
  </html>';
-
-
-
- echo $html;
+    echo $html;
     }
 
     
