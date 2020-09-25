@@ -4,52 +4,87 @@ class LoginModel{
     private $db;
 
     function __construct(){
-        $this->db = mysqli_connect('localhost','root','','the_cave_users');
+        $this->db = new PDO('mysql:host=localhost;'
+        .'dbname=the_cave_users;charset=utf8'
+        , 'root', '');
     }
     
-    function login(){          
-            echo $_POST["emailuid"];
+    function login(){
+        session_start();                
+            try{
+                $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                //if(isset($_POST['login'])){
+                    $mailuid = $_POST['emailuid'];
+                    $password = $_POST['password'];
+                    if(empty($mailuid)||empty($password)){
+                        return "errorEmptyFields";               
+                    }
+                    else {
+                        $query = "SELECT * FROM users";
+                        echo $password;
+                        $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+                        echo $hashedPwd;
+                        
+                        $stmt = $this->db->prepare($query);
 
-            $mailuid = $_POST['emailuid'];
-            $password = $_POST['password'];
-
-            if(empty($mailuid)||empty($password)){
-                return "errorEmptyFields";               
+                        $stmt->execute();                                
+                            
+                        $result = $stmt->fetchAll(PDO::FETCH_OBJ);    //trabajar con el arrayde objetos result                     
+                        
+                        foreach($result as $r){
+                            
+                            if(($r->uidUsers == $mailuid)){
+                                echo '<p>'.$r->uidUsers.'</p>'.'<p>'. $r->pwdUsers.'</p>';
+                            }
+                        }
+                        /**$count = $stmt->rowCount();
+                        echo '<p>'.$count.'</p>';
+                        if($count >0){//FALTA VERIFICAR POR PASS Y USUARIO ANDA MAL PERO POR AHI VA LA ONDA
+                            $_SESSION['uidUsers'] = $mailuid;
+                            
+                            return 'connectionSucces';
+                        }**/
+                        
+                    }
+                //}
+            }catch(PDOException $error){
+                return $error;
             }
-            else {
-                $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?;";
-                $stmt = mysqli_stmt_init($this->db);
-                if(!mysqli_stmt_prepare($stmt, $sql)){
-                    return "errorSQLConnection";                    
-                }
-                else{
-                    mysqli_stmt_bind_param($stmt, "ss", $mailuid, $mailuid);
-                    mysqli_stmt_execute($stmt);
-                    $result = mysqli_stmt_get_result($stmt);
-                    if($row = mysqli_fetch_assoc($result)){
-                        $pwdCheck = password_verify($password, $row['pwdUsers']);
-                        if($pwdCheck == false){
-                            return "errorWrongPassword";
-                        }
-                        else if($pwdCheck == true){//Aca anduvo si pusiste todo Ok!
-                           session_start();
-                           $_SESSION['userId']= $row['idUsers'];     
-                           $_SESSION['userUid']= $row['uidUsers'];
-        
-                           return "connectionSucces";
-                           
-                        }
-                        else{
-                            return "errorWrongPassword"; 
-                        }
-                    }
-                    else{
-                        return "errorNoUser";
-                    }
-                }
-            
-            echo "<br>----------Aca llegue a la base---------------<br>";  
-            
         }
     }
-}
+
+
+            /**echo $_POST["emailuid"];
+            
+                
+                
+                
+                
+
+                        if($row = mysqli_fetch_assoc($result)){
+                            $pwdCheck = password_verify($password, $row['pwdUsers']);
+                            if($pwdCheck == false){
+                                return "errorWrongPassword";
+                            }
+                            else if($pwdCheck == true){//Aca anduvo si pusiste todo Ok!
+                            session_start();
+                            $_SESSION['userId']= $row['idUsers'];     
+                            $_SESSION['userUid']= $row['uidUsers'];
+            
+                            return "connectionSucces";
+                            
+                            }
+                            else{
+                                return "errorWrongPassword"; 
+                            }
+                        }
+                        else{
+                            return "errorNoUser";
+                        }
+                    }
+                
+                echo "<br>----------Aca llegue a la base---------------<br>";  
+                
+            }
+        }
+    }**/
