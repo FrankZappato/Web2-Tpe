@@ -20,14 +20,18 @@ class LoginModel{
                         return "errorEmptyFields";               
                     }
                     else {
-                        $query = "SELECT * FROM users";
+                        $query = "SELECT * FROM users WHERE uidUsers = :papa";
                         echo $password;
                         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                         echo $hashedPwd;
                         
                         $stmt = $this->db->prepare($query);
 
-                        $stmt->execute();                                
+                        $stmt->execute(
+                                array(
+                                     'papa' => $mailuid                                       
+                                )
+                        );                                
                             
                         $result = $stmt->fetchAll(PDO::FETCH_OBJ);    //trabajar con el arrayde objetos result                     
                         
