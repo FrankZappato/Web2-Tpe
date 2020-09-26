@@ -2,7 +2,7 @@
 
     require_once "../view/AdminFormView.php";
     require_once "../Model/AdminModel.php";
-    //require_once "..view/AdminFormView";
+    require_once "../model/Login.php";
 
 
 class AdminController{
@@ -12,13 +12,13 @@ class AdminController{
 
     function __construct(){
         
-        $this->admin = new AdminModel();
+        $this->admin = new LoginModel();
         $this->view = new AdminFormView();
         
     }
 
     function signup(){
-        $this->admin->signup();        
+        $this->admin->signUp();        
     }
 
     function showAdminForm(){
