@@ -1,35 +1,19 @@
 <?php
 
-class ProductsModel{
-
+class ProductsModel
+{
     private $db;
 
-    function __construct(){
-        $this->db = mysqli_connect('localhost','root','','the_cave');
+    public function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;'
+    .'dbname=the_cave;charset=utf8', 'root', '');
     }
-         
-      function GetAllProducts(){
-        $query = 'SELECT * FROM products ORDER by id ASC';
-        return $result = mysqli_query($this->db,$query);  
-      }
-      
-      /*function InsertTask($title,$description,$completed,$priority){
-          $sentencia = $this->db->prepare("INSERT INTO task(title, description, completed, priority) VALUES(?,?,?,?)");
-          $sentencia->execute(array($title,$description,$completed,$priority));
-      }
-      
-      function DeleteTaskDelModelo($task_id){
-          $sentencia = $this->db->prepare("DELETE FROM task WHERE id=?");
-          $sentencia->execute(array($task_id));
-      }
-      
-      function MarkAsCompletedTask($task_id){
-          $sentencia = $this->db->prepare("UPDATE task SET completed=1 WHERE id=?");
-          $sentencia->execute(array($task_id));
-      
-      }
-      */
-      
-}
 
-?>
+    public function GetAllProducts()
+    {
+        $query = $this->db->prepare("SELECT * FROM products ORDER by id ASC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+}
