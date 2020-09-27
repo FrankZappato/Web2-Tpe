@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="scroll-btn">
-            <div class="scroll-bar"><a href="#about"><span></span></a></div>
+            <div class="scroll-bar"><span></span></div>
         </div>
     </section>
 
@@ -31,10 +31,15 @@
             <div class="col-md-6 text-center">
                 <img src="images/francisco.jpg" class="profile-img">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12 text-center">
                 <h3>A little about us</h3>
-                <p> SarasaSarasaSarasaSarasa <br>
-                    SarasaSarasaSarasaSarasa</p>
+                <p>
+                    We are a small company that was born from
+                    the need to provide quality service. We specialize in
+                    providing parts of computers and advice on their assembly and repair.
+                    We have the latest products from the brand and at the best price.
+                    We advise all our clients, so that their purchase is a pleasant experience.
+                </p>
             </div>
         </div>
     </div>
