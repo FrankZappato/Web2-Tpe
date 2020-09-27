@@ -30,3 +30,16 @@
 .nav-link {
     color: #fff !important;
 }
+
+
+/*Contact form*/
+
+#contact_container {
+    margin-top: 20px;
+}
+
+.contact_body {
+    background: url('../images/contactbg.jpg') no-repeat;
+    height: 100vh;
+    background-position: center;
+}
