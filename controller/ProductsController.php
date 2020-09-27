@@ -14,9 +14,9 @@ class ProductsController
         $this->model = new ProductsModel();
     }
 
-    public function home()
+    public function showProducts()
     {
         $products = $this->model->getAllProducts();
-        $this->view->showHome($products);
+        $this->view->showProducts($products);
     }
 }

@@ -14,6 +14,9 @@
                      <a class="nav-link" href="login">LOGIN</a>
                  </li>
                  <li class="nav-item">
+                     <a class="nav-link" href="products">PRODUCTS</a>
+                 </li>
+                 <li class="nav-item">
                      <a class="nav-link" href="contact">CONTACT</a>
                  </li>
              </ul>

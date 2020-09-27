@@ -7,7 +7,7 @@ class ProductsView
     {
     }
 
-    public function showHome($products)
+    public function showProducts($products)
     {
         $smarty = new Smarty();
         $smarty->assign('products_s', $products);
