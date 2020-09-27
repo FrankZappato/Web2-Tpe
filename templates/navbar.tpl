@@ -9,12 +9,9 @@
              <ul class="navbar-nav ml-auto">
                  <li class="nav-item active">
                      <a class="nav-link" href="home">HOME</a>
-                 </li>
-                 <li class="nav-item active">
-                        <a class="nav-link" href="">PRODUCTS</a>
-                 </li>
+                 </li>                 
                 <li class="nav-item active">
-                        <a class="nav-link" href="">SIGNUP</a>
+                        <a class="nav-link" href="signup">SIGNUP</a>
                 </li>
                  <li class="nav-item">
                      <a class="nav-link" href="login">LOGIN</a>
