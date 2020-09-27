@@ -121,3 +121,6 @@
 #about {
     margin-top: 10px;
 }
+.carousel-item{
+    max-height: 400px;
+}
