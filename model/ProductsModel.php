@@ -10,7 +10,7 @@ class ProductsModel
     .'dbname=the_cave;charset=utf8', 'root', '');
     }
 
-    public function GetAllProducts()
+    public function getAllProducts()
     {
         $query = $this->db->prepare("SELECT * FROM products ORDER by id ASC");
         $query->execute();

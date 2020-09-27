@@ -6,40 +6,34 @@ class LoginModel
     public function __construct()
     {
         $this->db = new PDO('mysql:host=localhost;'
-        .'dbname=the_cave_users;charset=utf8', 'root', '');
+        .'dbname=thecave;charset=utf8', 'root', '');
     }
     
     public function login()
     {
-        session_start();
         try {
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $mailuid = $_POST['emailuid'];
+            $email = $_POST['email'];
             $password = $_POST['password'];
-            if (empty($mailuid)||empty($password)) {
-                return "Error:Empty Fields";
+            if (empty($email)||empty($password)) {
+                return "Error: Empty Fields";
             } else {
-                $query = "SELECT * FROM users WHERE uidUsers = :user";
-                        
-                        
+                $query = "SELECT * FROM users WHERE email = :email";
                 $stmt = $this->db->prepare($query);
-
                 $stmt->execute(
-                    array(
-                                     'user' => $mailuid
-                                )
+                    array('email' => $email)
                 );
-                            
-                $result = $stmt->fetchAll(PDO::FETCH_OBJ);    //trabajar con el arrayde objetos result
-                        
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+                if ($stmt->rowCount() == 0) {
+                    return 'Error: No user with that email';
+                }
                 foreach ($result as $r) {
-                    if ((password_verify($password, $r->pwdUsers))) {
-                        $_SESSION['uidUsers'] = $mailuid;
+                    if ((password_verify($password, $r->pwd))) {
+                        session_start();
+                        $_SESSION['uidUsers'] = $r->id;
                         return 'connectionSucces';
-                        echo "PAPAAAAAAAAAAAAAAAAAAA";
-                        echo '<p>'.$r->uidUsers.'</p>'.'<p>'. $r->pwdUsers.'</p>';
                     } else {
-                        return 'invalidPassword';
+                        return 'Error: Invalid Password';
                     }
                 }
             }
@@ -47,57 +41,48 @@ class LoginModel
             return $error;
         }
     }
-     
     
     public function signUp()
     {
         if (isset($_POST['signup-submit'])) {
             try {
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $username = $_POST['uid'];
-                $email = $_POST['mail'];
-                $password = $_POST['pwd'];
-                $passwordRepeat = $_POST['pwd-repeat'];
-        
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $passwordRepeat = $_POST['password-repeat'];
                 if (empty($username) ||empty($email)||empty($password)
                 ||empty($passwordRepeat)) {
-                    return "emptyFields";
+                    return "Error: Empty Fields";
                 } elseif ((!filter_var($email, FILTER_VALIDATE_EMAIL))&&(!preg_match("/^[a-zA-Z0-9]*$/", $username))) {
-                    return "invalidEmailAndUser";
+                    return "Error: Invalid Fields";
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    return "invalidEmail";
+                    return "Error: Invalid Email";
                 } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-                    return "invalidUser";
+                    return "Error: Invalid User";
                 } elseif ($password !== $passwordRepeat) {
-                    return "passwordUnmatch";
+                    return "Error: Password Not Match";
                 } else {
-                    $query = "SELECT uidUsers FROM users WHERE uidUsers= :user";
+                    $query = "SELECT * FROM users WHERE email= :email";
                     $statement = $this->db->prepare($query);
                     
                     $statement->execute(
                         array(
-                                'user' => $username
+                                'email' => $email
                             )
                     );
 
                     $count = $statement->rowCount();
-                    echo $count;
                     if ($count > 0) {
-                        echo "<br>----------El usuario ha sido tomado---------------<br>";
-                        return "userTaken";
+                        return "Error: Email already taken";
                     } else {
-                        $sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers) VALUES(?, ?, ?)";
+                        $sql = "INSERT INTO users (username, email, pwd, isadmin) VALUES(?, ?, ?, ?)";
                         $stmt = $this->db->prepare($sql);
                         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                         $stmt->execute(
-                            array($username,$email,$hashedPwd)
+                            array($username, $email, $hashedPwd, 0)
                         );
                         $result = $statement->fetchAll(PDO::FETCH_OBJ);
-                        foreach ($result as $r) {
-                            echo $r->uidUsers;
-                            echo $r->emailUsers;
-                        }
-                        echo "<br>----------Aca llegue a la base---------------<br>";
                         return "registerSuccess";
                     }
                 }

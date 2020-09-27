@@ -16,7 +16,7 @@ class ProductsController
 
     public function home()
     {
-        $products = $this->model->GetAllProducts();
+        $products = $this->model->getAllProducts();
         $this->view->showHome($products);
     }
 }

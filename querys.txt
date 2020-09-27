@@ -1,2 +1,0 @@
-INSERT INTO `products` (`id`,`name`,`price`,`image`) VALUES (1,'Procesador Intel Core i7 9700F 4.7GHz Turbo 1151 Coffee Lake',35.999,'intel-core-i7.jpg'),
-(2,'Procesador AMD RYZEN 7 3700X 4.4 GHz AM4 Wraith Prism RGB Led Cooler',35.040,'ryzen-7.jpg');
