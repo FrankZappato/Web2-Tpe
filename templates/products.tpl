@@ -13,7 +13,7 @@
 <body>
     {include file="./navbar.tpl"}
     <div class="container">
-        <div class="row">
+        <div class="row row_products">
             {foreach from=$products_s item=product}
                 <div class="col-sm-4 col-md-3">
                     <form method="post" action="index.php?action=add&id={$product->id}">

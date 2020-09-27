@@ -1,3 +1,5 @@
+/*Nav-Bar*/
+
 .nav-bar {
     top: 0;
     position: sticky;
@@ -29,4 +31,93 @@
 
 .nav-link {
     color: #fff !important;
+}
+
+
+/*Products*/
+
+.row_products {
+    margin-top: 20px;
+}
+
+
+/*Contact form*/
+
+#contact_container {
+    margin-top: 20px;
+}
+
+.contact_body {
+    background: url('../images/contactbg.jpg') no-repeat;
+    height: 100vh;
+    background-position: center;
+}
+
+
+/*Home - Header*/
+
+#header {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/homebg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.user-box {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.user-box img {
+    border-radius: 80%;
+    width: 250px;
+    border: 2px solid grey;
+}
+
+.user-box h1 {
+    color: #fff;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.scroll-btn {
+    bottom: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 10px 20px;
+    border-radius: 40%;
+    margin-top: 3px;
+}
+
+.scroll-bar span {
+    border: 2px solid #fff;
+    font-size: 10px;
+    border-radius: 30px;
+}
+
+.scroll-bar {
+    animation: mover 1s infinite alternate;
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+.profile-img {
+    height: 300px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+#about {
+    margin-top: 10px;
 }

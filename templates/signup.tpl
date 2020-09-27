@@ -15,16 +15,16 @@
             <section class="col-12 col-sm-6 col-md-6">
                 <form class="form-container" action="signup" method="POST">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="uid" placeholder="Username">
+                        <input class="form-control" type="text" name="username" placeholder="Username">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="mail" placeholder="E-mail">
+                        <input class="form-control" type="text" name="email" placeholder="E-mail">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="password" name="pwd" placeholder="Password">
+                        <input class="form-control" type="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="password" name="pwd-repeat" placeholder="Repeat Password">
+                        <input class="form-control" type="password" name="password-repeat" placeholder="Repeat Password">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" type="submit" name="signup-submit">SignUp</button>
