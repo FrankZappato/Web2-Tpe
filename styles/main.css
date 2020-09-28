@@ -3,11 +3,11 @@
 .nav-bar {
     top: 0;
     position: sticky;
-    z-index: 2;
+    z-index: 2;   
 }
 
 .navbar {
-    background-color: #000;
+    background-color: #000;    
 }
 
 .navbar-brand img {
@@ -26,7 +26,7 @@
 
 .navbar-nav {
     float: right;
-    text-align: right;
+    text-align: right;    
 }
 
 .nav-link {
@@ -120,4 +120,7 @@
 
 #about {
     margin-top: 10px;
+}
+.carousel-item{
+    max-height: 400px;
 }

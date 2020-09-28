@@ -7,9 +7,11 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
+{include file="./navbar.tpl"}
     <section class="container-fluid bg">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-6">
