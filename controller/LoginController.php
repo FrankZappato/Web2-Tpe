@@ -21,7 +21,7 @@ require_once "../view/LoginView.php";
         {
             $code = $this->loginModel->login();
             if ($code == "connectionSucces") {
-                $this->productsController->home(); // aca pasarle la sesion o algo que nos diga que fue ok, alguna variable para algun cartel
+                $this->productsController->showProducts(); // aca pasarle la sesion o algo que nos diga que fue ok, alguna variable para algun cartel
             } else {
                 $this->loginView->showLoginForm($code, "");
             }

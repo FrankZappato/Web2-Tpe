@@ -4,6 +4,7 @@
    require_once '../controller/LoginController.php';
    require_once '../controller/ContactController.php';
    require_once '../controller/HomeController.php';
+   require_once '../controller/AdminController.php';
 
 
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -17,4 +18,5 @@
     $r->addRoute("signup", "POST", "LoginController", "signUp");
     $r->addRoute("contact", "GET", "ContactController", "showContactForm");
     $r->addRoute("products", "GET", "ProductsController", "showProducts");
+    $r->addRoute("admin", "GET", "AdminController", "showAdmin");
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
