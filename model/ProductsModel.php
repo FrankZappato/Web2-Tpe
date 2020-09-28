@@ -7,7 +7,7 @@ class ProductsModel
     public function __construct()
     {
         $this->db = new PDO('mysql:host=localhost;'
-    .'dbname=the_cave;charset=utf8', 'root', '');
+    .'dbname=thecave;charset=utf8', 'root', '');
     }
 
     public function getAllProducts()
