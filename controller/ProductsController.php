@@ -19,4 +19,5 @@ class ProductsController
         $products = $this->model->getAllProducts();
         $this->view->showProducts($products);
     }
+   
 }

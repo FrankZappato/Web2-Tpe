@@ -24,13 +24,13 @@
                 {$product->id}
                 </td>
                 <td>                
-                {$product->name}
+                {$product->name_product}
                 </td>
                 <td>
                 {$product->price}
                 </td>
                 <td>
-                {$product->image}
+                {$product->img_product}
                 </td>
             </tr>
         {/foreach}        
