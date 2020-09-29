@@ -122,5 +122,8 @@
     margin-top: 10px;
 }
 .carousel-item{
-    max-height: 400px;
+    height: auto;   
+}
+.d-block{
+    max-height: fit-content;
 }
