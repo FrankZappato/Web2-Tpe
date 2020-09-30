@@ -8,7 +8,6 @@ class AdminModel{
     {
     $this->db = new PDO('mysql:host=localhost;'
     .'dbname=thecave;charset=utf8', 'root', '');
-<<<<<<< HEAD
     }
 
     public function getAllProducts()
@@ -23,7 +22,4 @@ class AdminModel{
                                     AND categories.name = '?'");//Necesito un value de nombre de categoria que venga por POST y filtrar
     }    
     
-=======
-    } 
->>>>>>> mariano
 }
