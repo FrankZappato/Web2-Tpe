@@ -35,7 +35,12 @@
                     {$product->img_product}
                 </td>
                 <td>
-                    <button type="submit" class="btn_delete" id={$product->id}>x</button>
+                    <div>
+                        <form method="POST" action="delete-product">
+                            <button type="submit" class="btn_delete" id={$product->id}>x</button>
+                            <input type="hidden" name="id_product" value={$product->id}>
+                        </form>
+                    </div>
                 </td>
             </tr>
         {/foreach}

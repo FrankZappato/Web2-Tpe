@@ -29,8 +29,6 @@ class ProductsModel
         $query->execute(
             array($id_category,$imageName,$productName,$price)
         );
-
-        return "ok";
     }
 
     public function deleteProduct()

@@ -11,6 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch("/web2-tp/delete-product", {
             "method": "post",
             "body": formData
-        }).then(window.location.href = '/web2-tp/admin')
+        })
     }
 })
