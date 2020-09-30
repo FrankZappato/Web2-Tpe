@@ -52,6 +52,7 @@
                 <div id="modify-{$product->id}-div" class="div_for_modify div_{$product->id}">
                     <form action="modify-product" method="POST">
                         <label>Product:{$product->id} </label>
+                        <input name="product-id" type="hidden" value={$product->id}>
                         <input name="product-category" type="number" placeholder="Category Id">
                         <input name="product-name" type="text" placeholder="Name">
                         <input name="product-price" type="number" placeholder="Price">

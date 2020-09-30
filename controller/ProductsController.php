@@ -34,4 +34,10 @@ class ProductsController
         $this->model->addProduct();
         $this->adminController->showAdmin();
     }
+
+    public function modifyProduct()
+    {
+        $this->model->modifyProduct();
+        $this->adminController->showAdmin();
+    }
 }

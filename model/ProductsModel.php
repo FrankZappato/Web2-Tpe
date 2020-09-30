@@ -46,4 +46,24 @@ class ProductsModel
         $query = $this->db->prepare("SELECT * FROM products,categories WHERE id_category = categories.id
                                     AND categories.name = '?'");//Necesito un value de nombre de categoria que venga por POST y filtrar
     }
+
+    public function modifyProduct()
+    {
+        $product_id = $_POST['product-id'];
+        $id_category = $_POST['product-category'];
+        $imageName = $_POST['product-image'];
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+
+        $data = [
+            'category_id' => $id_category,
+            'imgName' => $imageName,
+            'nameProd' => $productName,
+            'price' => $price,
+            'ide' =>  $product_id
+        ];
+        $query = $this->db->prepare("UPDATE products SET price=:price, 
+        id_category=:category_id, img_product=:imgName, name_product=:nameProd WHERE id=:ide");
+        $query->execute($data);
+    }
 }
