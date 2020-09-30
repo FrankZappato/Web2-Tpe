@@ -2,23 +2,36 @@
 
 require_once "../view/ProductsView.php";
 require_once "../model/ProductsModel.php";
+require_once '../controller/AdminController.php';
 
-class ProductsController{
-
+class ProductsController
+{
     private $view;
     private $model;
+    private $adminController;
 
-    function __construct(){
+    public function __construct()
+    {
         $this->view = new ProductsView();
         $this->model = new ProductsModel();
-
+        $this->adminController = new AdminController();
     }
 
-    function Home(){
-        $products = $this->model->GetAllProducts();
-        $this->view->ShowHome($products);
+    public function showProducts($isLogged)
+    {
+        $products = $this->model->getAllProducts();
+        $this->view->showProducts($products, $isLogged);
     }
 
+    public function deleteProduct()
+    {
+        $this->model->deleteProduct();
+        $this->adminController->showAdmin();
+    }
+
+    public function addProduct()
+    {
+        $this->model->addProduct();
+        $this->adminController->showAdmin();
+    }
 }
-
-?>

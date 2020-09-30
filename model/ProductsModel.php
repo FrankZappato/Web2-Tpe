@@ -1,35 +1,49 @@
 <?php
 
-class ProductsModel{
-
+class ProductsModel
+{
     private $db;
 
-    function __construct(){
-        $this->db = mysqli_connect('localhost','root','','the_cave');
+    public function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;'
+    .'dbname=thecave;charset=utf8', 'root', '');
     }
-         
-      function GetAllProducts(){
-        $query = 'SELECT * FROM products ORDER by id ASC';
-        return $result = mysqli_query($this->db,$query);  
-      }
-      
-      /*function InsertTask($title,$description,$completed,$priority){
-          $sentencia = $this->db->prepare("INSERT INTO task(title, description, completed, priority) VALUES(?,?,?,?)");
-          $sentencia->execute(array($title,$description,$completed,$priority));
-      }
-      
-      function DeleteTaskDelModelo($task_id){
-          $sentencia = $this->db->prepare("DELETE FROM task WHERE id=?");
-          $sentencia->execute(array($task_id));
-      }
-      
-      function MarkAsCompletedTask($task_id){
-          $sentencia = $this->db->prepare("UPDATE task SET completed=1 WHERE id=?");
-          $sentencia->execute(array($task_id));
-      
-      }
-      */
-      
-}
 
-?>
+    public function getAllProducts()
+    {
+        $query = $this->db->prepare("SELECT * FROM products ORDER by id ASC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function addProduct()
+    {
+        $id_category = $_POST['product-category'];
+        $imageName = $_POST['product-image'];
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+
+        $query = $this->db->prepare("INSERT INTO products (id_category, img_product, name_product, price)
+                                    VALUES (?,?,?,?)");
+        $query->execute(
+            array($id_category,$imageName,$productName,$price)
+        );
+    }
+
+    public function deleteProduct()
+    {
+        $id_product = $_POST['id_product'];
+        $query = $this->db->prepare("DELETE from products where id = ?");
+        $query->execute(
+            array($id_product)
+        );
+    }
+
+    
+    public function getProductsByCategories()
+    {
+        $query = $this->db->prepare("SELECT * FROM products,categories WHERE id_category = categories.id
+                                    AND categories.name = '?'");//Necesito un value de nombre de categoria que venga por POST y filtrar
+    }
+}

@@ -1,13 +1,22 @@
 <?php
     require_once "../libs/smarty/Smarty.class.php";
 
+<<<<<<< HEAD
 class LoginView{
 <<<<<<< HEAD
 
 
     function __construct(){}
+=======
+class LoginView
+{
+    public function __construct()
+    {
+    }
+>>>>>>> mariano
 
-    function showLoginForm($code, $extra_param){
+    public function showLoginForm($code, $extra_param)
+    {
         $smarty = new Smarty();
         $smarty->assign('error_code', $code);
         $smarty->assign('extra_param', $extra_param);
@@ -58,6 +67,11 @@ class LoginView{
     echo $html;
 >>>>>>> b75be5a87d48ac7532ca15875707be68869dfb63
     }
+
+    public function showSignUpForm($code)
+    {
+        $smarty = new Smarty();
+        $smarty->assign('error_code', $code);
+        $smarty->display('../templates/signup.tpl');
+    }
 }
-    
-?>

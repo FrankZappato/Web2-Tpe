@@ -1,5 +1,5 @@
-body {
-    background-color: rgb(13, 23, 90);
+.login {
+    background-color: rgb(124, 124, 124);
 }
 
 .form-container {
@@ -11,11 +11,12 @@ body {
 }
 
 .bg {
-    background: url('../images/login/bg.jpg') no-repeat;
+    background: url('../images/login/bg.jpg');
     height: 100vh;
     background-position: center;
 }
-.errorEmptyFields{
-    color : red;
-    background-color:yellow;
+
+.errorEmptyFields {
+    color: red;
+    background-color: yellow;
 }

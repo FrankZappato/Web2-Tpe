@@ -1,13 +1,16 @@
 <?php
 
-class AdminModel{
-
+class AdminModel
+{
     private $db;
 
-    function __construct(){
-        $this->db = mysqli_connect('localhost','root','','the_cave_users');
+    public function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;'
+    .'dbname=thecave;charset=utf8', 'root', '');
     }
 
+<<<<<<< HEAD
     function signup(){
         echo $_POST['uid'];
     if(isset($_POST['signup-submit'])){
@@ -67,5 +70,12 @@ class AdminModel{
 
             echo "<br>----------Aca llegue a la base---------------<br>"; 
         }
+=======
+    public function getAllPurchases()
+    {
+        $query = $this->db->prepare("SELECT * FROM purchases ORDER by date_milis ASC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+>>>>>>> mariano
     }
 }
