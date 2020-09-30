@@ -11,7 +11,7 @@
 </head>
 
 <body class="admin">
-    {include file="./navbar.tpl"}
+    {include file="./navbarAdmin.tpl"}
     <table>
         <thead>
             <th class="probando">ID</th>

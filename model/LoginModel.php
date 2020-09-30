@@ -31,6 +31,12 @@ class LoginModel
                     if ((password_verify($password, $r->pwd))) {
                         session_start();
                         $_SESSION['uidUsers'] = $r->id;
+                        $_SESSION['logged'] = true;
+                        if ($r->isadmin == 1) {
+                            $_SESSION['isAdmin'] = true;
+                        } else {
+                            $_SESSION['isAdmin'] = false;
+                        }
                         return 'connectionSucces';
                     } else {
                         return 'Error: Invalid Password';
