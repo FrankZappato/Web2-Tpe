@@ -19,6 +19,12 @@
     $r->addRoute("contact", "GET", "ContactController", "showContactForm");
     $r->addRoute("products", "GET", "ProductsController", "showProducts");
     $r->addRoute("admin", "GET", "AdminController", "showAdmin");
+<<<<<<< HEAD
     $r->addRoute("add-product", "POST", "AdminController", "addProduct");
     $r->addRoute("modify/:ID","POST","AdminController","modifyProduct");
+=======
+    $r->addRoute("add-product", "POST", "ProductsController", "addProduct");
+    $r->addRoute("delete-product", "POST", "ProductsController", "deleteProduct");
+
+>>>>>>> mariano
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
