@@ -23,15 +23,15 @@ class AdminController
 
     public function addProduct()
     {
-        $this->model->addProduct();
-        $products = $this->model->getAllProducts();
+        $this->productsModel->addProduct();
+        $products = $this->productsModel->getAllProducts();
         $this->adminView->showAdmin($products);
     }
 
     function modifyProduct()    
     {        
-        $this->model->modifyProduct();
-        $products = $this->model->getAllProducts();
+        $this->productsModel->modifyProduct();
+        $products = $this->productsModel->getAllProducts();
         $this->adminView->showAdmin($products);
 
     }

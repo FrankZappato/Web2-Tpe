@@ -48,16 +48,22 @@ class ProductsModel
     }
 
     public function modifyProduct(){
+        var_dump($_POST);
         $product_id = $_POST['product-id'];
         $id_category = $_POST['product-category'];        
         $imageName = $_POST['product-image'];
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
 
-        $query = $this->db->prepare("UPDATE products SET (id_category, img_product, name_product, price)
-                                    VALUES (?,?,?,?) WHERE id = ?");
-        $query->execute(
-            array($id_category,$imageName,$productName,$price,$product_id)
-        );    
+        $data = [
+                'category_id' => $id_category,
+                'imgName' => $imageName,
+                'nameProd' => $productName,
+                'price' => $price,
+                'ide' => $product_id,
+        ];
+        $query = $this->db->prepare("UPDATE products SET id_category=:category_id, img_product=:imgName, name_product=:nameProd,
+                                     price=:price WHERE id=:ide");
+        $query->execute($data);    
     }
 }

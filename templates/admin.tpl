@@ -46,15 +46,13 @@
                     <div>
                         <button class="btn_modify" value={$product->id} id="modify-{$product->id}">Modify</button>
                     </div>
-                </td>
-                <td>
-                <button type="button" class="btn btn-outline-danger"><a method="POST" href="modify/{$product->id}">Modify</a></button>
-                </td>
+                </td>                
             </tr>
             <tr>
                 <div id="modify-{$product->id}-div" class="div_for_modify div_{$product->id}">
                     <form action="modify-product" method="POST">
                         <label>Product:{$product->id} </label>
+                        <input type="hidden" value={$product->id} name="product-id"> 
                         <input name="product-category" type="number" placeholder="Category Id">
                         <input name="product-name" type="text" placeholder="Name">
                         <input name="product-price" type="number" placeholder="Price">
@@ -69,17 +67,6 @@
         </tbody>
     </table>
     <form class="adminForm" action="add-product" method="POST">
-<<<<<<< HEAD
-                <input id="product_id" name="product-id" type="number" placeholder="Product Id">
-                <input id="product_category" name="product-category" type="number" placeholder="Category Id">
-                <input id="name" name="product-name" type="text" placeholder="Name">
-                <input id="price" name="product-price" type="number" placeholder="Price">
-                <input id="image" name="product-image" type="text" placeholder="Image name">                
-                <button type="submit" class="" id="btnAgregar">Agregar</button>
-                <button id="btnAgregaRandom">Agregar Random x3</button>
-                <button id="btnBorrarTodos">Borrar Todos</button>
-            </form>
-=======
         <input name="product-category" type="number" placeholder="Category Id">
         <input name="product-name" type="text" placeholder="Name">
         <input name="product-price" type="number" placeholder="Price">
@@ -87,5 +74,4 @@
         <button type="submit" class="" id="btnAgregar">Add</button>
     </form>
     <script src="js/main.js"></script>
->>>>>>> mariano
 </body>
