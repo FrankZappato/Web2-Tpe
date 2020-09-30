@@ -1,24 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    var modifyButtons = document.getElementsByClassName('btn_modify');
+    let modifyButtons = document.getElementsByClassName('btn_modify');
 
-    for (var i = 0; i < modifyButtons.length; i++) {
+    for (let i = 0; i < modifyButtons.length; i++) {
         modifyButtons[i].addEventListener("click", showModifyDiv);
     }
 
     function showModifyDiv(e) {
-        var oldButton = document.getElementById(e.target.id);
+        let oldButton = document.getElementById(e.target.id);
         oldButton.removeEventListener("click", showModifyDiv);
         oldButton.addEventListener("click", hideEditDiv);
-        var divForModify = document.getElementById(e.target.id + "-div");
+        let divForModify = document.getElementById(e.target.id + "-div");
         divForModify.classList.add("display");
     }
 
     function hideEditDiv(e) {
-        var oldButton = document.getElementById(e.target.id);
+        let oldButton = document.getElementById(e.target.id);
         oldButton.removeEventListener("click", hideEditDiv);
         oldButton.addEventListener("click", showModifyDiv);
-        var divForModify = document.getElementById(e.target.id + "-div");
+        let divForModify = document.getElementById(e.target.id + "-div");
         divForModify.classList.remove("display");
     }
 
