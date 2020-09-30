@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+
     var buttons = document.getElementsByClassName('btn_delete');
 
     for (var i = 0; i < buttons.length; i++)
