@@ -7,24 +7,17 @@ require_once "../model/ProductsModel.php";
 class AdminController
 {
     private $adminView;
-    private $model;
+    private $productsModel;
 
     public function __construct()
     {
         $this->adminView = new AdminView();
-        $this->model = new ProductsModel();
+        $this->productsModel = new ProductsModel();
     }
 
     public function showAdmin()
     {
-        $products = $this->model->getAllProducts();
-        $this->adminView->showAdmin($products);
-    }
-
-    public function addProduct()
-    {
-        $this->model->addProduct();
-        $products = $this->model->getAllProducts();
+        $products = $this->productsModel->getAllProducts();
         $this->adminView->showAdmin($products);
     }
 }

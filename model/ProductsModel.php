@@ -17,8 +17,9 @@ class ProductsModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function addProduct(){
-        $id_category = $_POST['product-category'];        
+    public function addProduct()
+    {
+        $id_category = $_POST['product-category'];
         $imageName = $_POST['product-image'];
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
@@ -27,6 +28,17 @@ class ProductsModel
                                     VALUES (?,?,?,?)");
         $query->execute(
             array($id_category,$imageName,$productName,$price)
-        );    
+        );
+
+        return "ok";
+    }
+
+    public function deleteProduct()
+    {
+        $id_product = $_POST['id_product'];
+        $query = $this->db->prepare("DELETE from products where id = ?");
+        $query->execute(
+            array($id_product)
+        );
     }
 }

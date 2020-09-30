@@ -9,41 +9,46 @@
     <link rel="stylesheet" href="styles/cart.css">
     <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body class="admin">
-{include file="./navbar.tpl"}
-<table>
+    {include file="./navbar.tpl"}
+    <table>
         <thead>
-            <th>ID</th>
+            <th class="probando">ID</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Image</th>            
+            <th>Image</th>
         </thead>
+        {nocache}
         {foreach from=$products_s item=product}
             <tr>
                 <td>
-                {$product->id}
-                </td>
-                <td>                
-                {$product->name_product}
+                    {$product->id}
                 </td>
                 <td>
-                {$product->price}
+                    {$product->name_product}
                 </td>
                 <td>
-                {$product->img_product}
+                    {$product->price}
+                </td>
+                <td>
+                    {$product->img_product}
+                </td>
+                <td>
+                    <button type="submit" class="btn_delete" id={$product->id}>x</button>
                 </td>
             </tr>
-        {/foreach}        
+        {/foreach}
+        {/nocache}
         <tbody id="table">
         </tbody>
     </table>
     <form class="adminForm" action="add-product" method="POST">
-                <input id="name" name="product-category" type="number" placeholder="Category Id">
-                <input id="name" name="product-name" type="text" placeholder="Name">
-                <input id="price" name="product-price" type="number" placeholder="Price">
-                <input id="image" name="product-image" type="text" placeholder="Image name">                
-                <button type="submit" class="" id="btnAgregar">Agregar</button>
-                <button id="btnAgregaRandom">Agregar Random x3</button>
-                <button id="btnBorrarTodos">Borrar Todos</button>
-            </form>
+        <input id="name" name="product-category" type="number" placeholder="Category Id">
+        <input id="name" name="product-name" type="text" placeholder="Name">
+        <input id="price" name="product-price" type="number" placeholder="Price">
+        <input id="image" name="product-image" type="text" placeholder="Image name">
+        <button type="submit" class="" id="btnAgregar">Add</button>
+    </form>
+    <script src="js/main.js"></script>
 </body>
