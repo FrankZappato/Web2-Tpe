@@ -135,3 +135,18 @@
 .carousel-item img {
     height: 100%;
 }
+
+
+/*Admin*/
+
+.div_for_modify {
+    display: none;
+}
+
+.display {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
