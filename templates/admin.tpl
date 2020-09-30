@@ -32,13 +32,17 @@
                 <td>
                 {$product->img_product}
                 </td>
+                <td>
+                <button type="button" class="btn btn-outline-danger"><a method="POST" href="modify/{$product->id}">Modify</a></button>
+                </td>
             </tr>
         {/foreach}        
         <tbody id="table">
         </tbody>
     </table>
     <form class="adminForm" action="add-product" method="POST">
-                <input id="name" name="product-category" type="number" placeholder="Category Id">
+                <input id="product_id" name="product-id" type="number" placeholder="Product Id">
+                <input id="product_category" name="product-category" type="number" placeholder="Category Id">
                 <input id="name" name="product-name" type="text" placeholder="Name">
                 <input id="price" name="product-price" type="number" placeholder="Price">
                 <input id="image" name="product-image" type="text" placeholder="Image name">                

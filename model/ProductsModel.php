@@ -29,4 +29,18 @@ class ProductsModel
             array($id_category,$imageName,$productName,$price)
         );    
     }
+
+    public function modifyProduct(){
+        $product_id = $_POST['product-id'];
+        $id_category = $_POST['product-category'];        
+        $imageName = $_POST['product-image'];
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+
+        $query = $this->db->prepare("UPDATE products SET (id_category, img_product, name_product, price)
+                                    VALUES (?,?,?,?) WHERE id = ?");
+        $query->execute(
+            array($id_category,$imageName,$productName,$price,$product_id)
+        );    
+    }
 }

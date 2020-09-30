@@ -21,4 +21,5 @@ class AdminModel{
         $query = $this->db->prepare("SELECT * FROM products,categories WHERE id_category = categories.id
                                     AND categories.name = '?'");//Necesito un value de nombre de categoria que venga por POST y filtrar
     }    
+    
 }

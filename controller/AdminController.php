@@ -27,4 +27,12 @@ class AdminController
         $products = $this->model->getAllProducts();
         $this->adminView->showAdmin($products);
     }
+
+    function modifyProduct()    
+    {        
+        $this->model->modifyProduct();
+        $products = $this->model->getAllProducts();
+        $this->adminView->showAdmin($products);
+
+    }
 }

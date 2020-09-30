@@ -20,4 +20,5 @@
     $r->addRoute("products", "GET", "ProductsController", "showProducts");
     $r->addRoute("admin", "GET", "AdminController", "showAdmin");
     $r->addRoute("add-product", "POST", "AdminController", "addProduct");
+    $r->addRoute("modify/:ID","POST","AdminController","modifyProduct");
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
