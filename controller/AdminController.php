@@ -1,28 +1,38 @@
 <?php
 
-    require_once "../view/AdminFormView.php";
-    require_once "../Model/AdminModel.php";
-    //require_once "..view/AdminFormView";
+require_once "../view/AdminView.php";
+require_once "../model/AdminModel.php";
+require_once "../model/ProductsModel.php";
 
+class AdminController
+{
+    private $adminView;
+    private $productsModel;
+    private $adminModel;
 
-class AdminController{
-
-    private $admin;
-    private $view;
-
-    function __construct(){
-        
-        $this->admin = new AdminModel();
-        $this->view = new AdminFormView();
-        
+    public function __construct()
+    {
+        $this->adminView = new AdminView();
+        $this->productsModel = new ProductsModel();
+        $this->adminModel = new AdminModel();
     }
 
-    function signup(){
-        $this->admin->signup();        
+    public function showAdmin()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if ($_SESSION['isAdmin']) {
+            $products = $this->productsModel->getAllProducts();
+            $this->adminView->showAdmin($products);
+        } else {
+            header('Location: home');
+        }
     }
 
-    function showAdminForm(){
-        $this->view->showAdminForm();
+    public function showPurchases()
+    {
+        $purchases = $this->adminModel->getAllPurchases();
+        $this->adminView->showPurchases($purchases);
     }
-
 }
