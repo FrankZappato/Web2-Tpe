@@ -17,10 +17,10 @@ class ProductsController
         $this->adminController = new AdminController();
     }
 
-    public function showProducts()
+    public function showProducts($isLogged)
     {
         $products = $this->model->getAllProducts();
-        $this->view->showProducts($products);
+        $this->view->showProducts($products, $isLogged);
     }
 
     public function deleteProduct()
@@ -32,6 +32,12 @@ class ProductsController
     public function addProduct()
     {
         $this->model->addProduct();
+        $this->adminController->showAdmin();
+    }
+
+    public function modifyProduct()
+    {
+        $this->model->modifyProduct();
         $this->adminController->showAdmin();
     }
 }

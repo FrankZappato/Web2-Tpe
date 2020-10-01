@@ -13,4 +13,11 @@ class AdminView
         $smarty->assign('products_s', $products);
         $smarty->display('../templates/admin.tpl');
     }
+
+    public function showPurchases($purchases)
+    {
+        $smarty = new Smarty();
+        $smarty->assign('purchases_s', $purchases);
+        $smarty->display('../templates/purchases.tpl');
+    }
 }
