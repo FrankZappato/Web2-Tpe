@@ -21,7 +21,7 @@
                         <div class="card-header p-0">
                             <div class="bg-secondary text-white text-center py-2">
                                 <h3><i class="fa fa-envelope"></i> Contact us</h3>
-                                <p class="m-0">We will be glad to help you!</p>
+                                <p class="m-0">Will be glad to help you!</p>
                             </div>
                         </div>
                         <div class="card-body p-3">

@@ -1,8 +1,8 @@
 <section id="header">
         <div class="container text-center">
             <div class="user-box">
-                <img src="images/logo2.png" alt="">
-                <h1>La Cueva</h1>
+                <img src="images/the_cave_logo7.png" alt="">
+                <h1>The Cave</h1>
             </div>
         </div>
         <div class="scroll-btn">
