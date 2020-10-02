@@ -35,19 +35,5 @@ class AdminController
         $purchases = $this->adminModel->getAllPurchases();
         $this->adminView->showPurchases($purchases);
     }
-
-    public function addProduct()
-    {
-        $this->productsModel->addProduct();
-        $products = $this->productsModel->getAllProducts();
-        $this->adminView->showAdmin($products);
-    }
-
-    function modifyProduct()    
-    {        
-        $this->productsModel->modifyProduct();
-        $products = $this->productsModel->getAllProducts();
-        $this->adminView->showAdmin($products);
-
-    }
+   
 }

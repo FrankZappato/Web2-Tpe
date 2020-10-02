@@ -20,19 +20,34 @@ require_once '../controller/AdminController.php';
             $this->adminController = new AdminController();
         }
 
-        public function login()
-        {
-            $code = $this->loginModel->login();
-            if ($code == "connectionSucces") {
-                if ($_SESSION['isAdmin']) {
-                    $this->adminController-> showAdmin();
-                } else {
-                    $this->productsController->showProducts($_SESSION['logged']); // aca pasarle la sesion o algo que nos diga que fue ok, alguna variable para algun cartel
+        public function login(){
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                if (empty($email)||empty($password)) {                
+                $this->loginView->showLoginForm("Error: Empty Fields",null);
+                }else{
+                   $user = $this->loginModel->getUser($email);                   
+                   if(isset($user) && $user){          
+                       //Si existe el usuario
+                    if(password_verify($password, $user->pwd)){//verifico el pass
+                        session_start();
+                        $_SESSION['uidUsers'] = $user->id;
+                        $_SESSION['logged'] = true;
+                        if ($user->isadmin == 1) {
+                            $_SESSION['isAdmin'] = true;
+                            $this->adminController-> showAdmin();
+                        } else {
+                            $_SESSION['isAdmin'] = false;
+                            $this->productsController->showProducts($_SESSION['logged']);
+                        }                        
+                      }else{                          
+                          $this->loginView->showLoginForm('Error: Invalid Password',null);
+                      }
+                   }else{$this->loginView->showLoginForm('Error: No user with that email',null);}
                 }
-            } else {
-                $this->loginView->showLoginForm($code, "");
-            }
-        }
+        } 
+
+        
 
         public function showLoginForm()
         {
@@ -41,13 +56,42 @@ require_once '../controller/AdminController.php';
 
         public function signUp()
         {
-            $code = $this->loginModel->signUp();
-            if ($code == "registerSuccess") {
-                $this->loginView->showLoginForm(null, null);
-            } else {
-                $this->loginView->showSignUpForm($code);
+            if (isset($_POST['signup-submit'])) {
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $passwordRepeat = $_POST['password-repeat'];
+                if (empty($username) ||empty($email)||empty($password)
+                ||empty($passwordRepeat)) {
+                    $this->loginView->showSignUpForm("Error: Empty Fields");
+                    
+                }elseif ((!filter_var($email, FILTER_VALIDATE_EMAIL))&&(!preg_match("/^[a-zA-Z0-9]*$/", $username))) {
+                    $this->loginView->showSignUpForm("Error: Invalid Fields");
+                    
+                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $this->loginView->showSignUpForm("Error: Invalid Email");
+                    
+                } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+                    $this->loginView->showSignUpForm("Error: Invalid User");
+                    
+                } elseif ($password !== $passwordRepeat) {
+                    $this->loginView->showSignUpForm("Error: Password Not Match");
+                    
+                } else {
+                    $user = $this->loginModel->checkUser($email);
+                    //var_dump($user);
+                    if($user && ($user->email == $email)){
+                        $this->loginView->showSignUpForm("Error: Email already taken");
+                        
+                    }else{
+                        $hashedPwd = password_hash($password , PASSWORD_DEFAULT);
+                        $isAdmin = 0;
+                        $this->loginModel->addNewUser($username, $email, $hashedPwd, $isAdmin);
+                        $this->loginView->showLoginForm(null, null);
+                    }
+                }
             }
-        }
+        }        
 
         public function showSignUpForm()
         {
