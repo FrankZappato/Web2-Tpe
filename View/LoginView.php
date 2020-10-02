@@ -7,16 +7,17 @@ class LoginView
     {
     }
 
-    public function showLoginForm($code, $extra_param)
+    public function showLoginForm($code)
     {
+        session_start();
         $smarty = new Smarty();
         $smarty->assign('error_code', $code);
-        $smarty->assign('extra_param', $extra_param);
         $smarty->display('../templates/loginform.tpl');
     }
 
     public function showSignUpForm($code)
     {
+        session_start();
         $smarty = new Smarty();
         $smarty->assign('error_code', $code);
         $smarty->display('../templates/signup.tpl');

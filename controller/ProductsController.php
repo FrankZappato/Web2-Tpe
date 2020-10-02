@@ -17,10 +17,10 @@ class ProductsController
         $this->adminController = new AdminController();
     }
 
-    public function showProducts($isLogged)
+    public function showProducts()
     {
         $products = $this->model->getAllProducts();
-        $this->view->showProducts($products, $isLogged);
+        $this->view->showProducts($products);
     }
 
     public function deleteProduct()

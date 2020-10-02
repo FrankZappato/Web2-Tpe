@@ -7,11 +7,11 @@ class ProductsView
     {
     }
 
-    public function showProducts($products, $isLogged)
+    public function showProducts($products)
     {
+        session_start();
         $smarty = new Smarty();
         $smarty->assign('products_s', $products);
-        $smarty->assign('isLogged_s', $isLogged);
         $smarty->display('../templates/products.tpl');
     }
 }

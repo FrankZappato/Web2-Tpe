@@ -9,6 +9,7 @@ class ContactView
 
     public function showContactForm()
     {
+        session_start();
         $smarty = new Smarty();
         $smarty->display('../templates/contact.tpl');
     }
