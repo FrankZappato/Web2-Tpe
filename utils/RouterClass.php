@@ -6,8 +6,9 @@ class Route {
     private $controller;
     private $method;
     private $params;
+    
 
-    public function __construct($url, $verb, $controller, $method){
+    public function __construct($url, $verb, $controller, $method){        
         $this->url = $url;
         $this->verb = $verb;
         $this->controller = $controller;
