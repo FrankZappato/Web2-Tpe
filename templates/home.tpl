@@ -7,8 +7,6 @@
 
     {include file="./carousel.tpl"}
 
-    
-
     <div class="about container" id="about">
         <div class="row">
             <div class="col-md-6 text-center">

@@ -1,4 +1,27 @@
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2020-10-01 00:16:39
+  from 'C:\xampp\htdocs\web2-tp\templates\carousel.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_5f7503c780f586_14537198',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'a96f4935d3f452085a2b46d7e62f7755cddf9b09' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\web2-tp\\templates\\carousel.tpl',
+      1 => 1601468613,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5f7503c780f586_14537198 (Smarty_Internal_Template $_smarty_tpl) {
+?><div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -35,4 +58,5 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div><?php }
+}

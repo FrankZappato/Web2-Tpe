@@ -16,8 +16,13 @@
     $r->addRoute("login", "GET", "LoginController", "showLoginForm");
     $r->addRoute("signup", "GET", "LoginController", "showSignUpForm");
     $r->addRoute("signup", "POST", "LoginController", "signUp");
+    $r->addRoute("logout", "GET", "LoginController", "logOut");
     $r->addRoute("contact", "GET", "ContactController", "showContactForm");
     $r->addRoute("products", "GET", "ProductsController", "showProducts");
-    $r->addRoute("admin", "GET", "AdminController", "showAdmin");
-    $r->addRoute("add-product", "POST", "AdminController", "addProduct");
+    $r->addRoute("productsAdmin", "GET", "AdminController", "showAdmin");
+    $r->addRoute("add-product", "POST", "ProductsController", "addProduct");
+    $r->addRoute("delete-product", "POST", "ProductsController", "deleteProduct");
+    $r->addRoute("purchases", "GET", "AdminController", "showPurchases");
+    $r->addRoute("modify-product", "POST", "ProductsController", "modifyProduct");
+
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

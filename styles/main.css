@@ -3,11 +3,11 @@
 .nav-bar {
     top: 0;
     position: sticky;
-    z-index: 2;   
+    z-index: 2;
 }
 
 .navbar {
-    background-color: #000;    
+    background-color: #000;
 }
 
 .navbar-brand img {
@@ -26,7 +26,7 @@
 
 .navbar-nav {
     float: right;
-    text-align: right;    
+    text-align: right;
 }
 
 .nav-link {
@@ -115,15 +115,38 @@
 .profile-img {
     height: 300px;
     border-radius: 50%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 #about {
-    margin-top: 10px;
+    margin-top: 40px;
 }
-.carousel-item{
-    height: auto;   
+
+.carousel-item {
+    height: 650px;
 }
-.d-block{
-    max-height: fit-content;
+
+@media (max-width:768px) {
+    .carousel-item {
+        height: 300px;
+    }
+}
+
+.carousel-item img {
+    height: 100%;
+}
+
+
+/*Admin*/
+
+.div_for_modify {
+    display: none;
+}
+
+.display {
+    display: flex;
+}
+
+.hide {
+    display: none;
 }
