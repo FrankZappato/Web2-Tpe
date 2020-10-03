@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-03 01:43:42
+/* Smarty version 3.1.34-dev-7, created on 2020-10-04 00:30:04
   from 'C:\xampp\htdocs\web2-tp\templates\navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f77bb2ec5ede5_36557714',
+  'unifunc' => 'content_5f78fb6c7250d5_84566084',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c3e1ccd6f804dd65575c420cd844b2d52ab2e35' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2-tp\\templates\\navbar.tpl',
-      1 => 1601682221,
+      1 => 1601764203,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f77bb2ec5ede5_36557714 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f78fb6c7250d5_84566084 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="nav-bar">
      <nav class="navbar navbar-expand-lg">
          <a class="navbar-brand" href="#"><img src="./images/the_cave_logo7.png"></a>
@@ -47,9 +47,16 @@ function content_5f77bb2ec5ede5_36557714 (Smarty_Internal_Template $_smarty_tpl)
                  <li class="nav-item">
                      <a class="nav-link" href="contact">CONTACT</a>
                  </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="logout">LOGOUT</a>
-                 </li>
+                 <?php if ((isset($_SESSION['isLogged']))) {?>
+                     <li class="nav-item">
+                         <a class="nav-link" href="logout">LOGOUT</a>
+                     </li>
+                 <?php }?>
+                 <?php if ((isset($_SESSION['isAdmin'])) && $_SESSION['isAdmin']) {?>
+                     <li class="nav-item">
+                         <a class="nav-link" href="productsAdmin">GO TO ADMIN</a>
+                     </li>
+                 <?php }?>
              </ul>
          </div>
      </nav>

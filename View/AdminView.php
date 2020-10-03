@@ -19,9 +19,21 @@ class AdminView
 
     public function showPurchases($purchases)
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $smarty = new Smarty();
         $smarty->assign('purchases_s', $purchases);
         $smarty->display('../templates/purchases.tpl');
+    }
+
+    public function showMessages($messages)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $smarty = new Smarty();
+        $smarty->assign('messages_s', $messages);
+        $smarty->display('../templates/messages.tpl');
     }
 }

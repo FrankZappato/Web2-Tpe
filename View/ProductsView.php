@@ -9,7 +9,9 @@ class ProductsView
 
     public function showProducts($products)
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $smarty = new Smarty();
         $smarty->assign('products_s', $products);
         $smarty->display('../templates/products.tpl');

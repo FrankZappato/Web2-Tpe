@@ -13,6 +13,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="purchases">PURCHASES</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="messages">MESSAGES</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout">LOGOUT</a>
                 </li>

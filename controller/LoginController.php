@@ -31,7 +31,7 @@ require_once '../controller/AdminController.php';
                 if (isset($user) && $user) {
                     if (password_verify($password, $user->pwd)) {
                         session_start();
-                        $_SESSION['uidUsers'] = $user->id;
+                        $_SESSION['userId'] = $user->id;
                         $_SESSION['isLogged'] = true;
                         if ($user->isadmin == 1) {
                             $_SESSION['isAdmin'] = true;

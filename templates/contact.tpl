@@ -37,13 +37,18 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fa fa-comment text-secondary"></i></div>
                                     </div>
-                                    <textarea class="form-control" placeholder="Leave us you message here" required></textarea>
+                                    <textarea method="post" class="form-control" placeholder="Leave us you message here" required name="message"></textarea>
                                 </div>
                             </div>
 
                             <div class="text-center">
                                 <input type="submit" value="Send" class="btn btn-secondary btn-block rounded-0 py-2">
                             </div>
+                            {if $code != null}
+                                <div class="alert alert-primary" role="alert">
+                                    {$code}
+                                </div>
+                            {/if}
                         </div>
 
                     </div>

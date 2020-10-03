@@ -9,7 +9,9 @@ class LoginView
 
     public function showLoginForm($code)
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $smarty = new Smarty();
         $smarty->assign('error_code', $code);
         $smarty->display('../templates/loginform.tpl');
@@ -17,7 +19,9 @@ class LoginView
 
     public function showSignUpForm($code)
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $smarty = new Smarty();
         $smarty->assign('error_code', $code);
         $smarty->display('../templates/signup.tpl');
