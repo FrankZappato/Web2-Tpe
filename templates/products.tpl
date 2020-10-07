@@ -6,18 +6,23 @@
         <div class="row row_products">
             {foreach from=$products_s item=product}
                 <div class="col-sm-4 col-md-3">
-                    <form method="post" action="index.php?action=add&id={$product->id}">
+                    <form method="post" action="add_to_cart">
                         <div class="products">
                             <img src="images/{$product->img_product}" alt="" class="img-responsive product-img" />
                             <h4 class="text-info name-text">{$product->name_product}</h4>
-                            <h4>{$product->price}</h4>
-                            <input type="text" name="quantity" class="form-control" value="1" />
+                            <h4>${$product->price}</h4>
+                            {if isset($smarty.session.isLogged)}
+                                <input type="number" name="quantity" min="0" data-bind="value:replyNumber" />
+                            {/if}
                             <input type="hidden" name="name" value="{$product->name_product}" />
                             <input type="hidden" name="price" value="{$product->price}" />
+                            <input type="hidden" name="id" value="{$product->id}" />
                             <div class="btn_box">
-                                <button type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn">
-                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                </button>
+                                {if isset($smarty.session.isLogged)}
+                                    <button type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn">
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                    </button>
+                                {/if}
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
@@ -46,8 +51,34 @@
             {/foreach}
         </div>
     </div>
-    {include file="./footer.tpl"}
 
+    {if (isset($smarty.session.shopping_cart))}
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {nocache}
+                    {foreach from=$smarty.session.shopping_cart item=item}
+                        <tr>
+                            <td>{$item['name']}</td>
+                            <td>{$item['quantity']}</td>
+                            <td>{$item['price']}</td>
+                            <td>{$item['total']}</td>
+                        </tr>
+                    {/foreach}
+                    {/nocache}
+                </tbody>
+            </table>
+        </div>
+    {/if}
+    {include file="./footer.tpl"}
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>

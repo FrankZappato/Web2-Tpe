@@ -26,5 +26,5 @@
     $r->addRoute("purchases", "GET", "AdminController", "showPurchases");
     $r->addRoute("modify-product", "POST", "ProductsController", "modifyProduct");
     $r->addRoute("messages", "GET", "AdminController", "showContactMessages");
-
+    $r->addRoute("add_to_cart", "POST", "ProductsController", "addToCart");
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
