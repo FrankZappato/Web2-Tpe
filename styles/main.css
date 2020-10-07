@@ -1,3 +1,9 @@
+* {
+    text-decoration: none;
+    list-style: none;
+}
+
+
 /*Nav-Bar*/
 
 .nav-bar {
@@ -149,4 +155,52 @@
 
 .hide {
     display: none;
+}
+
+
+/* Footer*/
+
+.fab {
+    color: white;
+}
+
+.footerMessage {
+    margin-right: 2vh;
+}
+
+.ulSocialIcons {
+    display: flex;
+    margin: auto;
+    margin-left: 0;
+}
+
+.ulSocialIcons li {
+    padding-left: 1vw;
+}
+
+.social-footer .social-footer-icons .fa {
+    font-size: 1.3rem;
+    color: #fefefe;
+}
+
+.social-footer .social-footer-icons .fa:hover {
+    color: #4a4a4a;
+    transition: color 0.3s ease;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    font-size: small;
+    display: flex;
+    height: 4vh;
+}
+
+@media (min-width:1024px) {
+    footer {
+        bottom: 0;
+        width: 100%;
+        height: 2rem;
+        font-size: large;
+    }
 }

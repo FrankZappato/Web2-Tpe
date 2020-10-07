@@ -36,7 +36,7 @@
                     <div>
                         <button class="btn_modify" value={$product->id} id="modify-{$product->id}">Modify</button>
                     </div>
-                </td>                
+                </td>
             </tr>
             <tr>
                 <div id="modify-{$product->id}-div" class="div_for_modify div_{$product->id}">
@@ -63,5 +63,6 @@
         <input name="product-image" type="text" placeholder="Image name">
         <button type="submit" class="" id="btnAgregar">Add</button>
     </form>
+    {include file="./footer.tpl"}
     <script src="js/main.js"></script>
 </body>
