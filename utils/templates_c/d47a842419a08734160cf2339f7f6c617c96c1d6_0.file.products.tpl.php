@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-07 22:37:46
+/* Smarty version 3.1.34-dev-7, created on 2020-10-07 22:58:32
   from 'C:\xampp\htdocs\web2-tp\templates\products.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7e271aea27d5_15988480',
+  'unifunc' => 'content_5f7e2bf81a5f26_23369854',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd47a842419a08734160cf2339f7f6c617c96c1d6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2-tp\\templates\\products.tpl',
-      1 => 1602103065,
+      1 => 1602103972,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./footer.tpl' => 1,
   ),
 ),false)) {
-function content_5f7e271aea27d5_15988480 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7e2bf81a5f26_23369854 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:./head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -125,6 +125,15 @@ $_smarty_tpl->tpl_vars['item']->do_else = false;
 </td>
                             <td><?php echo $_smarty_tpl->tpl_vars['item']->value['total'];?>
 </td>
+                            <td>
+                                <form method="POST" action="delete_from_cart">
+                                    <button type="submit" name="delete_from_cart" class="btn btn-danger">
+                                        <input type="hidden" name="id_item_on_cart" value=<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+>
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     <?php
 }

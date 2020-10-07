@@ -40,6 +40,18 @@ class ProductsController
         $this->model->modifyProduct();
         $this->adminController->showAdmin();
     }
+    public function deleteFromCart()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        foreach ($_SESSION['shopping_cart'] as $key => $product) {
+            if ($product['id'] == $_POST['id_item_on_cart']) {
+                unset($_SESSION['shopping_cart'][$key]);
+            }
+        }
+        $this->showProducts();
+    }
 
     public function addToCart()
     {

@@ -71,6 +71,14 @@
                             <td>{$item['quantity']}</td>
                             <td>{$item['price']}</td>
                             <td>{$item['total']}</td>
+                            <td>
+                                <form method="POST" action="delete_from_cart">
+                                    <button type="submit" name="delete_from_cart" class="btn btn-danger">
+                                        <input type="hidden" name="id_item_on_cart" value={$item['id']}>
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     {/foreach}
                     {/nocache}
