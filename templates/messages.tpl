@@ -32,6 +32,5 @@
             {/nocache}
         </tbody>
     </table>
-    {include file="./footer.tpl"}
     <script src="js/main.js"></script>
 </body>

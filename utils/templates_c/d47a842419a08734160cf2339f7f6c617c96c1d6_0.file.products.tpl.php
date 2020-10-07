@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-07 13:45:09
+/* Smarty version 3.1.34-dev-7, created on 2020-10-07 14:44:02
   from 'C:\xampp\htdocs\web2-tp\templates\products.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7daa45335207_47595681',
+  'unifunc' => 'content_5f7db812bf9604_25126740',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd47a842419a08734160cf2339f7f6c617c96c1d6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2-tp\\templates\\products.tpl',
-      1 => 1602071103,
+      1 => 1602074625,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./footer.tpl' => 1,
   ),
 ),false)) {
-function content_5f7daa45335207_47595681 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7db812bf9604_25126740 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:./head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -53,9 +53,38 @@ $_smarty_tpl->tpl_vars['product']->do_else = false;
 " />
                             <input type="hidden" name="price" value="<?php echo $_smarty_tpl->tpl_vars['product']->value->price;?>
 " />
-                            <input type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn" value="Add To Cart" />
+                            <div class="btn_box">
+                                <button type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn">
+                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?php echo $_smarty_tpl->tpl_vars['product']->value->id;?>
+">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </button>
+                            </div>
                         </div>
                     </form>
+                </div>
+                <div class="modal fade" id="modal<?php echo $_smarty_tpl->tpl_vars['product']->value->id;?>
+" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Details for <?php echo $_smarty_tpl->tpl_vars['product']->value->name_product;?>
+</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <?php echo $_smarty_tpl->tpl_vars['product']->value->details;?>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             <?php
 }
