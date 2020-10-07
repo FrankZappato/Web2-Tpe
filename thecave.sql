@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2020 at 01:01 AM
+-- Generation Time: Oct 07, 2020 at 03:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -77,19 +77,20 @@ CREATE TABLE `products` (
   `id_category` int(11) NOT NULL,
   `img_product` varchar(100) NOT NULL,
   `name_product` varchar(100) NOT NULL,
-  `price` float NOT NULL
+  `price` float NOT NULL,
+  `details` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `price`) VALUES
-(2, 4, 'ryzen-7.jpg', 'Procesador AMD RYZEN 7 3700X 4.4 GHz AM4 Wraith Prism RGB Led Cooler', 35.04),
-(6, 6, 'Cooler CPU DeepCool Gammaxx 400S.jpg', 'Cooler CPU DeepCool Gammaxx 400S', 5280),
-(7, 6, 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB.jpg', 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB', 10680),
-(8, 6, 'Cooler CPU ID-Cooling AURAFLOW X 360.jpg', 'Cooler CPU ID-Cooling AURAFLOW X 360', 9876),
-(9, 6, 'CoolerMaster.png', 'Cooler Master HYPER H410R RGB Master Master', 4500);
+INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `price`, `details`) VALUES
+(2, 4, 'ryzen-7.jpg', 'Procesador AMD RYZEN 7 3700X 4.4 GHz AM4 Wraith Prism RGB Led Cooler', 35.04, 'Estos son los super detalles del ryzen. \r\nasdasdasidgasiudsadaiudsudagdiugaidyag\r\nalsdygasldygsads\r\ndaduagssa\r\nsadañusdas'),
+(6, 6, 'Cooler CPU DeepCool Gammaxx 400S.jpg', 'Cooler CPU DeepCool Gammaxx 400S', 5280, 'coolerrererererer'),
+(7, 6, 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB.jpg', 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB', 10680, ''),
+(8, 6, 'Cooler CPU ID-Cooling AURAFLOW X 360.jpg', 'Cooler CPU ID-Cooling AURAFLOW X 360', 9876, ''),
+(9, 6, 'CoolerMaster.png', 'Cooler Master HYPER H410R RGB Master Master', 4500, '');
 
 -- --------------------------------------------------------
 
@@ -191,7 +192,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `purchases`
