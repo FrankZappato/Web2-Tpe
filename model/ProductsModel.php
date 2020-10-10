@@ -12,7 +12,9 @@ class ProductsModel
 
     public function getAllProducts()
     {
-        $query = $this->db->prepare("SELECT * FROM products ORDER by id ASC");
+        $query = $this->db->prepare("SELECT products.id, products.name_product, products.img_product, categories.name, products.price, products.details
+        FROM products
+        LEFT JOIN categories ON products.id_category = categories.id");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }

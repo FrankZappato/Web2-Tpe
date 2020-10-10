@@ -6,7 +6,7 @@
     <div class="search-container">
             <form action="category-search" method="POST">
                 <select name="search" class="browser-default custom-select">
-                    <option selected>Open this select menu</option>
+                    <option selected>Categories</option>
                     {foreach from=$categories_s item=category}
                         <option  value="{$category->name}">{$category->name}</option>
                     {/foreach}
@@ -23,6 +23,7 @@
                             <img src="images/{$product->img_product}" alt="" class="img-responsive product-img" />
                             <h4 class="text-info name-text">{$product->name_product}</h4>
                             <h4>${$product->price}</h4>
+                            <h5>{$product->name}</h5>
                             {if isset($smarty.session.isLogged)}
                                 <input type="number" name="quantity" min="0" data-bind="value:replyNumber" />
                             {/if}
