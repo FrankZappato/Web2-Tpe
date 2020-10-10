@@ -23,11 +23,12 @@ class ProductsModel
         $imageName = $_POST['product-image'];
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
+        $details = $_POST['details'];
 
-        $query = $this->db->prepare("INSERT INTO products (id_category, img_product, name_product, price)
-                                    VALUES (?,?,?,?)");
+        $query = $this->db->prepare("INSERT INTO products (id_category, img_product, name_product, price, details)
+                                    VALUES (?,?,?,?,?)");
         $query->execute(
-            array($id_category,$imageName,$productName,$price)
+            array($id_category,$imageName,$productName,$price, $details)
         );
     }
 
@@ -54,16 +55,19 @@ class ProductsModel
         $imageName = $_POST['product-image'];
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
+        $details = $_POST['details'];
+
 
         $data = [
             'category_id' => $id_category,
             'imgName' => $imageName,
             'nameProd' => $productName,
             'price' => $price,
-            'ide' =>  $product_id
+            'ide' =>  $product_id,
+            'details' => $details
         ];
         $query = $this->db->prepare("UPDATE products SET price=:price, 
-        id_category=:category_id, img_product=:imgName, name_product=:nameProd WHERE id=:ide");
+        id_category=:category_id, img_product=:imgName, name_product=:nameProd, details=:details WHERE id=:ide");
         $query->execute($data);
     }
 }

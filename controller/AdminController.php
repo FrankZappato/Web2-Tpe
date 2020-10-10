@@ -35,4 +35,10 @@ class AdminController
         $purchases = $this->adminModel->getAllPurchases();
         $this->adminView->showPurchases($purchases);
     }
+
+    public function showContactMessages()
+    {
+        $messages = $this->adminModel->getAllMessages();
+        $this->adminView->showMessages($messages);
+    }
 }

@@ -13,23 +13,21 @@
 <body>
     {include file="./navbarAdmin.tpl"}
     <div class="table-responsive">
-        <table class="table table-dark">
+        <table class=" table table-dark">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">UserId</th>
-                    <th scope="col">Description</th>
+                    <th scope="col">From</th>
+                    <th scope="col">Message</th>
                 </tr>
             </thead>
             <tbody>
                 {nocache}
-                {foreach from=$purchases_s item=purchase}
+                {foreach from=$messages_s item=message}
                     <tr>
-                        <th scope="row">{$purchase->id}</th>
-                        <td>{$purchase->date_milis}</td>
-                        <td>{$purchase->id_user}</td>
-                        <td>{$purchase->description}</td>
+                        <th scope="row">{$message->id}</th>
+                        <td>{$message->from_email}</td>
+                        <td>{$message->msg}</td>
                     </tr>
                 {/foreach}
                 {/nocache}

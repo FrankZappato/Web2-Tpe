@@ -10,7 +10,7 @@
                  <li class="nav-item active">
                      <a class="nav-link" href="home">HOME</a>
                  </li>
-                 {if !isset($isLogged_s)}
+                 {if !isset($smarty.session.isLogged)}
                      <li class="nav-item active">
                          <a class="nav-link" href="signup">SIGNUP</a>
                      </li>
@@ -24,9 +24,16 @@
                  <li class="nav-item">
                      <a class="nav-link" href="contact">CONTACT</a>
                  </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="logout">LOGOUT</a>
-                 </li>
+                 {if isset($smarty.session.isLogged)}
+                     <li class="nav-item">
+                         <a class="nav-link" href="logout">LOGOUT</a>
+                     </li>
+                 {/if}
+                 {if isset($smarty.session.isAdmin) && $smarty.session.isAdmin}
+                     <li class="nav-item">
+                         <a class="nav-link" href="productsAdmin">GO TO ADMIN</a>
+                     </li>
+                 {/if}
              </ul>
          </div>
      </nav>

@@ -9,6 +9,9 @@ class HomeView
 
     public function showHome()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $smarty = new Smarty();
         $smarty->display('../templates/home.tpl');
     }

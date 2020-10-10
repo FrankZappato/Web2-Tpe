@@ -7,9 +7,14 @@ class ContactView
     {
     }
 
-    public function showContactForm()
+    public function showContactForm($code)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $smarty = new Smarty();
+        $smarty->assign('code', $code);
+
         $smarty->display('../templates/contact.tpl');
     }
 }
