@@ -38,4 +38,30 @@ class AdminModel
             array($userId,$message,$email,$username)
         );
     }
+    
+    public function getAllCategories()
+    {
+        $query = $this->db->prepare("SELECT * FROM categories");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function addCategory($name_category, $color_category)
+    {
+        $query = $this->db->prepare("INSERT INTO categories (color , category_name)
+                                    VALUES (?,?)");
+        $query->execute(
+            array($color_category, $name_category)
+        );
+    }
+
+    public function modifyCategory($id_category, $name_category, $color_category)
+    {
+
+    }
+
+    public function deleteCategory($id_category)
+    {
+
+    }
 }

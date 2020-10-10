@@ -14,7 +14,16 @@ class AdminView
         }
         $smarty = new Smarty();
         $smarty->assign('products_s', $products);
-        $smarty->display('../templates/admin.tpl');
+        $smarty->display('../templates/adminProducts.tpl');
+    }
+    public function showCategories($categories)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $smarty = new Smarty();
+        $smarty->assign('categories_s', $categories);
+        $smarty->display('../templates/adminCategory.tpl');
     }
 
     public function showPurchases($purchases)

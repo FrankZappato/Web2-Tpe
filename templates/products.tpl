@@ -8,7 +8,7 @@
                 <select name="search" class="browser-default custom-select">
                     <option selected>Categories</option>
                     {foreach from=$categories_s item=category}
-                        <option  value="{$category->name}">{$category->name}</option>
+                        <option  value="{$category->category_name}">{$category->category_name}</option>
                     {/foreach}
                     <option  value="All">All</option>                   
                 </select>
@@ -23,7 +23,7 @@
                             <img src="images/{$product->img_product}" alt="" class="img-responsive product-img" />
                             <h4 class="text-info name-text">{$product->name_product}</h4>
                             <h4>${$product->price}</h4>
-                            <h5>{$product->name}</h5>
+                            <h5>{$product->category_name}</h5>
                             {if isset($smarty.session.isLogged)}
                                 <input type="number" name="quantity" min="0" data-bind="value:replyNumber" />
                             {/if}

@@ -12,7 +12,7 @@ class ProductsModel
 
     public function getAllProducts()
     {
-        $query = $this->db->prepare("SELECT products.id, products.name_product, products.img_product, categories.name, products.price, products.details
+        $query = $this->db->prepare("SELECT products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
         FROM products
         LEFT JOIN categories ON products.id_category = categories.id");
         $query->execute();
@@ -53,7 +53,7 @@ class ProductsModel
     public function getProductsByCategories($search)
     {        
         $query = $this->db->prepare("SELECT * FROM products,categories WHERE id_category = categories.id
-                                    AND categories.name = ?");//Necesito un value de nombre de categoria que venga por POST y filtrar
+                                    AND categories.category_name = ?");//Necesito un value de nombre de categoria que venga por POST y filtrar
         $query->execute(array($search));
         return $query->fetchAll(PDO::FETCH_OBJ);                            
     }

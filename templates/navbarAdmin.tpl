@@ -19,6 +19,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="logout">LOGOUT</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="categories">CATEGORIES</a>
+                </li>
             </ul>
         </div>
     </nav>

@@ -41,4 +41,5 @@ class AdminController
         $messages = $this->adminModel->getAllMessages();
         $this->adminView->showMessages($messages);
     }
+    
 }

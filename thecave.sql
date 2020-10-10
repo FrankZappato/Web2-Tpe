@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 07, 2020 at 03:23 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.31
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-10-2020 a las 01:03:00
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,34 +18,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thecave`
+-- Base de datos: `thecave`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Estructura de tabla para la tabla `categories`
 --
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `color` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `category_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categories`
+-- Volcado de datos para la tabla `categories`
 --
 
-INSERT INTO `categories` (`id`, `color`, `name`) VALUES
+INSERT INTO `categories` (`id`, `color`, `category_name`) VALUES
 (4, 'red', 'processor'),
 (5, 'blue', 'ram'),
-(6, 'green', 'cooler');
+(6, 'green', 'cooler'),
+(8, 'turquesa', 'hard drive');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Estructura de tabla para la tabla `messages`
 --
 
 CREATE TABLE `messages` (
@@ -57,7 +58,7 @@ CREATE TABLE `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `messages`
+-- Volcado de datos para la tabla `messages`
 --
 
 INSERT INTO `messages` (`id`, `id_user`, `msg`, `from_email`, `username`) VALUES
@@ -69,7 +70,7 @@ INSERT INTO `messages` (`id`, `id_user`, `msg`, `from_email`, `username`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Estructura de tabla para la tabla `products`
 --
 
 CREATE TABLE `products` (
@@ -82,7 +83,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `products`
+-- Volcado de datos para la tabla `products`
 --
 
 INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `price`, `details`) VALUES
@@ -95,7 +96,7 @@ INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `pri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchases`
+-- Estructura de tabla para la tabla `purchases`
 --
 
 CREATE TABLE `purchases` (
@@ -106,7 +107,7 @@ CREATE TABLE `purchases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `purchases`
+-- Volcado de datos para la tabla `purchases`
 --
 
 INSERT INTO `purchases` (`id`, `id_user`, `description`, `date_milis`) VALUES
@@ -116,7 +117,7 @@ INSERT INTO `purchases` (`id`, `id_user`, `description`, `date_milis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -128,102 +129,103 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `pwd`, `isadmin`, `username`) VALUES
 (6, 'marianogpaniagua@gmail.com', '$2y$10$gviaN8IXfq2xaAj0JsffKeULaemN2hNXU.Wdltbupi.O0RHmMxSWe', 1, 'mpaniagua'),
-(7, 'maria_recipegenius@gmail.com', '$2y$10$INrOiwv9nEs0hqn57wajS.nVeM81Gq6OGwMI40E2LRaU0IX30hnEG', 0, 'elnoadmin');
+(7, 'maria_recipegenius@gmail.com', '$2y$10$INrOiwv9nEs0hqn57wajS.nVeM81Gq6OGwMI40E2LRaU0IX30hnEG', 0, 'elnoadmin'),
+(8, 'francisco.vaninetti2016@gmail.com', '$2y$10$AaKdoRVzbaglBdwx47S03.lwes8q.g224I.Xujb63je2tHxI4wP8e', 1, 'FrankZappato');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `categories`
+-- Indices de la tabla `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `messages`
+-- Indices de la tabla `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `products`
+-- Indices de la tabla `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_category` (`id_category`);
 
 --
--- Indexes for table `purchases`
+-- Indices de la tabla `purchases`
 --
 ALTER TABLE `purchases`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `purchases`
+-- AUTO_INCREMENT de la tabla `purchases`
 --
 ALTER TABLE `purchases`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `messages`
+-- Filtros para la tabla `messages`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `products`
+-- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`);
 
 --
--- Constraints for table `purchases`
+-- Filtros para la tabla `purchases`
 --
 ALTER TABLE `purchases`
   ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);

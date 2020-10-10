@@ -22,18 +22,25 @@ document.addEventListener("DOMContentLoaded", function() {
         divForModify.classList.remove("display");
     }
 
-    /*var buttons = document.getElementsByClassName('btn_delete');
+    let modifyCategoryButtons = document.getElementsByClassName('btn_modify_category');
 
-    for (var i = 0; i < buttons.length; i++)
-        buttons[i].addEventListener("click", deleteProduct);
+    for (let i = 0; i < modifyCategoryButtons.length; i++) {
+        modifyCategoryButtons[i].addEventListener("click", showModifyDivCategory);
+    }
 
+    function showModifyDivCategory(e) {
+        let oldButton = document.getElementById(e.target.id);
+        oldButton.removeEventListener("click", showModifyDivCategory);
+        oldButton.addEventListener("click", hideEditDivCategory);
+        let divForModify = document.getElementById(e.target.id + "-div");
+        divForModify.classList.add("display");
+    }
 
-    function deleteProduct(e) {
-        var formData = new FormData();
-        formData.append('id_product', e.target.id);
-        fetch("/web2-tp/delete-product", {
-            "method": "post",
-            "body": formData
-        })
-    }*/
+    function hideEditDivCategory(e) {
+        let oldButton = document.getElementById(e.target.id);
+        oldButton.removeEventListener("click", hideEditDivCategory);
+        oldButton.addEventListener("click", showModifyDivCategory);
+        let divForModify = document.getElementById(e.target.id + "-div");
+        divForModify.classList.remove("display");
+    }   
 })
