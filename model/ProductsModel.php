@@ -16,6 +16,12 @@ class ProductsModel
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    public function getAllCategories()
+    {
+        $query = $this->db->prepare("SELECT * FROM categories ORDER by id ASC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function addProduct()
     {
@@ -42,10 +48,12 @@ class ProductsModel
     }
 
     
-    public function getProductsByCategories()
-    {
+    public function getProductsByCategories($search)
+    {        
         $query = $this->db->prepare("SELECT * FROM products,categories WHERE id_category = categories.id
-                                    AND categories.name = '?'");//Necesito un value de nombre de categoria que venga por POST y filtrar
+                                    AND categories.name = ?");//Necesito un value de nombre de categoria que venga por POST y filtrar
+        $query->execute(array($search));
+        return $query->fetchAll(PDO::FETCH_OBJ);                            
     }
 
     public function modifyProduct()

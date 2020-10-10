@@ -3,6 +3,18 @@
 <body>
     {include file="./navbar.tpl"}
     <div class="container">
+    <div class="search-container">
+            <form action="category-search" method="POST">
+                <select name="search" class="browser-default custom-select">
+                    <option selected>Open this select menu</option>
+                    {foreach from=$categories_s item=category}
+                        <option  value="{$category->name}">{$category->name}</option>
+                    {/foreach}
+                    <option  value="All">All</option>                   
+                </select>
+                <button type="submit">Search</button>            
+            </form>            
+        </div>
         <div class="row row_products">
             {foreach from=$products_s item=product}
                 <div class="col-sm-4 col-md-3">

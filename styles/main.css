@@ -58,6 +58,10 @@
         min-height: 300px;
     }
 }
+.search-container{    
+    display: flex !important;
+    flex-direction: row;    
+}
 
 .product-img {
     width: 70%;

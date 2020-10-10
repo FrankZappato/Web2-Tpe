@@ -20,7 +20,19 @@ class ProductsController
     public function showProducts()
     {
         $products = $this->model->getAllProducts();
-        $this->view->showProducts($products);
+        $categories = $this->model->getAllCategories();
+        $this->view->showProducts($products , $categories);
+    }
+    public function showFilteredProducts()
+    {   
+        $search = $_POST['search'];    
+        if($search == 'All'){
+            $this->showProducts();
+        }else{
+        $products = $this->model->getProductsByCategories($search);        
+        $categories = $this->model->getAllCategories();
+        $this->view->showProducts($products , $categories);
+        }
     }
 
     public function deleteProduct()
