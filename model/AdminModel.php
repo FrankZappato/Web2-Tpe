@@ -57,11 +57,19 @@ class AdminModel
 
     public function modifyCategory($id_category, $name_category, $color_category)
     {
-
+        $data = [
+            'category_id' => $id_category,
+            'category_name' => $name_category,
+            'categoryColor' => $color_category            
+        ];
+        $query = $this->db->prepare("UPDATE categories SET category_name=:category_name, color=:categoryColor
+                                     WHERE id=:category_id");
+        $query->execute($data);
     }
 
     public function deleteCategory($id_category)
     {
-
+        $query = $this->db->prepare("DELETE from categories where id = ?");
+        $query->execute(array($id_category));
     }
 }

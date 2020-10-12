@@ -32,6 +32,7 @@
     $r->addRoute("modify-category", "POST", "CategoryController", "modifyCategory");
     $r->addRoute("add-category", "POST", "CategoryController", "addCategory");
     $r->addRoute("categories", "GET", "CategoryController", "showCategories");
+    $r->addRoute("delete-category", "POST", "CategoryController", "deleteCategory");
 
     $r->addRoute("delete-Category", "POST", "CategoryController", "deleteCategory");
     $r->addRoute("messages", "GET", "AdminController", "showContactMessages");

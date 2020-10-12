@@ -22,12 +22,11 @@ class CategoryController
 
     public function modifyCategory()
     {
-        $id_category = $_POST[''];
-        $name_category = $_POST[''];
-        $color_category = $_POST[''];
+        $id_category = $_POST['category-id'];
+        $name_category = $_POST['category-name'];
+        $color_category = $_POST['category-color'];
 
         $this->adminModel->modifyCategory($id_category, $name_category, $color_category);
-
         $this->showCategories();
     }
 
@@ -42,7 +41,7 @@ class CategoryController
 
     public function deleteCategory()
     {
-        $id_category = $_POST[''];
+        $id_category = $_POST['id_category'];
         $this->adminModel->deleteCategory($id_category);        
         $this->showCategories();
     }
