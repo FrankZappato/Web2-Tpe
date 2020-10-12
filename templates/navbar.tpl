@@ -20,13 +20,13 @@
                  {/if}
                  <li class="nav-item">
                      <a class="nav-link" href="products">PRODUCTS</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="contact">CONTACT</a>
-                 </li>
+                 </li>                 
                  {if isset($smarty.session.isLogged)}
                      <li class="nav-item">
                          <a class="nav-link" href="logout">LOGOUT</a>
+                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">CONTACT</a>
                      </li>
                  {/if}
                  {if isset($smarty.session.isAdmin) && $smarty.session.isAdmin}
