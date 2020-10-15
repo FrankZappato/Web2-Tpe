@@ -7,6 +7,9 @@
             <section class="col-12 col-sm-6 col-md-6">
                 <form class="form-container" action="signup" method="POST">
                     <div class="form-group">
+                        <h3>Sign Up!</h3>
+                    </div>    
+                    <div class="form-group">
                         <input class="form-control" type="text" name="username" placeholder="Username">
                     </div>
                     <div class="form-group">
