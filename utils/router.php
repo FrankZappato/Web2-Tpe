@@ -38,5 +38,7 @@
     $r->addRoute("messages", "GET", "AdminController", "showContactMessages");
     $r->addRoute("add_to_cart", "POST", "ProductsController", "addToCart");
     $r->addRoute("delete_from_cart", "POST", "ProductsController", "deleteFromCart");
+   //usersHandlers
+    $r->addRoute("users", "GET", "AdminController", "showUsers");
 
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

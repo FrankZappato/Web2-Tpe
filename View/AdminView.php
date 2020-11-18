@@ -45,4 +45,14 @@ class AdminView
         $smarty->assign('messages_s', $messages);
         $smarty->display('../templates/messages.tpl');
     }
+
+    public function showUsers($users)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $smarty = new Smarty();
+        $smarty->assign('users_s', $users);
+        $smarty->display('../templates/usersList.tpl');
+    }
 }

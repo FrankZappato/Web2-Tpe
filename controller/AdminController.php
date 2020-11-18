@@ -42,4 +42,10 @@ class AdminController
         $this->adminView->showMessages($messages);
     }
     
+    public function showUsers()
+    {
+        $users = $this->adminModel->getAllUsers();
+        $this->adminView->showUsers($users);
+    }
+    
 }

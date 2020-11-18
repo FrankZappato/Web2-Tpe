@@ -18,7 +18,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Date</th>
-                    <th scope="col">UserId</th>
+                    <th scope="col">User Email</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
@@ -28,7 +28,7 @@
                     <tr>
                         <th scope="row">{$purchase->id}</th>
                         <td>{$purchase->date_milis}</td>
-                        <td>{$purchase->id_user}</td>
+                        <td>{$purchase->email_user}</td>
                         <td>{$purchase->description}</td>
                     </tr>
                 {/foreach}
