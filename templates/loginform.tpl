@@ -4,8 +4,11 @@
     {include file="./navbar.tpl"}
     <section class="container-fluid bg">
         <section class="row justify-content-center">
-            <section class="col-12 col-sm-6 col-md-3">
+            <section class="col-12 col-sm-6 col-md-3">                 
                 <form class="form-container" action="login" method="POST">
+                    <div class="form-group">
+                        <h3>Login Here!</h3>
+                    </div>      
                     <div class="form-group">
                         <label>Email address</label>
                         <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
@@ -16,7 +19,7 @@
                         <label>Password</label>
                         <input type="password" class="form-control" name="password">
                     </div>
-                    <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+                    <button type="submit" class="btn btn-secondary btn-block">Login</button>
                     {if $error_code != null}
                         <div class="alert alert-danger" role="alert">
                             {$error_code}
