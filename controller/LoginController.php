@@ -20,8 +20,21 @@ require_once '../controller/AdminController.php';
             $this->adminController = new AdminController();
         }
 
-        public function login()
+        public function login($newUser)
         {
+            if ($newUser != null) {
+                session_start();
+                $_SESSION['userId'] = $user->id;
+                $_SESSION['isLogged'] = true;
+                if ($user->isadmin == 1) {
+                    $_SESSION['isAdmin'] = true;
+                    $this->adminController-> showAdmin();
+                } else {
+                    $_SESSION['isAdmin'] = false;
+                    $this->productsController->showProducts();
+                }
+            }
+
             $email = $_POST['email'];
             $password = $_POST['password'];
             if (empty($email)||empty($password)) {
@@ -79,8 +92,8 @@ require_once '../controller/AdminController.php';
                     } else {
                         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                         $isAdmin = 0;
-                        $this->loginModel->addNewUser($username, $email, $hashedPwd, $isAdmin);
-                        $this->loginView->showLoginForm(null);
+                        $newUser = $this->loginModel->addNewUser($username, $email, $hashedPwd, $isAdmin);
+                        $this->login($newUser);
                     }
                 }
             }
