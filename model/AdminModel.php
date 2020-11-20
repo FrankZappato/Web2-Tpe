@@ -17,20 +17,44 @@ class AdminModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getAllMessages()
-    {
-        $query = $this->db->prepare("SELECT * FROM messages");
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
-
+    
+    //Users
     public function getAllUsers()
     {
         $query = $this->db->prepare("SELECT * FROM users");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    public function getUser($id_user)
+    {
+        $query = $this->db->prepare("SELECT * FROM users where id = ?");
+        $query->execute(array($id_user));
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
+    public function deleteUser($id_user)
+    {
+        $query = $this->db->prepare("DELETE from users where id = ?");
+        $query->execute(array($id_user));
+    }
+    
+    public function updateUserAdmin($id_user,$userAdminValue)
+    {
+        $data = [
+            'id_user' => $id_user,
+            'userAdminValue' => $userAdminValue                       
+        ];
+        $query = $this->db->prepare("UPDATE users SET isadmin=:userAdminValue
+                                     WHERE id=:id_user");
+        $query->execute($data);
+    }
+    //Messages
+    public function getAllMessages()
+    {
+        $query = $this->db->prepare("SELECT * FROM messages");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
     public function saveMessage()
     {
         session_start();
@@ -44,7 +68,7 @@ class AdminModel
             array($message,$email,$username)
         );
     }
-    
+    //Categories
     public function getAllCategories()
     {
         $query = $this->db->prepare("SELECT * FROM categories");

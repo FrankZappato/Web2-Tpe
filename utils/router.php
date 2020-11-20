@@ -40,5 +40,7 @@
     $r->addRoute("delete_from_cart", "POST", "ProductsController", "deleteFromCart");
    //usersHandlers
     $r->addRoute("users", "GET", "AdminController", "showUsers");
+    $r->addRoute("delete-user", "POST", "AdminController", "deleteUser");
+    $r->addRoute("modify-admin-user", "POST", "AdminController", "makeUserAdmin");
 
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

@@ -30,15 +30,18 @@
                         </td>                        
                         <td>
                             <div>
-                                <form method="POST" action="delete-category">
+                                <form method="POST" action="delete-user">
                                     <button type="submit" class="btn_delete" id={$user->id}>Delete</button>
-                                    <input type="hidden" name="id_category" value={$user->id}>
+                                    <input type="hidden" name="id_user" value={$user->id}>
                                 </form>
                             </div>
                         </td>
                         <td>
                             <div>
-                                <button class="btn_modify_admin" value={$user->id} id="modify-{$user->id}">Modify</button>
+                                <form method="POST" action="modify-admin-user">
+                                    <button type="submit" class="btn_modify_admin" value={$user->id}>Admin</button>
+                                    <input type="hidden" name="id_user" value={$user->id}>
+                                </form>
                             </div>
                         </td>
                     </tr>                    
@@ -46,8 +49,7 @@
                 {/nocache}
             </tbody>
         </table>
-    </div>
-    <script src="js/main.js"></script>
+    </div>    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
