@@ -71,7 +71,7 @@
     
                             </div>
                             <div class="modal-body">
-    
+                            {include file="vue/commentary.vue"}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
