@@ -48,6 +48,7 @@ class AdminModel
                                      WHERE id=:id_user");
         $query->execute($data);
     }
+    
     //Messages
     public function getAllMessages()
     {
