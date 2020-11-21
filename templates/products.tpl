@@ -3,17 +3,17 @@
 <body>
     {include file="./navbar.tpl"}
     <div class="container">
-    <div class="search-container">
+        <div class="search-container">
             <form action="category-search" method="POST">
                 <select name="search" class="browser-default custom-select">
                     <option selected>Categories</option>
                     {foreach from=$categories_s item=category}
-                        <option  value="{$category->category_name}">{$category->category_name}</option>
+                        <option value="{$category->category_name}">{$category->category_name}</option>
                     {/foreach}
-                    <option  value="All">All</option>                   
+                    <option value="All">All</option>
                 </select>
-                <button type="submit">Search</button>            
-            </form>            
+                <button type="submit">Search</button>
+            </form>
         </div>
         <div class="row row_products">
             {foreach from=$products_s item=product}
@@ -39,6 +39,9 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
+                                <button id="commentary_{$product->id}" type="button" class="btn btn-primary commnentaries_show_div" data-toggle="modal" data-target="#modal{$product->id}commentaries">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -54,6 +57,21 @@
                             </div>
                             <div class="modal-body">
                                 {$product->details}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modal{$product->id}commentaries" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" id="commentaries{$product->id}">
+    
+                            </div>
+                            <div class="modal-body">
+    
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -101,8 +119,10 @@
     {/if}
     {include file="./footer.tpl"}
 </body>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 </html>
