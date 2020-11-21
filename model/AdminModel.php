@@ -17,28 +17,59 @@ class AdminModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    
+    //Users
+    public function getAllUsers()
+    {
+        $query = $this->db->prepare("SELECT * FROM users");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function getUser($id_user)
+    {
+        $query = $this->db->prepare("SELECT * FROM users where id = ?");
+        $query->execute(array($id_user));
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function deleteUser($id_user)
+    {
+        $query = $this->db->prepare("DELETE from users where id = ?");
+        $query->execute(array($id_user));
+    }
+    
+    public function updateUserAdmin($id_user,$userAdminValue)
+    {
+        $data = [
+            'id_user' => $id_user,
+            'userAdminValue' => $userAdminValue                       
+        ];
+        $query = $this->db->prepare("UPDATE users SET isadmin=:userAdminValue
+                                     WHERE id=:id_user");
+        $query->execute($data);
+    }
+    
+    //Messages
     public function getAllMessages()
     {
         $query = $this->db->prepare("SELECT * FROM messages");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
     public function saveMessage()
     {
         session_start();
         $username = $_POST['name'];
         $email = $_POST['email'];
-        $message = $_POST['message'];
-        $email = $_SESSION['userId'];
-        $query = $this->db->prepare("INSERT INTO messages (id_user, msg, from_email, username) values
-        (?,?,?,?)");
+        $message = $_POST['message'];        
+        $query = $this->db->prepare("INSERT INTO messages (msg, from_email, username) values
+        (?,?,?)");
 
         return $query->execute(
-            array($userId,$message,$email,$username)
+            array($message,$email,$username)
         );
     }
-    
+    //Categories
     public function getAllCategories()
     {
         $query = $this->db->prepare("SELECT * FROM categories");
@@ -60,7 +91,7 @@ class AdminModel
         $data = [
             'category_id' => $id_category,
             'category_name' => $name_category,
-            'categoryColor' => $color_category
+            'categoryColor' => $color_category            
         ];
         $query = $this->db->prepare("UPDATE categories SET category_name=:category_name, color=:categoryColor
                                      WHERE id=:category_id");

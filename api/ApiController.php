@@ -1,6 +1,6 @@
 <?php 
 
-require_once './api/ApiView.php';
+require_once '../api/ApiView.php';
 
 abstract class ApiController {
     protected $model; // lo instancia el hijo
