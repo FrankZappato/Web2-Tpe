@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let app = new Vue({
         el: '#vue-commentary',
         data: {
-            commentaries: []
+            commentaries: [] 
         }
     });
 
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function getCommentaries(e) {
         let product_id_full = e.target.id;
         let product_id = product_id_full.replace("commentary_", "");
+        
         fetch('api/commentary?id=' + product_id)
             .then(response => response.json())
             .then(commentaries => app.commentaries = commentaries)
