@@ -1,5 +1,5 @@
 <?php
-require_once './Model/CommentaryModel.php';
+require_once '../Model/CommentaryModel.php';
 require_once 'ApiController.php';
 
 class ApiCommentaryController extends ApiController {
