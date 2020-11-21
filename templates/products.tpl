@@ -39,7 +39,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
-                                <button id="commentary_{$product->id}" type="button" class="btn btn-primary commnentaries_show_div" data-toggle="modal" data-target="#modal{$product->id}commentaries">
+                                <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal{$product->id}commentaries">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -68,10 +68,9 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header" id="commentaries{$product->id}">
-    
                             </div>
                             <div class="modal-body">
-                            {include file="vue/commentary.vue"}
+                            {include file="./vue/commentary.vue"}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -123,6 +122,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="js/commentaries.js"></script>
 
 </html>

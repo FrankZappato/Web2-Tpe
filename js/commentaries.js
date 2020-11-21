@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    document.querySelector('#form-commentary').addEventListener('submit', e => {
+    /*document.querySelector('#form-commentary').addEventListener('submit', e => {
         e.preventDefault();
         addCommentary();
-    });
+    });*/
 
-    let showCommentariesButtons = document.getElementsByClassName('commnentaries_show_div');
+    let showCommentariesButtons = document.getElementsByClassName('commentaries_show_div');
 
     for (let i = 0; i < showCommentariesButtons.length; i++) {
         showCommentariesButtons[i].addEventListener("click", getCommentaries);
@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function getCommentaries(e) {
-        let product_id_full = e.target.id;
+        let product_id_full = e.currentTarget.id;
         let product_id = product_id_full.replace("commentary_", "");
-        fetch('api/commentary?id=' + product_id)
+        fetch('api/commentary/' + product_id)
             .then(response => response.json())
             .then(commentaries => app.commentaries = commentaries)
             .catch(error => console.log(error));
@@ -45,4 +45,4 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.log(error));
     }
 
-})
+});
