@@ -1,6 +1,5 @@
 {literal}
 <div id="vue-commentary">
-
     <ul id="commentary-list" class="list-group">
         <li 
             v-for="commentary in commentaries"
@@ -9,6 +8,5 @@
             Rating : {{ commentary.rating}}
          </li>
     </ul>
-
 </div>
 {/literal}

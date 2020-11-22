@@ -39,7 +39,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
-                                <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal{$product->id}commentaries">
+                                <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal_commentaries">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -64,21 +64,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="modal{$product->id}commentaries" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header" id="commentaries{$product->id}">
-                            </div>
-                            <div class="modal-body">
-                            {include file="./vue/commentary.vue"}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             {/foreach}
+        </div>
+    </div>
+    <div class="modal fade" id="modal_commentaries" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    {include file="./vue/commentary.vue"}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 

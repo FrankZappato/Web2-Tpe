@@ -20,11 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function getCommentaries(e) {
+
         let product_id_full = e.currentTarget.id;
         let product_id = product_id_full.replace("commentary_", "");
         fetch('api/commentary/' + product_id)
             .then(response => response.json())
             .then(commentaries => app.commentaries = commentaries)
+            .then(console.log(app.commentaries))
             .catch(error => console.log(error));
     }
 
