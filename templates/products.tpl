@@ -2,7 +2,8 @@
 
 <body>
     {include file="./navbar.tpl"}
-    <div class="container">
+    <div class="container">    
+    </div>
         <div class="search-container">
             <form action="category-search" method="POST">
                 <select name="search" class="browser-default custom-select">
@@ -71,7 +72,7 @@
     
                             </div>
                             <div class="modal-body">
-                           
+                            {include file="./vue/commentaries.vue"}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

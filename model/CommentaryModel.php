@@ -14,7 +14,7 @@ class CommentaryModel
     public function getCommentaries($id_product){        
         $statement = $this->db->prepare("SELECT * FROM commentaries WHERE id_product=?");
         $statement->execute(array($id_product));
-        return $statement->fetch(PDO::FETCH_OBJ);        
+        return $statement->fetchAll(PDO::FETCH_OBJ);        
     }
 
 }

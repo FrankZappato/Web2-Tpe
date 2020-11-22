@@ -1,10 +1,10 @@
 {literal}
 <div id='vue-commentary'>
 
-    <ul id="commentaries-list" class="list-group">
+    <ul id="commentary-list" class="list-group">
         <li 
             v-for="commentary in commentaries"
-            :data-id-commentary="commentary.id"             
+                        
             class="list-group-item"> 
             
             {{ commentary.rating }} - {{ commentary.commentary}}
