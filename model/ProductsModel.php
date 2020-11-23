@@ -10,6 +10,13 @@ class ProductsModel
     .'dbname=thecave;charset=utf8', 'root', '');
     }
 
+    public function getAllProductsAdmin()
+    {
+        $query = $this->db->prepare("SELECT * FROM products");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function getAllProducts($search = null)
     {
         //we set the variables we need to make the pagination
@@ -105,11 +112,14 @@ class ProductsModel
         );
     }
 
-    public function modifyProduct()
+    public function modifyProduct($imagen = null)
     {
+        $pathImg = null;
+        if ($imagen)
+            $pathImg = $this->uploadImage($imagen);
+
         $product_id = $_POST['product-id'];
-        $id_category = $_POST['product-category'];
-        $imageName = $_POST['product-image'];
+        $id_category = $_POST['product-category'];        
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
         $details = $_POST['details'];
@@ -117,7 +127,7 @@ class ProductsModel
 
         $data = [
             'category_id' => $id_category,
-            'imgName' => $imageName,
+            'imgName' => $pathImg,
             'nameProd' => $productName,
             'price' => $price,
             'ide' =>  $product_id,

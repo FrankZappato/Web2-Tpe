@@ -62,7 +62,13 @@ class ProductsController
 
     public function modifyProduct()
     {
-        $this->model->modifyProduct();
+        if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
+                    || $_FILES['product-image']['type'] == "image/png" ) {
+                    $this->model->modifyProduct($_FILES['product-image']);
+                }
+                else {
+                    $this->model->modifyProduct();
+                }           
         $this->adminController->showAdmin();
     }
 
