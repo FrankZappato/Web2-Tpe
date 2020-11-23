@@ -14,5 +14,11 @@ class ApiCommentaryController extends ApiController {
         $commentaries = $this->model->getCommentaries($params[':ID']);
         $this->view->response($commentaries, 200);
     }
+    public function addCommentary($params = null) {
+        $commentary = $this->getData();
+        $this->model->addCommentary($commentary->from, $commentary->commentary, $commentary->rating, $params[':ID']);
+        $this->view->response($commentary, 200);
+    }
+
 }
 
