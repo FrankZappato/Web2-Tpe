@@ -19,19 +19,27 @@ class ProductsController
 
     public function showProducts()
     {
-        $products = $this->model->getAllProducts();
+        if(isset($_GET['search'])){
+            $search = $_GET['search'];
+        }
+        else{
+            $search = null;
+        }
+
+        $dataToReturn = $this->model->getAllProducts($search);
         $categories = $this->model->getAllCategories();
-        $this->view->showProducts($products , $categories);
+        $this->view->showProducts($dataToReturn , $categories);
     }
+
     public function showFilteredProducts()
     {   
-        $search = $_POST['search'];    
-        if($search == 'All'){
+        $search = $_POST['search'];   
+        if($search == 'All' && isset($_POST['search'])){
             $this->showProducts();
-        }else{
-        $products = $this->model->getProductsByCategories($search);        
+        } else{
+        $dataToReturn = $this->model->getProductsByCategories($search);        
         $categories = $this->model->getAllCategories();
-        $this->view->showProducts($products , $categories);
+        $this->view->showProducts($dataToReturn , $categories);
         }
     }
 
@@ -52,6 +60,7 @@ class ProductsController
         $this->model->modifyProduct();
         $this->adminController->showAdmin();
     }
+
     public function deleteFromCart()
     {
         if (session_status() == PHP_SESSION_NONE) {

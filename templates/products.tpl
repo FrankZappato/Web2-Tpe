@@ -6,11 +6,10 @@
         <div class="search-container">
             <form action="category-search" method="POST">
                 <select name="search" class="browser-default custom-select">
-                    <option selected>Categories</option>
                     {foreach from=$categories_s item=category}
                         <option value="{$category->category_name}">{$category->category_name}</option>
                     {/foreach}
-                    <option value="All">All</option>
+                    <option value="All" selected="selected">All Products</option>
                 </select>
                 <button type="submit">Search</button>
             </form>
@@ -77,62 +76,72 @@
                     {include file="./vue/commentary.vue"}
                 </div>
                 <div class="container">
-                <div class="container" id="contact_container">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-md-8 col-lg-8 pb-5">
-                            <form>
-                                <div class="card border-secondary rounded-0">
-                                    <div class="card-header p-0">
-                                        <div class="bg-secondary text-white text-center py-2">
-                                            <p class="m-0">Leave a comment for this product!</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-3">
-                                        <div class="form-group">
-                                            <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text"><i class="fa fa-star text-secondary"></i></div>
-                                                </div>
-                                                <input type="number" class="form-control" id="commentary_rating" name="rating" placeholder="Rate" required>
+                    <div class="container" id="contact_container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-8 col-lg-8 pb-5">
+                                <form>
+                                    <div class="card border-secondary rounded-0">
+                                        <div class="card-header p-0">
+                                            <div class="bg-secondary text-white text-center py-2">
+                                                <p class="m-0">Leave a comment for this product!</p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text"><i class="fa fa-envelope text-secondary"></i></div>
+                                        <div class="card-body p-3">
+                                            <div class="form-group">
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text"><i class="fa fa-star text-secondary"></i></div>
+                                                    </div>
+                                                    <input type="number" class="form-control" id="commentary_rating" name="rating" placeholder="Rate" required>
                                                 </div>
-                                                <input type="text" class="form-control" id="commentary_from" name="from" placeholder="El Fran" required>
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text"><i class="fa fa-envelope text-secondary"></i></div>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="commentary_from" name="from" placeholder="El Fran" required>
+                                                </div>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text"><i class="fa fa-comment text-secondary"></i></div>
+                                            <div class="form-group">
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text"><i class="fa fa-comment text-secondary"></i></div>
+                                                    </div>
+                                                    <textarea method="post" id="body_commentary" class="form-control" placeholder="Comment here!" required name="message"></textarea>
                                                 </div>
-                                                <textarea method="post" id="body_commentary" class="form-control" placeholder="Comment here!" required name="message"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
+                                    <div class="modal-footer">
+                                    </div>
+                                </form>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
                 <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>
-                <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">    
+                    <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>
+                    <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">
                 </div>
             </div>
         </div>
     </div>
 
-
-
-
+    <nav aria-label="Products Pagination">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="products?pag={$page-1}&search={$search}">Previous</a></li>
+            {for $foo=1 to $pages}
+            <li class="page-item"><a class="page-link" href="products?pag={$foo}&search={$search}">{$foo}</a></li>
+            {/for}
+            {if $page == $pages}
+            <li class="page-item"><a class="page-link" href="products?pag={$page}&search={$search}">Next</a></li>
+            {else}
+            <li class="page-item"><a class="page-link" href="products?pag={$page+1}&search={$search}">Next</a></li>
+            {/if}
+        </ul>
+    </nav>
 
     {if (isset($smarty.session.shopping_cart))}
         <div class="table-responsive">

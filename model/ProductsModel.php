@@ -10,14 +10,60 @@ class ProductsModel
     .'dbname=thecave;charset=utf8', 'root', '');
     }
 
-    public function getAllProducts()
+    public function getAllProducts($search = null)
     {
-        $query = $this->db->prepare("SELECT products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
-        FROM products
-        LEFT JOIN categories ON products.id_category = categories.id");
+        //we set the variables we need to make the pagination
+        $limit = 2; //how many product we want to see for each page
+        $pag = isset($_GET['pag']) ? (int) $_GET['pag'] : 1; // to not brake the first page
+        if($pag < 1){
+            $pag = 1; 
+        } 
+        $offset = ($pag > 1) ? (($pag * $limit) - $limit) : 0;  //were we start to see products
+        
+        $queryString = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
+        FROM products LEFT JOIN categories ON products.id_category = categories.id";
+        
+        $filterQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM products,categories WHERE id_category = categories.id
+        AND categories.category_name = :search";
+
+        $pagination = " LIMIT :offset, :howMany";
+
+        //we make the query and add 
+        if(isset($search) && $search != null){
+           $finalQuery = $filterQuery . $pagination;
+        } else{
+           $finalQuery = $queryString . $pagination;
+        }
+
+        $query = $this->db->prepare($finalQuery);
+
+        $query->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $query->bindParam(':howMany', $limit, PDO::PARAM_INT);
+        if(isset($search) && $search != null){
+            $query->bindParam(':search', $search, PDO::PARAM_STR);
+        }
+
+        //we get all products
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
+
+        //we get total
+        $totalRows = $this->db->query("SELECT FOUND_ROWS() as total");
+        $totalRows=$totalRows->fetch()['total'];
+
+        //we calculate number of pages
+        $pages = ceil($totalRows / $limit); //Round fractions up
+
+        //we prepare data to return
+        $dataToReturn = array("search"=>$search, "products"=>$query->fetchAll(PDO::FETCH_OBJ), "page"=>$pag, "pages"=>$pages);
+     
+        return $dataToReturn;
     }
+
+    public function getProductsByCategories($search)
+    {    
+        return $this->getAllProducts($search);                       
+    }
+
     public function getAllCategories()
     {
         $query = $this->db->prepare("SELECT * FROM categories ORDER by id ASC");
@@ -47,15 +93,6 @@ class ProductsModel
         $query->execute(
             array($id_product)
         );
-    }
-
-    
-    public function getProductsByCategories($search)
-    {        
-        $query = $this->db->prepare("SELECT * FROM products,categories WHERE id_category = categories.id
-                                    AND categories.category_name = ?");//Necesito un value de nombre de categoria que venga por POST y filtrar
-        $query->execute(array($search));
-        return $query->fetchAll(PDO::FETCH_OBJ);                            
     }
 
     public function modifyProduct()
