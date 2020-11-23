@@ -49,8 +49,12 @@
                             <form action="modify-product" method="POST">
                                 <label>Product:{$product->id} </label>
                                 <input name="product-id" type="hidden" value={$product->id}>
-                                <input name="product-category" type="number" placeholder="Category Id">
-                                <input name="product-name" type="text" placeholder="Name">
+                                <select name="product-category" class="browser-default custom-select">
+                                    <option selected>Category</option>
+                                    {foreach from=$categories item=category}
+                                        <option value="{$category->id}">{$category->category_name}</option>
+                                    {/foreach}
+                                </select> <input name="product-name" type="text" placeholder="Name">
                                 <input name="product-price" type="number" placeholder="Price">
                                 <input name="product-image" type="text" placeholder="Image name">
                                 <input name="details" type="text" placeholder="Details">
@@ -64,7 +68,14 @@
         </table>
     </div>
     <form class="adminForm" action="add-product" method="POST">
-        <input name="product-category" type="number" placeholder="Category Id">
+
+        <select name="product-category" class="browser-default custom-select">
+            <option selected>Category</option>
+            {foreach from=$categories item=category}
+                <option value="{$category->id}">{$category->category_name}</option>
+            {/foreach}
+        </select>
+
         <input name="product-name" type="text" placeholder="Name">
         <input name="product-price" type="number" placeholder="Price">
         <input name="product-image" type="text" placeholder="Image name">

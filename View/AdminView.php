@@ -7,13 +7,14 @@ class AdminView
     {
     }
 
-    public function showAdmin($products)
+    public function showAdmin($products, $categories)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $smarty = new Smarty();
         $smarty->assign('products_s', $products);
+        $smarty->assign('categories', $categories);
         $smarty->display('../templates/adminProducts.tpl');
     }
     public function showCategories($categories)

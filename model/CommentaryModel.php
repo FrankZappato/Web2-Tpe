@@ -15,4 +15,8 @@ class CommentaryModel
         return $statement->fetchAll(PDO::FETCH_OBJ);        
     }
 
+    public function addCommentary($from, $body, $rating, $id_product){
+        $statement = $this->db->prepare("INSERT INTO commentaries (rating, from_user, id_product, commentary) VALUES (?,?,?,?)");
+        $statement->execute(array($rating, $from, $id_product, $body));
+    }
 }

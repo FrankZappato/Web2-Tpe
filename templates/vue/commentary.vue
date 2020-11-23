@@ -4,6 +4,7 @@
         <li 
             v-for="commentary in commentaries"
             class="list-group-item"> 
+            {{ commentary.from }} </br>
             {{ commentary.commentary }} </br>
             Rating : {{ commentary.rating}}
          </li>
