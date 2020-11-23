@@ -17,7 +17,7 @@ class ProductsView
         $smarty->assign('page', $dataToReturn["page"]);
         $smarty->assign('pages', $dataToReturn["pages"]);
         $smarty->assign('search', $dataToReturn["search"]);
-        $smarty->assign('categories_s' , $categories);
+        $smarty->assign('categories_s', $categories);
         $smarty->display('../templates/products.tpl');
     }
 }

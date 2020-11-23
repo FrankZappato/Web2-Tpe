@@ -15,9 +15,9 @@ class ProductsModel
         //we set the variables we need to make the pagination
         $limit = 2; //how many product we want to see for each page
         $pag = isset($_GET['pag']) ? (int) $_GET['pag'] : 1; // to not brake the first page
-        if($pag < 1){
-            $pag = 1; 
-        } 
+        if ($pag < 1) {
+            $pag = 1;
+        }
         $offset = ($pag > 1) ? (($pag * $limit) - $limit) : 0;  //were we start to see products
         
         $queryString = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
@@ -28,18 +28,18 @@ class ProductsModel
 
         $pagination = " LIMIT :offset, :howMany";
 
-        //we make the query and add 
-        if(isset($search) && $search != null){
-           $finalQuery = $filterQuery . $pagination;
-        } else{
-           $finalQuery = $queryString . $pagination;
+        //we make the query and add
+        if (isset($search) && $search != null) {
+            $finalQuery = $filterQuery . $pagination;
+        } else {
+            $finalQuery = $queryString . $pagination;
         }
 
         $query = $this->db->prepare($finalQuery);
 
         $query->bindParam(':offset', $offset, PDO::PARAM_INT);
         $query->bindParam(':howMany', $limit, PDO::PARAM_INT);
-        if(isset($search) && $search != null){
+        if (isset($search) && $search != null) {
             $query->bindParam(':search', $search, PDO::PARAM_STR);
         }
 
@@ -60,8 +60,8 @@ class ProductsModel
     }
 
     public function getProductsByCategories($search)
-    {    
-        return $this->getAllProducts($search);                       
+    {
+        return $this->getAllProducts($search);
     }
 
     public function getAllCategories()

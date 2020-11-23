@@ -19,27 +19,26 @@ class ProductsController
 
     public function showProducts()
     {
-        if(isset($_GET['search'])){
+        if (isset($_GET['search'])) {
             $search = $_GET['search'];
-        }
-        else{
+        } else {
             $search = null;
         }
 
         $dataToReturn = $this->model->getAllProducts($search);
         $categories = $this->model->getAllCategories();
-        $this->view->showProducts($dataToReturn , $categories);
+        $this->view->showProducts($dataToReturn, $categories);
     }
 
     public function showFilteredProducts()
-    {   
-        $search = $_POST['search'];   
-        if($search == 'All' && isset($_POST['search'])){
+    {
+        $search = $_POST['search'];
+        if ($search == 'All' && isset($_POST['search'])) {
             $this->showProducts();
-        } else{
-        $dataToReturn = $this->model->getProductsByCategories($search);        
-        $categories = $this->model->getAllCategories();
-        $this->view->showProducts($dataToReturn , $categories);
+        } else {
+            $dataToReturn = $this->model->getProductsByCategories($search);
+            $categories = $this->model->getAllCategories();
+            $this->view->showProducts($dataToReturn, $categories);
         }
     }
 

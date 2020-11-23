@@ -133,12 +133,12 @@
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="products?pag={$page-1}&search={$search}">Previous</a></li>
             {for $foo=1 to $pages}
-            <li class="page-item"><a class="page-link" href="products?pag={$foo}&search={$search}">{$foo}</a></li>
+                <li class="page-item"><a class="page-link" href="products?pag={$foo}&search={$search}">{$foo}</a></li>
             {/for}
             {if $page == $pages}
-            <li class="page-item"><a class="page-link" href="products?pag={$page}&search={$search}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="products?pag={$page}&search={$search}">Next</a></li>
             {else}
-            <li class="page-item"><a class="page-link" href="products?pag={$page+1}&search={$search}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="products?pag={$page+1}&search={$search}">Next</a></li>
             {/if}
         </ul>
     </nav>
