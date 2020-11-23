@@ -43,7 +43,13 @@ class ProductsController
 
     public function addProduct()
     {
-        $this->model->addProduct();
+        if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
+                    || $_FILES['product-image']['type'] == "image/png" ) {
+                    $this->model->addProduct($_FILES['product-image']);
+                }
+                else {
+                    $this->model->addProduct();
+                }        
         $this->adminController->showAdmin();
     }
 

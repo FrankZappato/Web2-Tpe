@@ -25,19 +25,29 @@ class ProductsModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function addProduct()
+    public function addProduct($imagen = null)
     {
-        $id_category = $_POST['product-category'];
-        $imageName = $_POST['product-image'];
+        $id_category = $_POST['product-category'];        
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
         $details = $_POST['details'];
 
+        $pathImg = null;
+        if ($imagen)
+            $pathImg = $this->uploadImage($imagen);
+
+
         $query = $this->db->prepare("INSERT INTO products (id_category, img_product, name_product, price, details)
                                     VALUES (?,?,?,?,?)");
         $query->execute(
-            array($id_category,$imageName,$productName,$price, $details)
+            array($id_category,$pathImg,$productName,$price, $details)
         );
+    }
+    private function uploadImage($image){
+        $target = "../images/";
+        $targetPiece =  uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));  
+        move_uploaded_file($image['tmp_name'], $target . $targetPiece);
+        return $targetPiece;
     }
 
     public function deleteProduct()

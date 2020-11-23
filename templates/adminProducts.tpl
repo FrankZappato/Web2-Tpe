@@ -67,7 +67,7 @@
             </tbody>
         </table>
     </div>
-    <form class="adminForm" action="add-product" method="POST">
+    <form class="adminForm" action="add-product" method="POST" enctype="multipart/form-data">
 
         <select name="product-category" class="browser-default custom-select">
             <option selected>Category</option>
@@ -78,7 +78,7 @@
 
         <input name="product-name" type="text" placeholder="Name">
         <input name="product-price" type="number" placeholder="Price">
-        <input name="product-image" type="text" placeholder="Image name">
+        <input name="product-image" type="file" placeholder="Image" id="imageToUpload">
         <input name="details" type="text" placeholder="Details">
         <button type="submit" class="" id="btnAgregar">Add</button>
     </form>
