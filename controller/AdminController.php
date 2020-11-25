@@ -23,11 +23,7 @@ class AdminController
             session_start();
         }
         if ($_SESSION['isAdmin']) {
-<<<<<<< HEAD
-            $products = $this->productsModel->getAllProductsAdmin();
-=======
             $allData = $this->productsModel->getAllProducts();
->>>>>>> mariano
             $categories = $this->adminModel-> getAllCategories();
             $this->adminView->showAdmin($allData, $categories);
         } else {
