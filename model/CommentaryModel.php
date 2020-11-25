@@ -19,4 +19,12 @@ class CommentaryModel
         $statement = $this->db->prepare("INSERT INTO commentaries (rating, from_user, id_product, commentary) VALUES (?,?,?,?)");
         $statement->execute(array($rating, $from, $id_product, $body));
     }
+
+    public function deleteCommentary($id_product)
+    {
+        $query = $this->db->prepare("DELETE from commentaries where id = ?");
+        $query->execute(
+            array($id_product)
+        );        
+    }
 }

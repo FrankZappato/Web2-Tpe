@@ -20,5 +20,10 @@ class ApiCommentaryController extends ApiController {
         $this->view->response($commentary, 200);
     }
 
+    public function deleteCommentary($params = null) {
+        $commentaries = $this->model->deleteCommentary($params[':ID']);
+        $this->view->response($commentaries, 200);
+    }
+
 }
 

@@ -43,6 +43,12 @@
                                 <button class="btn_modify" value={$product->id} id="modify-{$product->id}">Modify</button>
                             </div>
                         </td>
+                        <td>
+                            <div>
+                                <button class="btn_commentaries_show"  id="commentary_{$product->id}"
+                                data-toggle="modal" data-target="#modal_commentaries">Commentaries</button>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <div id="modify-{$product->id}-div" class="div_for_modify div_{$product->id}">
@@ -64,6 +70,7 @@
                     </tr>
                 {/foreach}
                 {/nocache}
+                {include file="./commentariesModal.tpl"}
             </tbody>
         </table>
     </div>
@@ -82,6 +89,7 @@
         <input name="details" type="text" placeholder="Details">
         <button type="submit" class="" id="btnAgregar">Add</button>
     </form>
+    <script src="js/commentaries.js"></script>
     <script src="js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
