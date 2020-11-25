@@ -23,9 +23,9 @@ class AdminController
             session_start();
         }
         if ($_SESSION['isAdmin']) {
-            $products = $this->productsModel->getAllProducts();
+            $allData = $this->productsModel->getAllProducts();
             $categories = $this->adminModel-> getAllCategories();
-            $this->adminView->showAdmin($products, $categories);
+            $this->adminView->showAdmin($allData, $categories);
         } else {
             header('Location: home');
         }

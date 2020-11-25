@@ -26,6 +26,7 @@ class ProductsController
         }
 
         $dataToReturn = $this->model->getAllProducts($search);
+        var_dump($dataToReturn);
         $categories = $this->model->getAllCategories();
         $this->view->showProducts($dataToReturn, $categories);
     }
@@ -37,6 +38,8 @@ class ProductsController
             $this->showProducts();
         } else {
             $dataToReturn = $this->model->getProductsByCategories($search);
+            var_dump($dataToReturn);
+            echo "---------";
             $categories = $this->model->getAllCategories();
             $this->view->showProducts($dataToReturn, $categories);
         }

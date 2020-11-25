@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getCommentaries(e) {
         let sendButton = document.getElementById('submit_commentary_button');
-        let product_id_full = e.currentTarget.id;
+        let product_id_full = e.target.id;
         let product_id = product_id_full.replace("commentary_", "");
         sendButton.setAttribute('data-idToSend', product_id);
         fetch('api/commentary/' + product_id)
