@@ -78,13 +78,8 @@ class ProductsModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function addProduct($imagen = null)
+    public function addProduct($id_category, $productName, $price, $details, $imagen = null)
     {
-        $id_category = $_POST['product-category'];        
-        $productName = $_POST['product-name'];
-        $price = $_POST['product-price'];
-        $details = $_POST['details'];
-
         $pathImg = null;
         if ($imagen)
             $pathImg = $this->uploadImage($imagen);
@@ -103,9 +98,8 @@ class ProductsModel
         return $targetPiece;
     }
 
-    public function deleteProduct()
-    {
-        $id_product = $_POST['id_product'];
+    public function deleteProduct($id_product)
+        {        
         $query = $this->db->prepare("DELETE from products where id = ?");
         $query->execute(
             array($id_product)

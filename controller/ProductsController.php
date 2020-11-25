@@ -25,8 +25,7 @@ class ProductsController
             $search = null;
         }
 
-        $dataToReturn = $this->model->getAllProducts($search);
-        var_dump($dataToReturn);
+        $dataToReturn = $this->model->getAllProducts($search);        
         $categories = $this->model->getAllCategories();
         $this->view->showProducts($dataToReturn, $categories);
     }
@@ -37,9 +36,7 @@ class ProductsController
         if ($search == 'All' && isset($_POST['search'])) {
             $this->showProducts();
         } else {
-            $dataToReturn = $this->model->getProductsByCategories($search);
-            var_dump($dataToReturn);
-            echo "---------";
+            $dataToReturn = $this->model->getProductsByCategories($search);            
             $categories = $this->model->getAllCategories();
             $this->view->showProducts($dataToReturn, $categories);
         }
@@ -47,18 +44,24 @@ class ProductsController
 
     public function deleteProduct()
     {
-        $this->model->deleteProduct();
+        $id_product = $_POST['id_product'];
+        $this->model->deleteProduct($id_product);
         $this->adminController->showAdmin();
     }
 
     public function addProduct()
     {
+        $id_category = $_POST['product-category'];        
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+        $details = $_POST['details'];
+
         if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                     || $_FILES['product-image']['type'] == "image/png" ) {
-                    $this->model->addProduct($_FILES['product-image']);
+                    $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
                 }
                 else {
-                    $this->model->addProduct();
+                    $this->model->addProduct($id_category, $productName, $price, $details);
                 }        
         $this->adminController->showAdmin();
     }
