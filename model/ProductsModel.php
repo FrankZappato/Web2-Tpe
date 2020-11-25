@@ -30,12 +30,12 @@ class ProductsModel
         $queryString = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
         FROM products LEFT JOIN categories ON products.id_category = categories.id";
         
-        $filterQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM products,categories WHERE id_category = categories.id
+        $filterQuery = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details FROM products,categories WHERE id_category = categories.id
         AND categories.category_name = :search";
 
         $pagination = " LIMIT :offset, :howMany";
 
-        //we make the query and add
+        //we make the query and add filter if required
         if (isset($search) && $search != null) {
             $finalQuery = $filterQuery . $pagination;
         } else {
