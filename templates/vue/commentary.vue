@@ -7,8 +7,8 @@
         <li v-if="!loading"
             v-for="commentary in commentaries"
             class="list-group-item"> 
-            {{ commentary.from_user }} </br>
-            {{ commentary.commentary }} </br>
+            From : {{ commentary.from_user }} </br>
+            Commentary : {{ commentary.commentary }} </br>
             Rating : {{ commentary.rating}}
             <button v-bind:id="commentary.id" class="delete_commentary_btn">Delete</button>            
          </li>

@@ -47,7 +47,7 @@
                             <div>
                                 <button class="btn_commentaries_show"  id="commentary_{$product->id}"
                                 data-toggle="modal" data-target="#modal_commentaries">Commentaries</button>
-                            </div>
+                            </div> 
                         </td>
                     </tr>
                     <tr>
