@@ -3,6 +3,11 @@
 <body class="admin">
     {include file="./navbarAdmin.tpl"}    
     <div class="table-responsive">
+    {if $error_msg_modify != null}    
+    <div class="alert alert-danger" role="alert">
+        {$error_msg_modify}
+    </div>
+    {/if}
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -88,7 +93,12 @@
         <input name="product-image" type="file" placeholder="Image" id="imageToUpload">
         <input name="details" type="text" placeholder="Details">
         <button type="submit" class="" id="btnAgregar">Add</button>
-    </form>    
+    </form>
+    {if $error_msg != null}    
+    <div class="alert alert-danger" role="alert">
+        {$error_msg}
+    </div>
+    {/if}
     <script src="js/commentaries.js"></script>
     <script src="js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

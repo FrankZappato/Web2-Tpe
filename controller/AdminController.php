@@ -17,7 +17,7 @@ class AdminController
         $this->adminModel = new AdminModel();
     }
 
-    public function showAdmin()
+    public function showAdmin( $error_msg_modify = null, $error_msg = null)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -25,7 +25,7 @@ class AdminController
         if ($_SESSION['isAdmin']) {
             $products = $this->productsModel->getAllProductsAdmin();
             $categories = $this->adminModel-> getAllCategories();
-            $this->adminView->showAdmin($products, $categories);
+            $this->adminView->showAdmin($error_msg_modify, $error_msg, $products, $categories);
         } else {
             header('Location: home');
         }

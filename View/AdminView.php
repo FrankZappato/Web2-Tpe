@@ -7,12 +7,14 @@ class AdminView
     {
     }
 
-    public function showAdmin($products, $categories)
+    public function showAdmin($error_msg_modify = null, $error_msg = null, $products, $categories)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $smarty = new Smarty();        
+        $smarty->assign('error_msg_modify', $error_msg_modify);
+        $smarty->assign('error_msg', $error_msg);
         $smarty->assign('products_s', $products);
         $smarty->assign('categories', $categories);
         $smarty->display('../templates/adminProducts.tpl');
