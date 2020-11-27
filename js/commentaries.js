@@ -10,10 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 0; i < showCommentariesBtnAdmin.length; i++) {
         showCommentariesBtnAdmin[i].addEventListener("click", getCommentaries);
     };
-    let deleteCommentaryBtn = document.getElementsByClassName('delete_commentary_btn');
-    for (let i = 0; i < deleteCommentaryBtn.length; i++) {
-        deleteCommentaryBtn[i].addEventListener("click", deleteCommentary);
-    };    
+     
 
 
     //function for add_comment_button
@@ -39,6 +36,10 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(commentaries => {app.commentaries = commentaries; app.loading = false; console.log(app.loading);})
             .then(console.log(app.commentaries))
             .catch(error => console.log(error));
+            let deleteCommentaryBtn = document.getElementsByClassName('delete_commentary_btn');
+            for (let i = 0; i < deleteCommentaryBtn.length; i++) {
+            deleteCommentaryBtn[i].addEventListener("click", deleteCommentary);
+        };   
     };
 
     function addCommentary(e) {
