@@ -6,6 +6,7 @@
     </div>
         {include file="./productsFilter.tpl"}
         <div class="row row_products">
+        {nocache}
             {foreach from=$products_s item=product}
                 <div class="col-sm-4 col-md-3">
                     <form method="post" action="add_to_cart">
@@ -38,6 +39,7 @@
                 </div>
                 {include file="./modalInfo.tpl"}                
             {/foreach}
+            {/nocache}
         </div>
     </div>
 
@@ -93,12 +95,11 @@
     {/if}
     {include file="./footer.tpl"}    
     
-</body>
+    <script src="js/commentaries.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
-<script src="js/commentaries.js"></script>
+</body>
 
 </html>
