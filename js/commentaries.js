@@ -37,11 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 app.loading = false;
             })
             .then(() => fillButtons())
-            .catch(error => console.log(error));
-            let deleteCommentaryBtn = document.getElementsByClassName('delete_commentary_btn');
-            for (let i = 0; i < deleteCommentaryBtn.length; i++) {
-            deleteCommentaryBtn[i].addEventListener("click", deleteCommentary);
-        };   
+            .catch(error => console.log(error));            
     };
 
     function fillButtons() {
@@ -81,6 +77,12 @@ document.addEventListener("DOMContentLoaded", function() {
             )
             .catch(error => console.log(error));
     }
+
+    /*while (arr[i].atrr!=attr) {
+        i++;
+    }
+    arr.splice(i,1)
+    return arr*/
 
     function removeByAttr(arr, attr, value) {
         let i = arr.length;

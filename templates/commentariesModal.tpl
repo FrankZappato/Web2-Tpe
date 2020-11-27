@@ -6,6 +6,7 @@
             <div class="modal-body">
                 {include file="./vue/commentary.vue"}
             </div>
+            {if isset($smarty.session.isLogged)}
             <div class="container">
                 <div class="container" id="contact_container">
                     <div class="row justify-content-center">
@@ -52,10 +53,11 @@
                     </div>
                 </div>
             </div>
+             {/if}
             <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>
-                <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">
-            </div>
+                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>                               
+                <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">                
+            </div>                
         </div>
     </div>
 </div>

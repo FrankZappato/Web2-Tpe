@@ -50,10 +50,14 @@ class AdminController
     }
 
     public function deleteUser()
-    {
-        $id_user = $_POST['id_user'];
-        $this->adminModel->deleteUser($id_user);
-        $this->showUsers();
+    {   
+        if(isset($_POST['id_user'])){
+            $id_user = $_POST['id_user'];
+            $this->adminModel->deleteUser($id_user);
+            $this->showUsers();
+        }else{
+            $this->showUsers("No existe el usuario con ese id");
+        }
     }
     
     public function makeUserAdmin()

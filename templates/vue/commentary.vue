@@ -9,8 +9,8 @@
             class="list-group-item"> 
             From : {{ commentary.from_user }} </br>
             Commentary : {{ commentary.commentary }} </br>
-            Rating : {{ commentary.rating}}
-            <button v-bind:id="commentary.id" class="delete_commentary_btn">Delete</button>            
+            Rating : {{ commentary.rating}}                     
+            <button v-bind:id="commentary.id" class="btn btn-danger delete_commentary_btn">Delete</button>                        
          </li>
     </ul>
 </div>

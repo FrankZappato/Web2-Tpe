@@ -1,7 +1,7 @@
 {include file="./head.tpl"}
 
 <body class="admin">
-    {include file="./navbarAdmin.tpl"}
+    {include file="./navbarAdmin.tpl"}    
     <div class="table-responsive">
         <table class="table table-dark">
             <thead>
@@ -88,7 +88,7 @@
         <input name="product-image" type="file" placeholder="Image" id="imageToUpload">
         <input name="details" type="text" placeholder="Details">
         <button type="submit" class="" id="btnAgregar">Add</button>
-    </form>
+    </form>    
     <script src="js/commentaries.js"></script>
     <script src="js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

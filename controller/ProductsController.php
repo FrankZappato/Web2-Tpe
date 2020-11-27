@@ -3,6 +3,7 @@
 require_once "../view/ProductsView.php";
 require_once "../model/ProductsModel.php";
 require_once '../controller/AdminController.php';
+require_once '../view/AdminView.php';
 
 class ProductsController
 {
@@ -15,6 +16,7 @@ class ProductsController
         $this->view = new ProductsView();
         $this->model = new ProductsModel();
         $this->adminController = new AdminController();
+        $this->adminView = new AdminView();
     }
 
     public function showProducts()
@@ -56,26 +58,41 @@ class ProductsController
         $price = $_POST['product-price'];
         $details = $_POST['details'];
 
-        if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
-                    || $_FILES['product-image']['type'] == "image/png" ) {
-                    $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
-                }
-                else {
-                    $this->model->addProduct($id_category, $productName, $price, $details);
-                }        
-        $this->adminController->showAdmin();
+        if((!empty($id_category)) && (!empty($productName)) && (!empty($price))){                     
+            if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
+                        || $_FILES['product-image']['type'] == "image/png" ) {
+                        $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
+                    }
+                    else {
+                        $this->model->addProduct($id_category, $productName, $price, $details);
+                    }        
+            $this->adminController->showAdmin();
+        }else{
+            $this->adminView->showError("Error : falta completar datos obligatorios");
+        }
     }
 
     public function modifyProduct()
     {
-        if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
+        $product_id = $_POST['product-id'];
+        $id_category = $_POST['product-category'];        
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+        $details = $_POST['details'];
+
+        if((!empty($id_category)) && (!empty($productName)) && (!empty($price))){ 
+            
+            if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                     || $_FILES['product-image']['type'] == "image/png" ) {
-                    $this->model->modifyProduct($_FILES['product-image']);
+                    $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details, $_FILES['product-image']);
                 }
                 else {
-                    $this->model->modifyProduct();
+                    $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details);
                 }           
-        $this->adminController->showAdmin();
+                $this->adminController->showAdmin();      
+        }else{
+            $this->adminView->showError("Error : falta completar datos obligatorios");
+        }
     }
 
     public function deleteFromCart()

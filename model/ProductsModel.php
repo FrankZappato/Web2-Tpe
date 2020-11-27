@@ -78,12 +78,11 @@ class ProductsModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function addProduct($id_category, $productName, $price, $details, $imagen = null)
+    public function addProduct($id_category, $productName, $price, $details = null, $imagen = null)
     {
-        $pathImg = null;
+        $pathImg ="";
         if ($imagen)
             $pathImg = $this->uploadImage($imagen);
-
 
         $query = $this->db->prepare("INSERT INTO products (id_category, img_product, name_product, price, details)
                                     VALUES (?,?,?,?,?)");
@@ -106,18 +105,11 @@ class ProductsModel
         );
     }
 
-    public function modifyProduct($imagen = null)
+    public function modifyProduct($product_id, $id_category, $productName, $price, $details, $imagen = null)
     {
         $pathImg = null;
         if ($imagen)
-            $pathImg = $this->uploadImage($imagen);
-
-        $product_id = $_POST['product-id'];
-        $id_category = $_POST['product-category'];        
-        $productName = $_POST['product-name'];
-        $price = $_POST['product-price'];
-        $details = $_POST['details'];
-
+            $pathImg = $this->uploadImage($imagen); 
 
         $data = [
             'category_id' => $id_category,

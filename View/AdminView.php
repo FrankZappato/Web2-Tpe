@@ -12,7 +12,7 @@ class AdminView
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $smarty = new Smarty();
+        $smarty = new Smarty();        
         $smarty->assign('products_s', $products);
         $smarty->assign('categories', $categories);
         $smarty->display('../templates/adminProducts.tpl');
@@ -55,5 +55,10 @@ class AdminView
         $smarty = new Smarty();
         $smarty->assign('users_s', $users);
         $smarty->display('../templates/usersList.tpl');
+    }
+
+    public function showError($msgError) {
+        echo "<h1>ERROR!</h1>";
+        echo "<h2>{$msgError}</h2>";
     }
 }
