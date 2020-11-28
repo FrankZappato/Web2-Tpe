@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     //function for add_comment_button
-    document.getElementById('submit_commentary_button').addEventListener('click', addCommentary);
-
+    let btn = document.getElementById('submit_commentary_button');
+    if (btn != null) {
+        btn.addEventListener('click', addCommentary);
+    }
 
     let app = new Vue({
         el: '#vue-commentary',
@@ -27,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
         let sendButton = document.getElementById('submit_commentary_button');
         let product_id_full = e.currentTarget.id;
         let product_id = product_id_full.replace("commentary_", "");
-        sendButton.setAttribute('data-idToSend', product_id);
+        if (sendButton != null) {
+            sendButton.setAttribute('data-idToSend', product_id);
+        }
         app.loading = true;
         fetch('api/commentary/' + product_id)
             .then(response =>
@@ -37,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 app.loading = false;
             })
             .then(() => fillButtons())
-            .catch(error => console.log(error));            
+            .catch(error => console.log(error));
     };
 
     function fillButtons() {

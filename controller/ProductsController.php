@@ -58,7 +58,7 @@ class ProductsController
         $price = $_POST['product-price'];
         $details = $_POST['details'];
         var_dump($id_category);
-        if(!empty($id_category)  && !empty($productName) && !empty($price)){                                 
+        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){                                 
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                         || $_FILES['product-image']['type'] == "image/png" ) {
                         $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
@@ -80,7 +80,7 @@ class ProductsController
         $price = $_POST['product-price'];
         $details = $_POST['details'];
 
-        if((!empty($id_category))  && (!empty($productName)) && (!empty($price))){ 
+        if(!($id_category == "Category")  && (!empty($productName)) && (!empty($price))){ 
             
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                     || $_FILES['product-image']['type'] == "image/png" ) {

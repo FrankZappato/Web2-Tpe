@@ -4,7 +4,8 @@
             <div class="modal-header">
             </div>
             <div class="modal-body">
-                {include file="./vue/commentary.vue"}
+            
+                {include file="./vue/commentary.tpl"}
             </div>
             {if isset($smarty.session.isLogged)}
             <div class="container">
@@ -55,8 +56,10 @@
             </div>
              {/if}
             <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>                               
+                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>  
+                {if isset($smarty.session.isLogged)}                             
                 <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">                
+                {/if}
             </div>                
         </div>
     </div>
