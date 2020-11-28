@@ -57,7 +57,6 @@ class ProductsController
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
         $details = $_POST['details'];
-        var_dump($id_category);
         if(!($id_category == "Category")  && !empty($productName) && !empty($price)){                                 
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                         || $_FILES['product-image']['type'] == "image/png" ) {
@@ -91,7 +90,7 @@ class ProductsController
                 }           
                 $this->adminController->showAdmin();      
         }else{
-            $this->adminController->showAdmin("Error : falta completar datos obligatorios", null);
+            $this->adminController->showAdmin("Error : missing fields", null);
         }
     }
 
