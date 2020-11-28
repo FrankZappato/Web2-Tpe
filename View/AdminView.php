@@ -58,9 +58,4 @@ class AdminView
         $smarty->assign('users_s', $users);
         $smarty->display('../templates/usersList.tpl');
     }
-
-    public function showError($msgError) {
-        echo "<h1>ERROR!</h1>";
-        echo "<h2>{$msgError}</h2>";
-    }
 }
