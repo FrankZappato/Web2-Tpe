@@ -3,6 +3,11 @@
 <body class="admin">
     {include file="./navbarAdmin.tpl"}
     <div class="table-responsive">
+    {if $error_message != null}    
+        <div class="alert alert-danger" role="alert">
+            {$error_message}
+        </div>
+    {/if}
         <table class="table table-dark">
             <thead>
                 <tr>

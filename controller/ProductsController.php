@@ -57,8 +57,7 @@ class ProductsController
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
         $details = $_POST['details'];
-        
-        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){    //Controll for obligatory form spaces filled                             
+        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){                                 
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                         || $_FILES['product-image']['type'] == "image/png" ) {
                         $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
@@ -80,7 +79,11 @@ class ProductsController
         $price = $_POST['product-price'];
         $details = $_POST['details'];
 
+<<<<<<< HEAD
         if(!($id_category == "Category")  && !empty($productName) && !empty($price)){ 
+=======
+        if(!($id_category == "Category")  && (!empty($productName)) && (!empty($price))){ 
+>>>>>>> mariano
             
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                     || $_FILES['product-image']['type'] == "image/png" ) {
@@ -91,7 +94,7 @@ class ProductsController
                 }           
                 $this->adminController->showAdmin();      
         }else{
-            $this->adminController->showAdmin("Error : falta completar datos obligatorios", null);
+            $this->adminController->showAdmin("Error : missing fields", null);
         }
     }
 

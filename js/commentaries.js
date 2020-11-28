@@ -12,13 +12,14 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     //function for add_comment_button
-    document.getElementById('submit_commentary_button').addEventListener('click', addCommentary);
-
+    let btn = document.getElementById('submit_commentary_button');
+    if (btn != null) {
+        btn.addEventListener('click', addCommentary);
+    }
 
     let app = new Vue({
         el: '#vue-commentary',
         data: {
-            loading: false,
             commentaries: []
         }
     });
@@ -27,17 +28,17 @@ document.addEventListener("DOMContentLoaded", function() {
         let sendButton = document.getElementById('submit_commentary_button');
         let product_id_full = e.currentTarget.id;
         let product_id = product_id_full.replace("commentary_", "");
-        sendButton.setAttribute('data-idToSend', product_id);
-        app.loading = true;
+        if (sendButton != null) {
+            sendButton.setAttribute('data-idToSend', product_id);
+        }
         fetch('api/commentary/' + product_id)
             .then(response =>
                 response.json())
             .then(commentaries => {
                 app.commentaries = commentaries;
-                app.loading = false;
             })
             .then(() => fillButtons())
-            .catch(error => console.log(error));            
+            .catch(error => console.log(error));
     };
 
     function fillButtons() {
@@ -50,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function addCommentary(e) {
         e.preventDefault();
         const commentary = {
-            from: document.querySelector('#commentary_from').value,
-            rating: document.querySelector('#commentary_rating').value,
+            from_user: document.querySelector('#commentary_from').value,
+            rating: getRatingValue(),
             commentary: document.querySelector('#body_commentary').value,
         };
 
@@ -60,9 +61,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(commentary)
             })
-            .then(response => response.json())
-            .then(commentary => app.commentaries.push(commentary))
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(commentary => app.commentaries.push(commentary));
+                }
+            })
             .catch(error => console.log(error));
+    }
+
+    function getRatingValue() {
+        let inputs = document.getElementsByClassName('input_star');
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].checked) {
+                return inputs[i].value;
+            }
+        };
     }
 
     function deleteCommentary(e) {

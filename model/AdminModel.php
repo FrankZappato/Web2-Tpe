@@ -56,17 +56,13 @@ class AdminModel
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    public function saveMessage()
+    public function saveMessage($name, $email, $message)
     {
-        session_start();
-        $username = $_POST['name'];
-        $email = $_POST['email'];
-        $message = $_POST['message'];        
+        session_start();      
         $query = $this->db->prepare("INSERT INTO messages (msg, from_email, username) values
         (?,?,?)");
-
         return $query->execute(
-            array($message,$email,$username)
+            array($message,$email,$name)
         );
     }
     //Categories

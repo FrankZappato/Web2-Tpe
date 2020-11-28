@@ -4,7 +4,8 @@
             <div class="modal-header">
             </div>
             <div class="modal-body">
-                {include file="./vue/commentary.vue"}
+            
+                {include file="./vue/commentary.tpl"}
             </div>
             {if isset($smarty.session.isLogged)}
             <div class="container">
@@ -20,11 +21,16 @@
                                     </div>
                                     <div class="card-body p-3">
                                         <div class="form-group">
-                                            <div class="input-group mb-2">
+                                            <div class="input-group mb-2 justify-content-center">
                                                 <div class="input-group-prepend">
-                                                    <div class="input-group-text"><i class="fa fa-star text-secondary"></i></div>
                                                 </div>
-                                                <input type="number" class="form-control" id="commentary_rating" name="rating" placeholder="Rate" required>
+                                                <div class="rating"> 
+                                                <input class = "input_star" type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
+                                                <input class = "input_star" type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                                                <input class = "input_star" type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
+                                                <input class = "input_star" type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
+                                                <input class = "input_star" type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -55,8 +61,10 @@
             </div>
              {/if}
             <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>                               
+                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>  
+                {if isset($smarty.session.isLogged)}                             
                 <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">                
+                {/if}
             </div>                
         </div>
     </div>

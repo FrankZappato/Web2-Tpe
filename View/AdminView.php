@@ -19,13 +19,15 @@ class AdminView
         $smarty->assign('categories', $categories);
         $smarty->display('../templates/adminProducts.tpl');
     }
-    public function showCategories($categories)
+    public function showCategories($categories, $error_message)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $smarty = new Smarty();
         $smarty->assign('categories_s', $categories);
+        $smarty->assign('error_message', $error_message);
+
         $smarty->display('../templates/adminCategory.tpl');
     }
 
