@@ -5,11 +5,8 @@
 {/if}
 {literal}
 <div id="vue-commentary">
-            <div v-if="loading" class="card-body">
-                Cargando...
-            </div>
     <ul id="commentary-list" class="list-group">
-        <li v-if="!loading"
+        <li 
             v-for="commentary in commentaries"
             class="list-group-item"> 
             From : {{ commentary.from_user }} </br>

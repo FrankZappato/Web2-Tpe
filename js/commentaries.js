@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let app = new Vue({
         el: '#vue-commentary',
         data: {
-            loading: false,
             commentaries: []
         }
     });
@@ -32,13 +31,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (sendButton != null) {
             sendButton.setAttribute('data-idToSend', product_id);
         }
-        app.loading = true;
         fetch('api/commentary/' + product_id)
             .then(response =>
                 response.json())
             .then(commentaries => {
                 app.commentaries = commentaries;
-                app.loading = false;
             })
             .then(() => fillButtons())
             .catch(error => console.log(error));
@@ -54,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function addCommentary(e) {
         e.preventDefault();
         const commentary = {
-            from: document.querySelector('#commentary_from').value,
-            rating: document.querySelector('#commentary_rating').value,
+            from_user: document.querySelector('#commentary_from').value,
+            rating: getRatingValue(),
             commentary: document.querySelector('#body_commentary').value,
         };
 
@@ -64,9 +61,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(commentary)
             })
-            .then(response => response.json())
-            .then(commentary => app.commentaries.push(commentary))
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(commentary => app.commentaries.push(commentary));
+                }
+            })
             .catch(error => console.log(error));
+    }
+
+    function getRatingValue() {
+        let inputs = document.getElementsByClassName('input_star');
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].checked) {
+                return inputs[i].value;
+            }
+        };
     }
 
     function deleteCommentary(e) {
