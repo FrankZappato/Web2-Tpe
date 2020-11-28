@@ -58,7 +58,7 @@ class ProductsController
         $price = $_POST['product-price'];
         $details = $_POST['details'];
         
-        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){                                 
+        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){    //Controll for obligatory form spaces filled                             
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                         || $_FILES['product-image']['type'] == "image/png" ) {
                         $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);

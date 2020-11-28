@@ -107,7 +107,7 @@ class ProductsModel
 
     public function modifyProduct($product_id, $id_category, $productName, $price, $details, $imagen = null)
     {
-        $pathImg = null;
+        $pathImg = "";
         if ($imagen)
             $pathImg = $this->uploadImage($imagen); 
 
