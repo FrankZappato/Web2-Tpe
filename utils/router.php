@@ -28,6 +28,7 @@
     $r->addRoute("delete-product", "POST", "ProductsController", "deleteProduct");
     $r->addRoute("purchases", "GET", "AdminController", "showPurchases");
     $r->addRoute("modify-product", "POST", "ProductsController", "modifyProduct");
+    $r->addRoute("search", "POST", "ProductsController", "searchProducts");
     //Categories
     $r->addRoute("modify-category", "POST", "CategoryController", "modifyCategory");
     $r->addRoute("add-category", "POST", "CategoryController", "addCategory");

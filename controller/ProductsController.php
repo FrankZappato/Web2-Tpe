@@ -44,6 +44,15 @@ class ProductsController
         }
     }
 
+    public function searchProducts()
+    {
+        if(isset($_POST['search'])&& $_POST['search'] != ""){
+            $search = $_POST['search'];
+            $products = $this->model->searchProducts($search);
+            $this->view->showProducts($products, null);
+        }
+    }
+
     public function deleteProduct()
     {
         $id_product = $_POST['id_product'];
@@ -79,11 +88,7 @@ class ProductsController
         $price = $_POST['product-price'];
         $details = $_POST['details'];
 
-<<<<<<< HEAD
-        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){ 
-=======
         if(!($id_category == "Category")  && (!empty($productName)) && (!empty($price))){ 
->>>>>>> mariano
             
             if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
                     || $_FILES['product-image']['type'] == "image/png" ) {

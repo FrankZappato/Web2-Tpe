@@ -66,6 +66,18 @@ class ProductsModel
         return $dataToReturn;
     }
 
+    public function searchProducts($search)
+    {
+        $query = $this->db->prepare("SELECT * FROM products WHERE (id LIKE '%$search%') OR
+        (id_category LIKE '%$search%') OR (img_product LIKE '%$search%') OR (name_product LIKE '%$search%')
+        OR (price LIKE '%$search%') OR (details LIKE '%$search%')");
+
+        $query->execute();
+        $dataToReturn = array("search" => $search, "products" => $query->fetchAll(PDO::FETCH_OBJ), "page"=> 1, "pages" => 1);
+        var_dump($dataToReturn);
+        return $dataToReturn;
+    }
+
     public function getProductsByCategories($search)
     {
         return $this->getAllProducts($search);

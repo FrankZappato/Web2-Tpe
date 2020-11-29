@@ -3,6 +3,11 @@
     list-style: none;
 }
 
+.search-group{
+    display : flex;
+    margin : 5px;
+}
+
 
 /*Nav-Bar*/
 
@@ -266,7 +271,7 @@ footer {
 .rating>label {
     position: relative;
     width: 1em;
-    font-size: 6vw;
+    font-size: 3vw;
     color: #FFD600;
     cursor: pointer
 }
@@ -288,4 +293,10 @@ footer {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+}
+
+@media(min-width: 1024px){
+    .rating > label{
+        width: 2rem;        
+    }
 }
