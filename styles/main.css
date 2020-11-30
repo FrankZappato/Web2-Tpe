@@ -289,3 +289,9 @@ footer {
 .rating:hover>input:checked~label:before {
     opacity: 0.4
 }
+
+@media (min-width:1024px) {
+    .rating>label {
+        width: 3rem;
+    }
+}
