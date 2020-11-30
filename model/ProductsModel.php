@@ -17,7 +17,7 @@ class ProductsModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getAllProducts($search = null)
+    public function getAllProducts($search = null, $special = null)
     {
         //we set the variables we need to make the pagination
         $limit = 2; //how many product we want to see for each page
@@ -35,10 +35,16 @@ class ProductsModel
 
         $pagination = " LIMIT :offset, :howMany";
 
+        $specialSearch = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
+        FROM products,categories WHERE (img_product LIKE '%$special%') OR (name_product LIKE '%$special%')
+        OR (price LIKE '%$special%') OR (details LIKE '%$special%')";
+
         //we make the query and add filter if required
-        if (isset($search) && $search != null) {
+        if ( (isset($search) && $search != null )) {
             $finalQuery = $filterQuery . $pagination;
-        } else {
+        } elseif ((isset($special) && $special != null )){
+            $finalQuery =  $specialSearch . $pagination;
+        } else{
             $finalQuery = $queryString . $pagination;
         }
 
@@ -61,26 +67,14 @@ class ProductsModel
         $pages = ceil($totalRows / $limit); //Round fractions up
 
         //we prepare data to return
-        $dataToReturn = array("search"=>$search, "products"=>$query->fetchAll(PDO::FETCH_OBJ), "page"=>$pag, "pages"=>$pages);
+        $dataToReturn = array("special" => $special, "search"=>$search, "products"=>$query->fetchAll(PDO::FETCH_OBJ), "page"=>$pag, "pages"=>$pages);
      
         return $dataToReturn;
     }
 
-    public function searchProducts($search)
+    public function getProductsByCategories($search, $special)
     {
-        $query = $this->db->prepare("SELECT * FROM products WHERE (id LIKE '%$search%') OR
-        (id_category LIKE '%$search%') OR (img_product LIKE '%$search%') OR (name_product LIKE '%$search%')
-        OR (price LIKE '%$search%') OR (details LIKE '%$search%')");
-
-        $query->execute();
-        $dataToReturn = array("search" => $search, "products" => $query->fetchAll(PDO::FETCH_OBJ), "page"=> 1, "pages" => 1);
-        var_dump($dataToReturn);
-        return $dataToReturn;
-    }
-
-    public function getProductsByCategories($search)
-    {
-        return $this->getAllProducts($search);
+        return $this->getAllProducts($search, $special);
     }
 
     public function getAllCategories()

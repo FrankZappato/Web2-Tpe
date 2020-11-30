@@ -11,7 +11,7 @@
         </div>
     </form>
     <form action="search" method="POST">
-        <input type="text" name="search" placeholder="Search here">
+        <input type="text" name="special" placeholder="Search here">
         <button class="btn btn-info" type="submit">Search</button>
     <form>
 </div>
