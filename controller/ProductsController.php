@@ -3,6 +3,7 @@
 require_once "../view/ProductsView.php";
 require_once "../model/ProductsModel.php";
 require_once '../controller/AdminController.php';
+require_once '../view/AdminView.php';
 
 class ProductsController
 {
@@ -15,43 +16,99 @@ class ProductsController
         $this->view = new ProductsView();
         $this->model = new ProductsModel();
         $this->adminController = new AdminController();
+        $this->adminView = new AdminView();
     }
 
     public function showProducts()
     {
-        $products = $this->model->getAllProducts();
-        $categories = $this->model->getAllCategories();
-        $this->view->showProducts($products , $categories);
-    }
-    public function showFilteredProducts()
-    {   
-        $search = $_POST['search'];    
-        if($search == 'All'){
-            $this->showProducts();
-        }else{
-        $products = $this->model->getProductsByCategories($search);        
-        $categories = $this->model->getAllCategories();
-        $this->view->showProducts($products , $categories);
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+        } else {
+            $search = null;
         }
+
+        if (isset($_GET['special'])) {
+            $special = $_GET['special'];
+        } else {
+            $special = null;
+        }
+
+        $dataToReturn = $this->model->getAllProducts($search, $special);
+        $categories = $this->model->getAllCategories();
+        $this->view->showProducts($dataToReturn, $categories);
     }
 
+
+
+    public function showFilteredProducts()
+    {
+        if (isset($_POST['search'])) {
+            if ($_POST['search'] == 'All') {
+                $this->showProducts();
+                return;
+            } else {
+                $search = $_POST['search'];
+            }
+        } else {
+            $search = null;
+        }
+        if (isset($_POST['special']) && $_POST['special'] != "") {
+            $special = $_POST['special'];
+        } else {
+            $special = null;
+        }
+        $dataToReturn = $this->model->getProductsByCategories($search, $special);
+        $categories = $this->model->getAllCategories();
+        $this->view->showProducts($dataToReturn, $categories);
+    }
+    
     public function deleteProduct()
     {
-        $this->model->deleteProduct();
+        $id_product = $_POST['id_product'];
+        $this->model->deleteProduct($id_product);
         $this->adminController->showAdmin();
     }
 
     public function addProduct()
     {
-        $this->model->addProduct();
-        $this->adminController->showAdmin();
+        $id_category = $_POST['product-category'];
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+        $details = $_POST['details'];
+        if (!($id_category == "Category")  && !empty($productName) && !empty($price)) {
+            if ($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg"
+                        || $_FILES['product-image']['type'] == "image/png") {
+                $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
+            } else {
+                $this->model->addProduct($id_category, $productName, $price, $details);
+            }
+            $this->adminController->showAdmin();
+        } else {
+            $this->adminController->showAdmin(null, "Error : falta completar datos obligatorios");
+        }
     }
 
     public function modifyProduct()
     {
-        $this->model->modifyProduct();
-        $this->adminController->showAdmin();
+        $product_id = $_POST['product-id'];
+        $id_category = $_POST['product-category'];
+        $productName = $_POST['product-name'];
+        $price = $_POST['product-price'];
+        $details = $_POST['details'];
+
+        if (!($id_category == "Category")  && (!empty($productName)) && (!empty($price))) {
+            if ($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg"
+                    || $_FILES['product-image']['type'] == "image/png") {
+                $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details, $_FILES['product-image']);
+            } else {
+                $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details);
+            }
+            $this->adminController->showAdmin();
+        } else {
+            $this->adminController->showAdmin("Error : missing fields", null);
+        }
     }
+
     public function deleteFromCart()
     {
         if (session_status() == PHP_SESSION_NONE) {

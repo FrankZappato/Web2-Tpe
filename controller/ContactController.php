@@ -21,11 +21,24 @@ class ContactController
 
     public function saveMessage()
     {
-        $result = $this->adminModel->saveMessage();
-        if ($result) {
-            $this->contactView->showContactForm("Message sent succesfully");
+        if (
+            isset($_POST['name']) && !empty($_POST['name']) &&
+            isset($_POST['email']) && !empty($_POST['email']) &&
+            isset($_POST['message']) && !empty($_POST['message'])
+            ) {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+
+            $result = $this->adminModel->saveMessage($name, $email, $message);
+            if ($result) {
+                $this->contactView->showContactForm("Message sent succesfully");
+            } else {
+                $this->contactView->showContactForm("There was an error. Please try again.");
+            }
         } else {
-            $this->contactView->showContactForm("There was an error. Please try again.");
+            $this->contactView->showContactForm("Error : Missing fields");
+
         }
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2020 a las 01:03:00
+-- Tiempo de generación: 21-11-2020 a las 23:24:18
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.33
 
@@ -41,7 +41,31 @@ INSERT INTO `categories` (`id`, `color`, `category_name`) VALUES
 (4, 'red', 'processor'),
 (5, 'blue', 'ram'),
 (6, 'green', 'cooler'),
-(8, 'turquesa', 'hard drive');
+(8, 'turquesa', 'hard drive'),
+(11, 'black', 'microphone'),
+(12, 'celeste', 'mother ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `commentaries`
+--
+
+CREATE TABLE `commentaries` (
+  `id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `user_name` varchar(200) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `commentary` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `commentaries`
+--
+
+INSERT INTO `commentaries` (`id`, `rating`, `user_name`, `id_product`, `commentary`) VALUES
+(1, 4, 'Pepe!', 2, 'Vueeelaaa es genial papa!'),
+(2, 3, 'Robertto', 24, 'Maaaaa o meno el micro!');
 
 -- --------------------------------------------------------
 
@@ -51,7 +75,6 @@ INSERT INTO `categories` (`id`, `color`, `category_name`) VALUES
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
   `msg` varchar(1000) NOT NULL,
   `from_email` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL
@@ -61,11 +84,11 @@ CREATE TABLE `messages` (
 -- Volcado de datos para la tabla `messages`
 --
 
-INSERT INTO `messages` (`id`, `id_user`, `msg`, `from_email`, `username`) VALUES
-(1, 7, 'Esta muy buena la pagina', 'marianssss@esaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', ''),
-(2, 7, '1231232asda', 'maria_recipegenius@gmail.com', 'sadads'),
-(3, 7, '1231232asda', 'maria_recipegenius@gmail.com', 'sadads'),
-(4, 7, '1231232asda', 'maria_recipegenius@gmail.com', 'sadads');
+INSERT INTO `messages` (`id`, `msg`, `from_email`, `username`) VALUES
+(1, 'Esta muy buena la pagina', 'marianssss@esaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', ''),
+(2, '1231232asda', 'maria_recipegenius@gmail.com', 'sadads'),
+(3, '1231232asda', 'maria_recipegenius@gmail.com', 'sadads'),
+(4, '1231232asda', 'maria_recipegenius@gmail.com', 'sadads');
 
 -- --------------------------------------------------------
 
@@ -87,11 +110,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `price`, `details`) VALUES
-(2, 4, 'ryzen-7.jpg', 'Procesador AMD RYZEN 7 3700X 4.4 GHz AM4 Wraith Prism RGB Led Cooler', 35.04, 'Estos son los super detalles del ryzen. \r\nasdasdasidgasiudsadaiudsudagdiugaidyag\r\nalsdygasldygsads\r\ndaduagssa\r\nsadañusdas'),
-(6, 6, 'Cooler CPU DeepCool Gammaxx 400S.jpg', 'Cooler CPU DeepCool Gammaxx 400S', 5280, 'coolerrererererer'),
-(7, 6, 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB.jpg', 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB', 10680, ''),
+(2, 4, 'ryzen-7.jpg', 'Procesador', 35.04, 'Estos son los super detalles del ryzen.'),
+(6, 6, 'Cooler CPU DeepCool Gammaxx 400S.jpg', 'Cooler CPU DeepCool Gammaxx 400S', 5280, 'Este cooler enfria mas y gasta menos.'),
+(7, 6, 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB.jpg', 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB', 10680, 'Este es un cooler Blizzard como la compañia imaginate el refund!'),
 (8, 6, 'Cooler CPU ID-Cooling AURAFLOW X 360.jpg', 'Cooler CPU ID-Cooling AURAFLOW X 360', 9876, ''),
-(9, 6, 'CoolerMaster.png', 'Cooler Master HYPER H410R RGB Master Master', 4500, '');
+(19, 4, '2.2GHz Quad-Core Intel Xeon Processor with 10MB Cache--E5-2407.jpg', '2.2GHz Quad-Core Intel Xeon Processor with 10MB Cache--E5-2407', 7000, 'Procesador detallado.'),
+(20, 8, 'Seagate 2TB SATA PS4 Compatible Internal Hard Drive.png', 'Seagate 2TB SATA PS4 Compatible Internal Hard Drive', 4500, 'Hard drive compatible con PS4 '),
+(24, 11, 'Audio Technica Atr4750 Micrófono Condenser Cuello Ganso Pc.jpg', 'Audio Technica Atr4750 Micrófono Condenser Cuello Ganso Pc', 1400, 'Mic negro cuello largo Technica');
 
 -- --------------------------------------------------------
 
@@ -101,7 +126,7 @@ INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `pri
 
 CREATE TABLE `purchases` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `email_user` varchar(200) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `date_milis` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -110,9 +135,9 @@ CREATE TABLE `purchases` (
 -- Volcado de datos para la tabla `purchases`
 --
 
-INSERT INTO `purchases` (`id`, `id_user`, `description`, `date_milis`) VALUES
-(1, 6, 'muchas cosas', 1601500873914),
-(2, 6, 'maaaaaaas cosas aun,la cantidad es impresionanteee', 123132131231);
+INSERT INTO `purchases` (`id`, `email_user`, `description`, `date_milis`) VALUES
+(1, '', 'muchas cosas', 1601500873914),
+(2, '', 'maaaaaaas cosas aun,la cantidad es impresionanteee', 123132131231);
 
 -- --------------------------------------------------------
 
@@ -133,9 +158,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `pwd`, `isadmin`, `username`) VALUES
-(6, 'marianogpaniagua@gmail.com', '$2y$10$gviaN8IXfq2xaAj0JsffKeULaemN2hNXU.Wdltbupi.O0RHmMxSWe', 1, 'mpaniagua'),
-(7, 'maria_recipegenius@gmail.com', '$2y$10$INrOiwv9nEs0hqn57wajS.nVeM81Gq6OGwMI40E2LRaU0IX30hnEG', 0, 'elnoadmin'),
-(8, 'francisco.vaninetti2016@gmail.com', '$2y$10$AaKdoRVzbaglBdwx47S03.lwes8q.g224I.Xujb63je2tHxI4wP8e', 1, 'FrankZappato');
+(8, 'francisco.vaninetti2016@gmail.com', '$2y$10$AaKdoRVzbaglBdwx47S03.lwes8q.g224I.Xujb63je2tHxI4wP8e', 1, 'FrankZappato'),
+(9, 'carancha@gmail.com', '$2y$10$gizE4Ya4Y3h79j/uw0T/pODZUo982uVgvUVgZQ.Z5mU6R7yGTTiHO', 1, 'Carola'),
+(14, 'fran@gmail.com', '$2y$10$28NYjJ0ooQDiKcd3SuMXw.V9I.bak8wBuwKXoROVHRuVgLHpTNg9u', 0, 'Fran');
 
 --
 -- Índices para tablas volcadas
@@ -148,11 +173,17 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `commentaries`
+--
+ALTER TABLE `commentaries`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`);
+
+--
 -- Indices de la tabla `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `products`
@@ -165,8 +196,7 @@ ALTER TABLE `products`
 -- Indices de la tabla `purchases`
 --
 ALTER TABLE `purchases`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `users`
@@ -182,7 +212,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `commentaries`
+--
+ALTER TABLE `commentaries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
@@ -194,7 +230,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `purchases`
@@ -206,29 +242,23 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `messages`
+-- Filtros para la tabla `commentaries`
 --
-ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+ALTER TABLE `commentaries`
+  ADD CONSTRAINT `commentaries_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
 
 --
 -- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`);
-
---
--- Filtros para la tabla `purchases`
---
-ALTER TABLE `purchases`
-  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
