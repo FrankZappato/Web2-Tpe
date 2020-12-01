@@ -17,7 +17,7 @@ class ProductsModel
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getAllProducts($search = null)
+    public function getAllProducts($search = null, $special = null)
     {
         //we set the variables we need to make the pagination
         $limit = 2; //how many product we want to see for each page
@@ -35,10 +35,16 @@ class ProductsModel
 
         $pagination = " LIMIT :offset, :howMany";
 
+        $specialSearch = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
+        FROM products LEFT JOIN categories ON products.id_category = categories.id WHERE img_product LIKE '%$special%' OR name_product LIKE '%$special%'
+        OR price LIKE '%$special%' OR details LIKE '%$special%'";
+
         //we make the query and add filter if required
-        if (isset($search) && $search != null) {
+        if ((isset($search) && $search != null )) {
             $finalQuery = $filterQuery . $pagination;
-        } else {
+        } elseif ((isset($special) && $special != null )){
+            $finalQuery =  $specialSearch . $pagination;
+        } else{
             $finalQuery = $queryString . $pagination;
         }
 
@@ -61,14 +67,14 @@ class ProductsModel
         $pages = ceil($totalRows / $limit); //Round fractions up
 
         //we prepare data to return
-        $dataToReturn = array("search"=>$search, "products"=>$query->fetchAll(PDO::FETCH_OBJ), "page"=>$pag, "pages"=>$pages);
+        $dataToReturn = array("special" => $special, "search"=>$search, "products"=>$query->fetchAll(PDO::FETCH_OBJ), "page"=>$pag, "pages"=>$pages);
      
         return $dataToReturn;
     }
 
-    public function getProductsByCategories($search)
+    public function getProductsByCategories($search, $special)
     {
-        return $this->getAllProducts($search);
+        return $this->getAllProducts($search, $special);
     }
 
     public function getAllCategories()
@@ -107,7 +113,7 @@ class ProductsModel
 
     public function modifyProduct($product_id, $id_category, $productName, $price, $details, $imagen = null)
     {
-        $pathImg = null;
+        $pathImg = "";
         if ($imagen)
             $pathImg = $this->uploadImage($imagen); 
 

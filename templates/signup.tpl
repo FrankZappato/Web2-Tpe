@@ -22,7 +22,7 @@
                         <input class="form-control" type="password" name="password-repeat" placeholder="Repeat Password">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-block" type="submit" name="signup-submit">SignUp</button>
+                        <button class="btn btn-secondary btn-block" type="submit" name="signup-submit">SignUp</button>
                     </div>
                     {if $error_code != null}
                         <div class="alert alert-danger" role="alert">
