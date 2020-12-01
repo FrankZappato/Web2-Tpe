@@ -3,9 +3,9 @@
     list-style: none;
 }
 
-.search-group{
-    display : flex;
-    margin : 5px;
+.search-group {
+    display: flex;
+    margin: 5px;
 }
 
 
@@ -64,9 +64,13 @@
     }
 }
 
-.search-container {
-    display: flex !important;
-    flex-direction: row;
+@media (min-width:768px) {
+    .select_category {
+        width: 80% !important;
+    }
+    .search-container {
+        display: flex;
+    }
 }
 
 .product-img {
@@ -295,8 +299,8 @@ footer {
     opacity: 0.4
 }
 
-@media(min-width: 1024px){
-    .rating > label{
-        width: 2rem;        
+@media(min-width: 1024px) {
+    .rating>label {
+        width: 2rem;
     }
 }

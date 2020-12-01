@@ -1,7 +1,7 @@
 <div class="search-container">
     <form action="category-search" method="POST">
-        <div class ="search-group">
-            <select name="search" class="browser-default custom-select">
+        <div class="search-group">
+            <select name="search" class="browser-default custom-select select_category">
                 {foreach from=$categories_s item=category}
                     <option value="{$category->category_name}">{$category->category_name}</option>
                 {/foreach}
@@ -11,7 +11,9 @@
         </div>
     </form>
     <form action="search" method="POST">
-        <input type="text" name="special" placeholder="Search here">
-        <button class="btn btn-info" type="submit">Search</button>
-    <form>
+        <div class="search-group">
+            <input type="text" name="special" placeholder="Search here">
+            <button class="btn btn-info" type="submit">Search</button>
+        </div>
+        <form>
 </div>

@@ -36,11 +36,11 @@ class ProductsModel
         $pagination = " LIMIT :offset, :howMany";
 
         $specialSearch = "SELECT SQL_CALC_FOUND_ROWS products.id, products.name_product, products.img_product, categories.category_name, products.price, products.details
-        FROM products,categories WHERE (img_product LIKE '%$special%') OR (name_product LIKE '%$special%')
-        OR (price LIKE '%$special%') OR (details LIKE '%$special%')";
+        FROM products LEFT JOIN categories ON products.id_category = categories.id WHERE img_product LIKE '%$special%' OR name_product LIKE '%$special%'
+        OR price LIKE '%$special%' OR details LIKE '%$special%'";
 
         //we make the query and add filter if required
-        if ( (isset($search) && $search != null )) {
+        if ((isset($search) && $search != null )) {
             $finalQuery = $filterQuery . $pagination;
         } elseif ((isset($special) && $special != null )){
             $finalQuery =  $specialSearch . $pagination;

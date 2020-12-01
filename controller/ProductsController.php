@@ -33,7 +33,7 @@ class ProductsController
             $special = null;
         }
 
-        $dataToReturn = $this->model->getAllProducts($search, $special);        
+        $dataToReturn = $this->model->getAllProducts($search, $special);
         $categories = $this->model->getAllCategories();
         $this->view->showProducts($dataToReturn, $categories);
     }
@@ -42,22 +42,26 @@ class ProductsController
 
     public function showFilteredProducts()
     {
-        $search = $_POST['search'];
-        $special = $_POST['special'];
-
-        if ($search == 'All' && isset($_POST['search'])) {
-            $this->showProducts();
+        if (isset($_POST['search'])) {
+            if ($_POST['search'] == 'All') {
+                $this->showProducts();
+                return;
+            } else {
+                $search = $_POST['search'];
+            }
+        } else {
+            $search = null;
         }
         if (isset($_POST['special']) && $_POST['special'] != "") {
             $special = $_POST['special'];
+        } else {
+            $special = null;
         }
-            $dataToReturn = $this->model->getProductsByCategories($search, $special);            
-            $categories = $this->model->getAllCategories();
-            $this->view->showProducts($dataToReturn, $categories);
-        }
+        $dataToReturn = $this->model->getProductsByCategories($search, $special);
+        $categories = $this->model->getAllCategories();
+        $this->view->showProducts($dataToReturn, $categories);
+    }
     
-
-
     public function deleteProduct()
     {
         $id_product = $_POST['id_product'];
@@ -67,20 +71,19 @@ class ProductsController
 
     public function addProduct()
     {
-        $id_category = $_POST['product-category'];        
+        $id_category = $_POST['product-category'];
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
         $details = $_POST['details'];
-        if(!($id_category == "Category")  && !empty($productName) && !empty($price)){                                 
-            if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
-                        || $_FILES['product-image']['type'] == "image/png" ) {
-                        $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
-                    }
-                    else {
-                        $this->model->addProduct($id_category, $productName, $price, $details);
-                    }        
+        if (!($id_category == "Category")  && !empty($productName) && !empty($price)) {
+            if ($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg"
+                        || $_FILES['product-image']['type'] == "image/png") {
+                $this->model->addProduct($id_category, $productName, $price, $details, $_FILES['product-image']);
+            } else {
+                $this->model->addProduct($id_category, $productName, $price, $details);
+            }
             $this->adminController->showAdmin();
-        }else{
+        } else {
             $this->adminController->showAdmin(null, "Error : falta completar datos obligatorios");
         }
     }
@@ -88,22 +91,20 @@ class ProductsController
     public function modifyProduct()
     {
         $product_id = $_POST['product-id'];
-        $id_category = $_POST['product-category'];        
+        $id_category = $_POST['product-category'];
         $productName = $_POST['product-name'];
         $price = $_POST['product-price'];
         $details = $_POST['details'];
 
-        if(!($id_category == "Category")  && (!empty($productName)) && (!empty($price))){ 
-            
-            if($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg" 
-                    || $_FILES['product-image']['type'] == "image/png" ) {
-                    $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details, $_FILES['product-image']);
-                }
-                else {
-                    $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details);
-                }           
-                $this->adminController->showAdmin();      
-        }else{
+        if (!($id_category == "Category")  && (!empty($productName)) && (!empty($price))) {
+            if ($_FILES['product-image']['type'] == "image/jpg" || $_FILES['product-image']['type'] == "image/jpeg"
+                    || $_FILES['product-image']['type'] == "image/png") {
+                $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details, $_FILES['product-image']);
+            } else {
+                $this->model->modifyProduct($product_id, $id_category, $productName, $price, $details);
+            }
+            $this->adminController->showAdmin();
+        } else {
             $this->adminController->showAdmin("Error : missing fields", null);
         }
     }

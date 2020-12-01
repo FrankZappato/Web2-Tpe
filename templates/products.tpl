@@ -1,5 +1,4 @@
 {include file="./head.tpl"}
-
 <body>
     {include file="./navbar.tpl"}
     <div class="container">    
