@@ -20,7 +20,7 @@ class ProductsModel
     public function getAllProducts($search = null, $special = null)
     {
         //we set the variables we need to make the pagination
-        $limit = 2; //how many product we want to see for each page
+        $limit = 3; //how many product we want to see for each page
         $pag = isset($_GET['pag']) ? (int) $_GET['pag'] : 1; // to not brake the first page
         if ($pag < 1) {
             $pag = 1;

@@ -59,9 +59,9 @@
             </div>
              {/if}
             <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-danger">Close</a>  
+                <button data-dismiss="modal" class="btn btn-danger">Close</button> 
                 {if isset($smarty.session.isLogged)}                             
-                <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-primary">                
+                <input type="submit" value="Send commentary" data-idToSend=" " id="submit_commentary_button" class="btn btn-secondary">                
                 {/if}
             </div>                
         </div>

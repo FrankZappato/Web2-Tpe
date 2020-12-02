@@ -5,7 +5,7 @@
 {/if}
 {literal}
 <div id="vue-commentary">
-    <h4>Commentaries for the product</h4>
+    <div class="commentary-title"> Commentaries for the product </div>
     <ul id="commentary-list" class="list-group">
         <li 
             v-for="commentary in commentaries"

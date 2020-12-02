@@ -3,6 +3,10 @@
     list-style: none;
 }
 
+a {
+    color: black !important;
+}
+
 .search-group {
     display: flex;
     margin: 5px;
@@ -77,6 +81,10 @@
     }
 }
 
+.search-container {
+    margin-left: 33px;
+}
+
 .product-img {
     width: 70%;
 }
@@ -90,6 +98,7 @@
 
 .row_products {
     margin-top: 20px;
+    width: 100%;
 }
 
 
@@ -307,4 +316,22 @@ footer {
     .rating>label {
         width: 2rem;
     }
+}
+
+.list-group-item {
+    background: gainsboro;
+}
+
+.commentary-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.btn-info-search {
+    margin-left: 5px;
+}
+
+.pagination-div {
+    color: #000;
 }

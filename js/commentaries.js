@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(() => fillButtons())
             .catch(error => {
-                console.log(error);
                 app.commentaries = [];
             });
     };

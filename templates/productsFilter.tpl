@@ -7,13 +7,13 @@
             {/foreach}
             <option value="All" selected="selected">All Products</option>
         </select>
-        <button class="btn btn-info" type="submit">Search</button>
+        <button class="btn btn-secondary btn-info-search" type="submit">Search</button>
     </div>
 </form>
 <form action="search" method="post">
     <div class="search-group">
         <input type="text" name="special" placeholder="Search here">
-        <button class="btn btn-info" type="submit">Search</button>
+        <button class="btn btn-secondary btn-info-search" type="submit">Search</button>
     </div>
     </form>
 </div>

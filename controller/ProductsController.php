@@ -127,6 +127,10 @@ class ProductsController
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        if(!isset($_POST['quantity']) || $_POST['quantity'] == 0){
+            $this->showProducts(); 
+            return;
+        }
         //create cart if not created
         if (isset($_SESSION['shopping_cart'])) {
             $count = count($_SESSION['shopping_cart']);

@@ -3,7 +3,7 @@
 <body>
     {include file="./navbar.tpl"}
     <div class="container">
-    </div>
+    
     {include file="./productsFilter.tpl"}
     <div class="row row_products">
         {nocache}
@@ -23,14 +23,14 @@
                         <input type="hidden" name="id" value="{$product->id}" />
                         <div class="btn_box">
                             {if isset($smarty.session.isLogged)}
-                                <button type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn">
+                                <button type="submit" name="add_to_cart" class="btn btn-secondary add-to-cart-btn">
                                     <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                 </button>
                             {/if}
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{$product->id}">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </button>
-                            <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal_commentaries">
+                            <button id="commentary_{$product->id}" type="button" class="btn btn-secondary commentaries_show_div" data-toggle="modal" data-target="#modal_commentaries">
                                 <i class="fa fa-comments" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -42,10 +42,8 @@
         {/nocache}
     </div>
     </div>
-
     {include file="./commentariesModal.tpl"}
-
-    <nav aria-label="Products Pagination">
+    <nav aria-label="Products Pagination" class="pagination-div">
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="products?pag={$page-1}&search={$search}&special={$special}">Previous</a></li>
             {for $foo=1 to $pages}
@@ -99,6 +97,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
 </body>
 
 </html>
