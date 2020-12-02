@@ -10,9 +10,9 @@
         <li 
             v-for="commentary in commentaries"
             class="list-group-item"> 
-            <span>From</span> : {{ commentary.from_user }} </br>
-            Commentary : {{ commentary.commentary }} </br>
-            Rating : {{ commentary.rating}}
+            <span class="span-bold">From : </span>{{ commentary.from_user }} <br>
+            <span class="span-bold">Commentary :</span> {{ commentary.commentary }} <br>
+            <span class="span-bold">Rating :</span> {{ commentary.rating}}
         {/literal}
             {if $isAdmin == "11"}
                 {literal}      
