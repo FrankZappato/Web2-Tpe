@@ -5,5 +5,5 @@
         <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
         <li><a href="https://www.instagram.com/?hl=en"><i class="fab fa-instagram"></i></a></li>
     </ul>
-    <div class="footerMessage">The Cave - 2020</div>
+    <div class="footerMessage">The Cave - 2020 - Made with POM</div>
 </footer>

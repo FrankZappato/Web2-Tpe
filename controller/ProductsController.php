@@ -160,7 +160,6 @@ class ProductsController
                 'total' => $_POST['quantity'] * $_POST['price']
             );
         }
-        //session_destroy();
         $this->showProducts();
     }
 }
