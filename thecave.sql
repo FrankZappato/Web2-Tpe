@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2020 a las 23:24:18
+-- Tiempo de generación: 02-12-2020 a las 18:14:20
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.33
 
@@ -54,7 +54,7 @@ INSERT INTO `categories` (`id`, `color`, `category_name`) VALUES
 CREATE TABLE `commentaries` (
   `id` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
-  `user_name` varchar(200) NOT NULL,
+  `from_user` varchar(200) NOT NULL,
   `id_product` int(11) NOT NULL,
   `commentary` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -63,9 +63,14 @@ CREATE TABLE `commentaries` (
 -- Volcado de datos para la tabla `commentaries`
 --
 
-INSERT INTO `commentaries` (`id`, `rating`, `user_name`, `id_product`, `commentary`) VALUES
+INSERT INTO `commentaries` (`id`, `rating`, `from_user`, `id_product`, `commentary`) VALUES
 (1, 4, 'Pepe!', 2, 'Vueeelaaa es genial papa!'),
-(2, 3, 'Robertto', 24, 'Maaaaa o meno el micro!');
+(2, 3, 'Robertto', 24, 'Maaaaa o meno el micro!'),
+(5, 5, 'FrankZappato', 2, 'Zaaaarpado'),
+(7, 5, 'FrankZappato', 32, 'VUEEELAAA'),
+(9, 5, 'BizzarroX', 6, 'Hasta la casa me enfria!'),
+(13, 4, 'CAPO', 6, 'Muy kpo\n'),
+(18, 4, 'BizzarroX', 59, 'This is a great ram !');
 
 -- --------------------------------------------------------
 
@@ -113,10 +118,11 @@ INSERT INTO `products` (`id`, `id_category`, `img_product`, `name_product`, `pri
 (2, 4, 'ryzen-7.jpg', 'Procesador', 35.04, 'Estos son los super detalles del ryzen.'),
 (6, 6, 'Cooler CPU DeepCool Gammaxx 400S.jpg', 'Cooler CPU DeepCool Gammaxx 400S', 5280, 'Este cooler enfria mas y gasta menos.'),
 (7, 6, 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB.jpg', 'Cooler CPU AZZA Blizzard LCAZ 120R WaterCooler 120mm ARGB', 10680, 'Este es un cooler Blizzard como la compañia imaginate el refund!'),
-(8, 6, 'Cooler CPU ID-Cooling AURAFLOW X 360.jpg', 'Cooler CPU ID-Cooling AURAFLOW X 360', 9876, ''),
 (19, 4, '2.2GHz Quad-Core Intel Xeon Processor with 10MB Cache--E5-2407.jpg', '2.2GHz Quad-Core Intel Xeon Processor with 10MB Cache--E5-2407', 7000, 'Procesador detallado.'),
 (20, 8, 'Seagate 2TB SATA PS4 Compatible Internal Hard Drive.png', 'Seagate 2TB SATA PS4 Compatible Internal Hard Drive', 4500, 'Hard drive compatible con PS4 '),
-(24, 11, 'Audio Technica Atr4750 Micrófono Condenser Cuello Ganso Pc.jpg', 'Audio Technica Atr4750 Micrófono Condenser Cuello Ganso Pc', 1400, 'Mic negro cuello largo Technica');
+(24, 11, 'Audio Technica Atr4750 Micrófono Condenser Cuello Ganso Pc.jpg', 'Audio Technica Atr4750 Micrófono Condenser Cuello Ganso Pc', 1400, 'Mic negro cuello largo Technica'),
+(32, 5, '5fbc273db6edb.jpg', 'Raaam mod', 5000, 'alta raaaaaam'),
+(59, 5, '5fc7cad014775.jpg', 'Ram 8gb', 2350, 'Ram 8 gbs ddr4');
 
 -- --------------------------------------------------------
 
@@ -160,7 +166,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `pwd`, `isadmin`, `username`) VALUES
 (8, 'francisco.vaninetti2016@gmail.com', '$2y$10$AaKdoRVzbaglBdwx47S03.lwes8q.g224I.Xujb63je2tHxI4wP8e', 1, 'FrankZappato'),
 (9, 'carancha@gmail.com', '$2y$10$gizE4Ya4Y3h79j/uw0T/pODZUo982uVgvUVgZQ.Z5mU6R7yGTTiHO', 1, 'Carola'),
-(14, 'fran@gmail.com', '$2y$10$28NYjJ0ooQDiKcd3SuMXw.V9I.bak8wBuwKXoROVHRuVgLHpTNg9u', 0, 'Fran');
+(17, 'frank@gmail.com', '$2y$10$A/JhXKiQZVch74cJ2EJ9F.MXqeuLG3lwBfX6FTOivBG188LVywBRq', 0, 'FrankZappato');
 
 --
 -- Índices para tablas volcadas
@@ -218,7 +224,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `commentaries`
 --
 ALTER TABLE `commentaries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
@@ -230,7 +236,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `purchases`
@@ -242,7 +248,7 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
@@ -252,7 +258,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `commentaries`
 --
 ALTER TABLE `commentaries`
-  ADD CONSTRAINT `commentaries_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
+  ADD CONSTRAINT `commentaries_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `products`
