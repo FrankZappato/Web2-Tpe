@@ -22,14 +22,12 @@
                                     <div class="card-body p-3">
                                         <div class="form-group">
                                             <div class="input-group mb-2 justify-content-center">
-                                                <div class="input-group-prepend">
-                                                </div>
                                                 <div class="rating"> 
-                                                <input type="radio" name="rating" value="5" id="5"><label class = "input_star" for="5">☆</label> 
-                                                <input type="radio" name="rating" value="4" id="4"><label class = "input_star" for="4">☆</label> 
-                                                <input type="radio" name="rating" value="3" id="3"><label  class = "input_star"for="3">☆</label> 
-                                                <input type="radio" name="rating" value="2" id="2"><label class = "input_star" for="2">☆</label> 
-                                                <input type="radio" name="rating" value="1" id="1"><label class = "input_star" for="1">☆</label>
+                                                <input type="radio" name="rating" value="5" id="5" class = "input_star"><label  for="5">☆</label> 
+                                                <input type="radio" name="rating" value="4" id="4" class = "input_star"><label  for="4">☆</label> 
+                                                <input type="radio" name="rating" value="3" id="3" class = "input_star"><label  for="3">☆</label> 
+                                                <input type="radio" name="rating" value="2" id="2" class = "input_star"><label  for="2">☆</label> 
+                                                <input type="radio" name="rating" value="1" id="1" class = "input_star"><label  for="1">☆</label>
                                                 </div>
                                             </div>
                                         </div>

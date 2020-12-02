@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
             rating: getRatingValue(),
             commentary: document.querySelector('#body_commentary').value,
         };
+        console.log(commentary);
 
         fetch('api/commentary/' + e.currentTarget.getAttribute("data-idToSend"), {
                 method: 'POST',
