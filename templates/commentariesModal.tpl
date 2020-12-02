@@ -27,7 +27,7 @@
                                                 <div class="rating"> 
                                                 <input type="radio" name="rating" value="5" id="5"><label class = "input_star" for="5">☆</label> 
                                                 <input type="radio" name="rating" value="4" id="4"><label class = "input_star" for="4">☆</label> 
-                                                <input type="radio" name="rating" value="3" id="3"><label  class = "input_star"for="3">☆</label> 
+                                                <input type="radio" name="rating" value="3" id="3"><label class = "input_star" for="3">☆</label> 
                                                 <input type="radio" name="rating" value="2" id="2"><label class = "input_star" for="2">☆</label> 
                                                 <input type="radio" name="rating" value="1" id="1"><label class = "input_star" for="1">☆</label>
                                                 </div>
