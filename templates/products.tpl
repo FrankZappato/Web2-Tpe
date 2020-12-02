@@ -30,7 +30,7 @@
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 </button>
                                 <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal_commentaries">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    <i class="fa fa-comments" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
