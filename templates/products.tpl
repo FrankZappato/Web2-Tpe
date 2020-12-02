@@ -1,45 +1,46 @@
 {include file="./head.tpl"}
+
 <body>
     {include file="./navbar.tpl"}
-    <div class="container">    
+    <div class="container">
     </div>
-        {include file="./productsFilter.tpl"}
-        <div class="row row_products">
+    {include file="./productsFilter.tpl"}
+    <div class="row row_products">
         {nocache}
-            {foreach from=$products_s item=product}
-                <div class="col-sm-4 col-md-3">
-                    <form method="post" action="add_to_cart">
-                        <div class="products">
-                            <img src="images/{$product->img_product}" alt="" class="img-responsive product-img" />
-                            <h4 class="text-info name-text">{$product->name_product}</h4>
-                            <h4>${$product->price}</h4>
-                            <h5>{$product->category_name}</h5>
+        {foreach from=$products_s item=product}
+            <div class="col-sm-4 col-md-3">
+                <form method="post" action="add_to_cart">
+                    <div class="products">
+                        <img src="images/{$product->img_product}" alt="" class="img-responsive product-img" />
+                        <h4 class="text-info name-text">{$product->name_product}</h4>
+                        <h4>${$product->price}</h4>
+                        <h5>{$product->category_name}</h5>
+                        {if isset($smarty.session.isLogged)}
+                            <input type="number" name="quantity" min="0" data-bind="value:replyNumber" />
+                        {/if}
+                        <input type="hidden" name="name" value="{$product->name_product}" />
+                        <input type="hidden" name="price" value="{$product->price}" />
+                        <input type="hidden" name="id" value="{$product->id}" />
+                        <div class="btn_box">
                             {if isset($smarty.session.isLogged)}
-                                <input type="number" name="quantity" min="0" data-bind="value:replyNumber" />
+                                <button type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn">
+                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                </button>
                             {/if}
-                            <input type="hidden" name="name" value="{$product->name_product}" />
-                            <input type="hidden" name="price" value="{$product->price}" />
-                            <input type="hidden" name="id" value="{$product->id}" />
-                            <div class="btn_box">
-                                {if isset($smarty.session.isLogged)}
-                                    <button type="submit" name="add_to_cart" class="btn btn-info add-to-cart-btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                {/if}
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                </button>
-                                <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal_commentaries">
-                                    <i class="fa fa-comments" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{$product->id}">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            </button>
+                            <button id="commentary_{$product->id}" type="button" class="btn btn-primary commentaries_show_div" data-toggle="modal" data-target="#modal_commentaries">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                            </button>
                         </div>
-                    </form>
-                </div>
-                {include file="./modalInfo.tpl"}                
-            {/foreach}
-            {/nocache}
-        </div>
+                    </div>
+                </form>
+            </div>
+            {include file="./modalInfo.tpl"}
+        {/foreach}
+        {/nocache}
+    </div>
     </div>
 
     {include file="./commentariesModal.tpl"}
@@ -58,7 +59,7 @@
         </ul>
     </nav>
 
-    {if (isset($smarty.session.shopping_cart))}
+    {if isset($smarty.session.shopping_cart)}
         <div class="table-responsive">
             <table class="table table-dark">
                 <thead>
@@ -92,13 +93,12 @@
             </table>
         </div>
     {/if}
-    {include file="./footer.tpl"}    
-    
-    <script src="js/commentaries.js"></script>
+    {include file="./footer.tpl"}
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/commentaries.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
