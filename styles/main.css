@@ -10,6 +10,7 @@ a {
 .search-group {
     display: flex;
     margin: 5px;
+    width : 80%;
 }
 
 .span-bold {
