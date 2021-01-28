@@ -1,2 +1,4 @@
 /utils/templates_c/*
 /images/*.jpg
+vendor/
+.env
