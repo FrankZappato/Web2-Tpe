@@ -7,22 +7,27 @@ class AdminView
     {
     }
 
-    public function showAdmin($products)
+    public function showAdmin($error_msg_modify = null, $error_msg = null, $products, $categories)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $smarty = new Smarty();
+        $smarty = new Smarty();        
+        $smarty->assign('error_msg_modify', $error_msg_modify);
+        $smarty->assign('error_msg', $error_msg);
         $smarty->assign('products_s', $products);
+        $smarty->assign('categories', $categories);
         $smarty->display('../templates/adminProducts.tpl');
     }
-    public function showCategories($categories)
+    public function showCategories($categories, $error_message)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $smarty = new Smarty();
         $smarty->assign('categories_s', $categories);
+        $smarty->assign('error_message', $error_message);
+
         $smarty->display('../templates/adminCategory.tpl');
     }
 
@@ -44,5 +49,15 @@ class AdminView
         $smarty = new Smarty();
         $smarty->assign('messages_s', $messages);
         $smarty->display('../templates/messages.tpl');
+    }
+
+    public function showUsers($users)
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $smarty = new Smarty();
+        $smarty->assign('users_s', $users);
+        $smarty->display('../templates/usersList.tpl');
     }
 }

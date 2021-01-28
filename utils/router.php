@@ -28,6 +28,7 @@
     $r->addRoute("delete-product", "POST", "ProductsController", "deleteProduct");
     $r->addRoute("purchases", "GET", "AdminController", "showPurchases");
     $r->addRoute("modify-product", "POST", "ProductsController", "modifyProduct");
+    $r->addRoute("search", "POST", "ProductsController", "showFilteredProducts");
     //Categories
     $r->addRoute("modify-category", "POST", "CategoryController", "modifyCategory");
     $r->addRoute("add-category", "POST", "CategoryController", "addCategory");
@@ -38,5 +39,9 @@
     $r->addRoute("messages", "GET", "AdminController", "showContactMessages");
     $r->addRoute("add_to_cart", "POST", "ProductsController", "addToCart");
     $r->addRoute("delete_from_cart", "POST", "ProductsController", "deleteFromCart");
+   //usersHandlers
+    $r->addRoute("users", "GET", "AdminController", "showUsers");
+    $r->addRoute("delete-user", "POST", "AdminController", "deleteUser");
+    $r->addRoute("modify-admin-user", "POST", "AdminController", "makeUserAdmin");
 
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
