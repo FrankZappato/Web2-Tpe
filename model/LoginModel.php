@@ -5,8 +5,8 @@ class LoginModel
 
     public function __construct()
     {
-        $this->db = new PDO('mysql:host=localhost;'
-        .'dbname=thecave;charset=utf8', 'root', '');
+        $this->db = new PDO(getenv("DB_DNS").';',
+         getenv("DB_USER"), getenv("DB_PASS"));
     }
 
 
