@@ -1,4 +1,7 @@
 <?php
+
+require_once "../DbUtils.php";
+
 class CommentaryModel
 {
     private $db;

@@ -1,5 +1,7 @@
 <?php
 
+require_once "../DbUtils.php";
+
 class AdminModel
 {
     private $db;

@@ -1,4 +1,6 @@
 <?php
+require_once "../DbUtils.php";
+
 class LoginModel
 {
     private $db;
