@@ -1,5 +1,5 @@
 <?php
-require_once "../DbUtils.php";
+require_once "../model/DbUtils.php";
 
 class ProductsModel
 {
