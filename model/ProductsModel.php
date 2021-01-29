@@ -11,17 +11,12 @@ class ProductsModel
 
         $this->db = null;
     }
-    public function closeDB()
-    {
-        $this->db = null;
-    }
-
+    
     public function getAllProductsAdmin()
     {
         $query = $this->db->prepare("SELECT * FROM products");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-        closeDB(); 
+        return $query->fetchAll(PDO::FETCH_OBJ);        
     }
 
     public function getAllProducts($search = null, $special = null)
@@ -76,22 +71,19 @@ class ProductsModel
         //we prepare data to return
         $dataToReturn = array("special" => $special, "search"=>$search, "products"=>$query->fetchAll(PDO::FETCH_OBJ), "page"=>$pag, "pages"=>$pages);
      
-        return $dataToReturn;
-        closeDB(); 
+        return $dataToReturn;         
     }
 
     public function getProductsByCategories($search, $special)
     {
-        return $this->getAllProducts($search, $special);
-        closeDB(); 
+        return $this->getAllProducts($search, $special);        
     }
 
     public function getAllCategories()
     {
         $query = $this->db->prepare("SELECT * FROM categories ORDER by id ASC");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-        closeDB(); 
+        return $query->fetchAll(PDO::FETCH_OBJ);        
     }
 
     public function addProduct($id_category, $productName, $price, $details = null, $imagen = null)
@@ -104,8 +96,7 @@ class ProductsModel
                                     VALUES (?,?,?,?,?)");
         $query->execute(
             array($id_category,$pathImg,$productName,$price, $details)
-        );
-        closeDB(); 
+        );        
     }
     private function uploadImage($image){
         $target = "../images/";
@@ -119,8 +110,7 @@ class ProductsModel
         $query = $this->db->prepare("DELETE from products where id = ?");
         $query->execute(
             array($id_product)
-        );
-        closeDB(); 
+        );       
     }
 
     public function modifyProduct($product_id, $id_category, $productName, $price, $details, $imagen = null)
@@ -139,7 +129,6 @@ class ProductsModel
         ];
         $query = $this->db->prepare("UPDATE products SET price=:price, 
         id_category=:category_id, img_product=:imgName, name_product=:nameProd, details=:details WHERE id=:ide");
-        $query->execute($data);
-        closeDB(); 
+        $query->execute($data);       
     }
 }

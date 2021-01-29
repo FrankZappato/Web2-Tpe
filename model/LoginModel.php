@@ -10,23 +10,16 @@ class LoginModel
 
          $this->db = null;
     }
-    public function closeDB()
-    {
-        $this->db = null;
-    }
-
 
     public function getUser($email){        
         $statement = $this->db->prepare("SELECT * FROM users WHERE email=?");
         $statement->execute(array($email));
-        return $statement->fetch(PDO::FETCH_OBJ);  
-        closeDB();      
+        return $statement->fetch(PDO::FETCH_OBJ);            
     }
     public function checkUser($username){
         $statement = $this->db->prepare( "SELECT * FROM users WHERE email=?");
         $statement->execute(array($username));
-        return $statement->fetch(PDO::FETCH_OBJ);
-        closeDB();
+        return $statement->fetch(PDO::FETCH_OBJ);        
     }
 
     public function addNewUser($username, $email, $hashedPwd, $isAdmin){
@@ -35,8 +28,7 @@ class LoginModel
         $stmt->execute(
             array($username, $email, $hashedPwd, $isAdmin)
         );
-        return  $stmt->fetchAll(PDO::FETCH_OBJ);
-        closeDB();
+        return  $stmt->fetchAll(PDO::FETCH_OBJ);        
     }   
     
 }
