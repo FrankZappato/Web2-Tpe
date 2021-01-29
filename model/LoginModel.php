@@ -8,17 +8,23 @@ class LoginModel
         $this->db = new PDO(getenv("DB_DNS").';',
          getenv("DB_USER"), getenv("DB_PASS"));
     }
+    public function closeDB()
+    {
+        $this->db = null;
+    }
 
 
     public function getUser($email){        
         $statement = $this->db->prepare("SELECT * FROM users WHERE email=?");
         $statement->execute(array($email));
-        return $statement->fetch(PDO::FETCH_OBJ);        
+        return $statement->fetch(PDO::FETCH_OBJ);  
+        closeDB();      
     }
     public function checkUser($username){
         $statement = $this->db->prepare( "SELECT * FROM users WHERE email=?");
         $statement->execute(array($username));
         return $statement->fetch(PDO::FETCH_OBJ);
+        closeDB();
     }
 
     public function addNewUser($username, $email, $hashedPwd, $isAdmin){
@@ -28,6 +34,7 @@ class LoginModel
             array($username, $email, $hashedPwd, $isAdmin)
         );
         return  $stmt->fetchAll(PDO::FETCH_OBJ);
+        closeDB();
     }   
     
 }

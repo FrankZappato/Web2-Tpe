@@ -10,11 +10,17 @@ class AdminModel
          getenv("DB_USER"), getenv("DB_PASS"));
     }
 
+    public function closeDB()
+    {
+        $this->db = null;
+    }
+
     public function getAllPurchases()
     {
         $query = $this->db->prepare("SELECT * FROM purchases ORDER by date_milis ASC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+        closeDB();
     }
 
     
@@ -24,18 +30,21 @@ class AdminModel
         $query = $this->db->prepare("SELECT * FROM users");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+        closeDB();
     }
     public function getUser($id_user)
     {
         $query = $this->db->prepare("SELECT * FROM users where id = ?");
         $query->execute(array($id_user));
         return $query->fetch(PDO::FETCH_OBJ);
+        closeDB();
     }
 
     public function deleteUser($id_user)
     {
         $query = $this->db->prepare("DELETE from users where id = ?");
         $query->execute(array($id_user));
+        closeDB();
     }
     
     public function updateUserAdmin($id_user,$userAdminValue)
@@ -47,6 +56,7 @@ class AdminModel
         $query = $this->db->prepare("UPDATE users SET isadmin=:userAdminValue
                                      WHERE id=:id_user");
         $query->execute($data);
+        closeDB();
     }
     
     //Messages
@@ -55,6 +65,7 @@ class AdminModel
         $query = $this->db->prepare("SELECT * FROM messages");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+        closeDB();
     }
     public function saveMessage($name, $email, $message)
     {
@@ -64,6 +75,7 @@ class AdminModel
         return $query->execute(
             array($message,$email,$name)
         );
+        closeDB();
     }
     //Categories
     public function getAllCategories()
@@ -71,6 +83,7 @@ class AdminModel
         $query = $this->db->prepare("SELECT * FROM categories");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+        closeDB();
     }
 
     public function addCategory($name_category, $color_category)
@@ -80,6 +93,7 @@ class AdminModel
         $query->execute(
             array($color_category, $name_category)
         );
+        closeDB();
     }
 
     public function modifyCategory($id_category, $name_category, $color_category)
@@ -92,11 +106,13 @@ class AdminModel
         $query = $this->db->prepare("UPDATE categories SET category_name=:category_name, color=:categoryColor
                                      WHERE id=:category_id");
         $query->execute($data);
+        closeDB();
     }
 
     public function deleteCategory($id_category)
     {
         $query = $this->db->prepare("DELETE from categories where id = ?");
         $query->execute(array($id_category));
+        closeDB();
     }
 }
