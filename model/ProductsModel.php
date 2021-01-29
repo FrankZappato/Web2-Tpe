@@ -8,6 +8,8 @@ class ProductsModel
     {
         $this->db = new PDO(getenv("DB_DNS").';',
         getenv("DB_USER"), getenv("DB_PASS"));
+
+        $this->db = null;
     }
     public function closeDB()
     {
