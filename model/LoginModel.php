@@ -5,10 +5,7 @@ class LoginModel
 
     public function __construct()
     {
-        $this->db = new PDO(getenv("DB_DNS").';',
-         getenv("DB_USER"), getenv("DB_PASS"));
-
-         $this->db = null;
+        $this->db = DbUtils::getDB();
     }
 
     public function getUser($email){        
